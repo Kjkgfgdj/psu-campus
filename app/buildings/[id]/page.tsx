@@ -25,14 +25,12 @@ export default function BuildingPage() {
       <h1 className="text-2xl font-semibold mb-4">Building {buildingId}</h1>
 
       <div className="relative">
-        {/* floating floor picker */}
-        <div className="pointer-events-auto absolute inset-x-0 -top-6 mx-auto flex justify-center">
-          <div className="rounded-2xl border bg-card shadow-sm">
-            <FloorPicker value={currentFloor} onChange={setFloor} floors={floors} />
-          </div>
+        {/* Top-right overlay */}
+        <div className="absolute top-4 right-4 z-20">
+          <FloorPicker value={currentFloor} onChange={setFloor} floors={floors} />
         </div>
 
-        {/* placeholder “image” area */}
+        {/* Large placeholder “map” */}
         <PlaceholderFloor building={String(buildingId)} floor={currentFloor} />
       </div>
     </div>

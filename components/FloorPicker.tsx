@@ -9,12 +9,12 @@ type FloorPickerProps = {
 
 export default function FloorPicker({ value, onChange, floors }: FloorPickerProps) {
   return (
-    <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10">
-      <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-2 flex flex-col gap-1">
+    <div className="rounded-xl bg-background/90 backdrop-blur border shadow-sm p-1">
+      <div className="flex flex-col gap-1">
         {floors.map((floor) => {
           const isActive = floor === value;
           const label = FLOOR_LABEL[floor] ?? String(floor);
-          
+
           return (
             <Button
               key={floor}

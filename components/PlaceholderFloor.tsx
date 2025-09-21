@@ -9,10 +9,10 @@ export default function PlaceholderFloor({ building, floor }: Props) {
   const floorLabel = FLOOR_LABEL[floor] ?? String(floor);
   
   return (
-    <div className="w-full bg-gray-100 rounded-lg aspect-[16/9] flex items-center justify-center">
-      <p className="text-2xl text-gray-600">
+    <div className="relative w-full rounded-2xl border bg-muted/40">
+      <div className="min-h-[70vh] md:min-h-[75vh] lg:min-h-[78vh] flex items-center justify-center text-lg sm:text-xl text-muted-foreground">
         Building {building} — Floor {floorLabel}
-      </p>
+      </div>
     </div>
   );
 }

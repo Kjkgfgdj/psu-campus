@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
-import { BUILDING_FLOORS, FLOOR_LABEL, parseFloor } from '@/lib/floors';
+import { BUILDING_FLOORS, parseFloor } from '@/lib/floors';
 import FloorPicker from '@/components/FloorPicker';
 import PlaceholderFloor from '@/components/PlaceholderFloor';
 

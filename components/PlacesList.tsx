@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -51,13 +52,16 @@ function PlaceCard({ place }: { place: Place }) {
   const [showVideo, setShowVideo] = useState(false)
 
   const hasVideo = place.videoUrl && place.videoUrl.trim() !== ""
+  
+  const deepLinkUrl = `/buildings/${place.building}?floor=${place.floor}${place.slug ? `&slug=${place.slug}` : ""}`;
 
   return (
-    <Card className="transition-shadow hover:shadow-md">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-lg font-semibold">
-          {place.name}
-        </CardTitle>
+    <Link href={deepLinkUrl} className="block">
+      <Card className="transition-shadow hover:shadow-md cursor-pointer">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-lg font-semibold">
+            {place.name}
+          </CardTitle>
         
         <div className="flex flex-wrap gap-2 mt-2">
           {place.building && (
@@ -97,7 +101,11 @@ function PlaceCard({ place }: { place: Place }) {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setShowVideo(!showVideo)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  setShowVideo(!showVideo);
+                }}
                 className="h-8 px-3 text-xs"
               >
                 {showVideo ? (
@@ -127,6 +135,7 @@ function PlaceCard({ place }: { place: Place }) {
         )}
       </CardContent>
     </Card>
+    </Link>
   )
 }
 

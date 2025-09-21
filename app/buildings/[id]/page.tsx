@@ -21,7 +21,7 @@ export default function BuildingPage() {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="w-full max-w-none px-4 sm:px-6 py-8">
       <h1 className="text-2xl font-semibold mb-4">Building {buildingId}</h1>
 
       <div className="relative">

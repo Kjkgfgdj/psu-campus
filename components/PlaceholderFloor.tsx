@@ -14,7 +14,7 @@ export default function PlaceholderFloor({ building, floor, className = "" }: Pr
       className={[
         "relative",
         "w-full rounded-2xl border bg-muted shadow-sm overflow-hidden",
-        "h-[56vh] sm:h-[60vh] md:h-[64vh] lg:h-[68vh] xl:h-[72vh] min-h-[420px]",
+        "aspect-[16/10] lg:aspect-[16/9] max-h-[78vh]",
         className,
       ].join(" ")}
     >

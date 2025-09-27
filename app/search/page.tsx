@@ -1,10 +1,18 @@
 "use client"
 
-import React, { useState, useEffect, useRef, Suspense } from "react"
-import { useRouter, usePathname } from "next/navigation"
+import React, { useState, useEffect, useRef, Suspense, useMemo, useCallback } from "react"
+import { useRouter, usePathname, useSearchParams } from "next/navigation"
 import { SearchFilters, type Filters } from "@/components/SearchFilters"
 import { PlacesList } from "@/components/PlacesList"
 import { useDebouncedValue } from "@/components/useDebouncedValue"
+import { CategoryChips } from "@/components/CategoryChips"
+import {
+  CATEGORY,
+  type CategoryFilter,
+  categoryFromQuery,
+  categoryToQuery,
+  matchCategory,
+} from "@/lib/categories"
 
 const ALL = "__all__"
 
@@ -33,6 +41,9 @@ interface ApiResponse {
 function SearchPageContent() {
   const router = useRouter()
   const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const searchParamsString = searchParams.toString()
+  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>(CATEGORY.ALL)
   
   // Local state for filters
   const [filters, setFilters] = useState<Filters>({
@@ -58,15 +69,18 @@ function SearchPageContent() {
   
   // On mount only, read window.location.search and initialize filters
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const next: Filters = {
+    const params = searchParams
+    const nextFilters: Filters = {
       building: params.get("building") ?? ALL,
       floor: params.get("floor") ?? ALL,
       category: params.get("category") ?? ALL,
       q: params.get("q") ?? "",
     }
-    setFilters(prev => (same(prev, next) ? prev : next))
-  }, [])
+    const nextCategory = categoryFromQuery(params.get("cat"))
+
+    setFilters((prev) => (same(prev, nextFilters) ? prev : nextFilters))
+    setCategoryFilter((prev) => (prev === nextCategory ? prev : nextCategory))
+  }, [searchParams])
   
   // State → URL writer effect (skip first render and only write if the URL actually changes)
   useEffect(() => {
@@ -78,12 +92,16 @@ function SearchPageContent() {
     if (filters.category !== ALL) params.set("category", filters.category)
     if (filters.q.trim()) params.set("q", filters.q.trim())
 
+    const catQuery = categoryToQuery(categoryFilter)
+    if (catQuery !== "all") {
+      params.set("cat", catQuery)
+    }
+
     const newSearch = params.toString()
-    const currentSearch = window.location.search.slice(1)
-    if (newSearch !== currentSearch) {
+    if (newSearch !== searchParamsString) {
       router.replace(`${pathname}${newSearch ? `?${newSearch}` : ""}`, { scroll: false })
     }
-  }, [filters, pathname, router])
+  }, [filters, categoryFilter, pathname, router, searchParamsString])
   
   // Fetch places from API based on debounced filters
   useEffect(() => {
@@ -140,7 +158,17 @@ function SearchPageContent() {
   // Clear filters handler
   const handleClearFilters = () => {
     setFilters({ building: ALL, floor: ALL, category: ALL, q: "" })
+    setCategoryFilter(CATEGORY.ALL)
   }
+
+  const handleCategoryChange = useCallback((next: CategoryFilter) => {
+    setCategoryFilter(next)
+  }, [])
+
+  const filteredPlaces = useMemo(
+    () => places.filter((place) => matchCategory(categoryFilter, place.category)),
+    [places, categoryFilter],
+  )
   
   return (
     <div className="space-y-6">
@@ -157,18 +185,23 @@ function SearchPageContent() {
         loading={isLoading}
         onClear={handleClearFilters}
       />
-      
+
+      <CategoryChips selected={categoryFilter} onChange={handleCategoryChange} />
+
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-semibold">
-            {isLoading ? "Searching..." : `${places.length} place${places.length !== 1 ? "s" : ""} found`}
+            {isLoading
+              ? "Searching..."
+              : `${filteredPlaces.length} place${filteredPlaces.length !== 1 ? "s" : ""} found`}
           </h2>
         </div>
         
         <PlacesList
-          places={places}
+          places={filteredPlaces}
           isLoading={isLoading}
           error={error}
+          emptyMessage="No results for this filter."
         />
       </div>
     </div>

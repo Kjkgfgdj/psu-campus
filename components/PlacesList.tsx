@@ -4,6 +4,8 @@ import { useState } from "react"
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { badgeClasses } from "@/lib/categories"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { YouTubeEmbed } from "@/components/YouTubeEmbed"
 import { Play, X, AlertCircle } from "lucide-react"
@@ -25,6 +27,7 @@ interface PlacesListProps {
   places: Place[]
   isLoading: boolean
   error: string | null
+  emptyMessage?: string
 }
 
 function PlaceSkeleton() {
@@ -75,7 +78,7 @@ function PlaceCard({ place }: { place: Place }) {
             </Badge>
           )}
           {place.category && (
-            <Badge variant="default" className="text-xs">
+            <Badge className={cn("text-xs", badgeClasses(place.category))}>
               {place.category}
             </Badge>
           )}
@@ -139,7 +142,7 @@ function PlaceCard({ place }: { place: Place }) {
   )
 }
 
-export function PlacesList({ places, isLoading, error }: PlacesListProps) {
+export function PlacesList({ places, isLoading, error, emptyMessage }: PlacesListProps) {
   if (error) {
     return (
       <Card className="border-destructive/50 bg-destructive/5">
@@ -173,7 +176,7 @@ export function PlacesList({ places, isLoading, error }: PlacesListProps) {
           </div>
           <h3 className="font-semibold text-lg mb-2">No places found</h3>
           <p className="text-muted-foreground">
-            Try adjusting your search filters or search terms.
+            {emptyMessage ?? "Try adjusting your search filters or search terms."}
           </p>
         </CardContent>
       </Card>

@@ -26,11 +26,6 @@ export function SiteNav() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                <Link href="/buildings">Buildings</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                 <Link href="/search">Search</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>

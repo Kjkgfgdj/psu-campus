@@ -74,3 +74,8 @@ export async function getPopularExamPlaces(): Promise<Place[]> {
   return all.filter((place) => place.category === "Popular exam places");
 }
 
+export async function getFoodAndDrinks(): Promise<Place[]> {
+  const all = await getPlaces();
+  return all.filter((place) => place.category === "Food & drinks");
+}
+

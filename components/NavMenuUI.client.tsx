@@ -76,13 +76,27 @@ export function NavMenuUI({ examItems, foodItems }: NavMenuUIProps) {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>
-            Popular exam places
+            <span
+              className={cn(
+                "inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium ring-1",
+                badgeClasses("Popular exam places"),
+              )}
+            >
+              Popular exam places
+            </span>
           </NavigationMenuTrigger>
           <NavigationMenuContent>{renderList(examItems, "exam")}</NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>
-            Food &amp; drinks
+            <span
+              className={cn(
+                "inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium ring-1",
+                badgeClasses("Food & drinks"),
+              )}
+            >
+              Food &amp; drinks
+            </span>
           </NavigationMenuTrigger>
           <NavigationMenuContent>{renderList(foodItems, "food")}</NavigationMenuContent>
         </NavigationMenuItem>

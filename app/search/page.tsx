@@ -19,6 +19,18 @@ const ALL = "__all__"
 const same = (a: Filters, b: Filters) =>
   a.building === b.building && a.floor === b.floor && a.category === b.category && a.q === b.q
 
+const allowedCatParams = new Set(["exam", "food", "public", "all", null])
+
+function buildUrl(pathname: string, params: URLSearchParams, patch: Record<string, string | null>) {
+  const next = new URLSearchParams(params)
+  for (const [key, value] of Object.entries(patch)) {
+    if (value === null) next.delete(key)
+    else next.set(key, value)
+  }
+  const qs = next.toString()
+  return qs ? `${pathname}?${qs}` : pathname
+}
+
 interface Place {
   id: string
   name: string
@@ -42,8 +54,8 @@ function SearchPageContent() {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
-  const searchParamsString = searchParams.toString()
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>(CATEGORY.ALL)
+  const normalizedRef = useRef(false)
   
   // Local state for filters
   const [filters, setFilters] = useState<Filters>({
@@ -76,32 +88,51 @@ function SearchPageContent() {
       category: params.get("category") ?? ALL,
       q: params.get("q") ?? "",
     }
-    const nextCategory = categoryFromQuery(params.get("cat"))
+    const catParam = params.get("cat")
+    const nextCategory = categoryFromQuery(catParam)
 
     setFilters((prev) => (same(prev, nextFilters) ? prev : nextFilters))
     setCategoryFilter((prev) => (prev === nextCategory ? prev : nextCategory))
-  }, [searchParams])
+
+    if (!normalizedRef.current) {
+      normalizedRef.current = true
+      if (!allowedCatParams.has(catParam) && nextCategory !== CATEGORY.ALL) {
+        const normalized = buildUrl(pathname, params, { cat: categoryToQuery(nextCategory) })
+        router.replace(normalized, { scroll: false })
+      }
+    }
+  }, [pathname, router, searchParams])
   
   // State → URL writer effect (skip first render and only write if the URL actually changes)
   useEffect(() => {
     if (!hydrated.current) return
 
-    const params = new URLSearchParams()
-    if (filters.building !== ALL) params.set("building", filters.building)
-    if (filters.floor !== ALL) params.set("floor", filters.floor)
-    if (filters.category !== ALL) params.set("category", filters.category)
-    if (filters.q.trim()) params.set("q", filters.q.trim())
+    const currentCatParam = searchParams.get("cat")
+    const desiredCatParam = categoryToQuery(categoryFilter)
+    const shouldUpdateCat = desiredCatParam === "all" ? currentCatParam !== null : currentCatParam !== desiredCatParam
 
-    const catQuery = categoryToQuery(categoryFilter)
-    if (catQuery !== "all") {
-      params.set("cat", catQuery)
+    const shouldUpdateFilters =
+      filters.building !== ALL || filters.floor !== ALL || filters.category !== ALL || filters.q.trim() !== ""
+
+    if (!shouldUpdateCat && !shouldUpdateFilters && searchParams.size === 0) {
+      return
     }
 
-    const newSearch = params.toString()
-    if (newSearch !== searchParamsString) {
-      router.replace(`${pathname}${newSearch ? `?${newSearch}` : ""}`, { scroll: false })
+    const currentParams = searchParams
+    const patch: Record<string, string | null> = {
+      building: filters.building !== ALL ? filters.building : null,
+      floor: filters.floor !== ALL ? filters.floor : null,
+      category: filters.category !== ALL ? filters.category : null,
+      q: filters.q.trim() ? filters.q.trim() : null,
+      cat: desiredCatParam === "all" ? null : desiredCatParam,
     }
-  }, [filters, categoryFilter, pathname, router, searchParamsString])
+
+    const nextUrl = buildUrl(pathname, currentParams, patch)
+    const currentUrl = buildUrl(pathname, currentParams, {})
+    if (nextUrl !== currentUrl) {
+      router.replace(nextUrl, { scroll: false })
+    }
+  }, [filters, categoryFilter, pathname, router, searchParams])
   
   // Fetch places from API based on debounced filters
   useEffect(() => {
@@ -162,8 +193,10 @@ function SearchPageContent() {
   }
 
   const handleCategoryChange = useCallback((next: CategoryFilter) => {
-    setCategoryFilter(next)
-  }, [])
+    if (next !== categoryFilter) {
+      setCategoryFilter(next)
+    }
+  }, [categoryFilter])
 
   const filteredPlaces = useMemo(
     () => places.filter((place) => matchCategory(categoryFilter, place.category)),

@@ -51,6 +51,13 @@ export function badgeClasses(raw: string): string {
   return "bg-gray-50 text-gray-700 ring-1 ring-gray-200";
 }
 
+export function badgeTone(raw: string): { bg: string; text: string; border?: string } {
+  if (raw === "Food & drinks") return { bg: "bg-green-50", text: "text-green-700", border: "ring-green-200" };
+  if (raw === "Important places" || raw === "Public facilities") return { bg: "bg-red-50", text: "text-red-700", border: "ring-red-200" };
+  if (raw === "Popular exam places") return { bg: "bg-amber-50", text: "text-amber-700", border: "ring-amber-200" };
+  return { bg: "bg-gray-50", text: "text-gray-700", border: "ring-gray-200" };
+}
+
 export function pinColorForCategory(raw: string): string {
   if (raw === "Food & drinks") return "#16a34a";
   if (raw === "Important places" || raw === "Public facilities") return "#dc2626";

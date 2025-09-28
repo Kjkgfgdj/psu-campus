@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { FLOOR_LABEL } from "@/lib/floors";
 import { useDebouncedValue } from "@/components/useDebouncedValue";
+import { badgeClasses } from "@/lib/categories";
+import { cn } from "@/lib/utils";
 
 type Place = {
   id: string;
@@ -195,7 +197,9 @@ export default function AutocompleteSearch({ defaultValue = "" }: AutocompleteSe
                   <Badge variant="secondary" className="text-[10px]">Building {place.building}</Badge>
                   <Badge variant="outline" className="text-[10px]">Floor {FLOOR_LABEL[place.floor] ?? String(place.floor)}</Badge>
                   {place.category && (
-                    <Badge variant="default" className="text-[10px]">{place.category}</Badge>
+                    <Badge className={cn("text-[10px]", badgeClasses(place.category))}>
+                      {place.category}
+                    </Badge>
                   )}
                 </div>
                 {place.description && (

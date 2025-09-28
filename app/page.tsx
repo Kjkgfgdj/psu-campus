@@ -1,7 +1,5 @@
 import AutocompleteSearch from "@/components/AutocompleteSearch";
 import BuildingCard from "@/components/BuildingCard";
-import { PopularExamList } from "@/components/PopularExamList";
-import { FoodList } from "@/components/FoodList";
 
 export const revalidate = 60;
 
@@ -27,16 +25,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      <section className="mx-auto mt-10 max-w-6xl px-4">
-        <h2 className="mb-4 text-xl font-semibold">Popular exam places</h2>
-        <PopularExamList />
-      </section>
-
-      <section className="mx-auto mt-10 max-w-6xl px-4">
-        <h2 className="mb-4 text-xl font-semibold">Food &amp; drinks</h2>
-        <FoodList />
-      </section>
     </div>
   );
 }

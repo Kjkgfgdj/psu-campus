@@ -1,13 +1,17 @@
 "use client"
 
 import Link from "next/link"
+import { Suspense } from "react"
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuContent,
+  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import { NavDataList } from "@/components/NavDataList"
 
 export function SiteNav() {
   return (
@@ -23,6 +27,26 @@ export function SiteNav() {
               <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                 <Link href="/">Home</Link>
               </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>
+                Popular exam places
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <Suspense fallback={<div className="w-[320px] p-4 text-sm text-muted-foreground">Loading…</div>}>
+                  <NavDataList kind="exam" />
+                </Suspense>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>
+                Food &amp; drinks
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <Suspense fallback={<div className="w-[320px] p-4 text-sm text-muted-foreground">Loading…</div>}>
+                  <NavDataList kind="food" />
+                </Suspense>
+              </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>

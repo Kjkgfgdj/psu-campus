@@ -4,8 +4,8 @@ import { getFoodAndDrinks, getPopularExamPlaces } from "@/lib/airtable";
 
 export default async function SiteNav() {
   const [examItems, foodItems] = await Promise.all([
-    getPopularExamPlaces().catch(() => []),
-    getFoodAndDrinks().catch(() => []),
+    getPopularExamPlaces(8).catch(() => []),
+    getFoodAndDrinks(8).catch(() => []),
   ]);
 
   return (

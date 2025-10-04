@@ -14,7 +14,12 @@ export default function BuildingPage() {
   const floorParam = searchParams.get("floor") ?? "0";
   const activeFloor = parseFloor(floorParam, 0);
 
-  const floors = useMemo(() => (id ? BUILDING_FLOORS[id] ?? [0] : [0]), [id]);
+  // FIX: index BUILDING_FLOORS with a number, not a string
+  const floors = useMemo<number[]>(() => {
+    const b = Number(id);
+    if (!Number.isFinite(b)) return [0];
+    return BUILDING_FLOORS[b] ?? [0];
+  }, [id]);
 
   if (!id) {
     return (
@@ -46,4 +51,3 @@ export default function BuildingPage() {
     </main>
   );
 }
-

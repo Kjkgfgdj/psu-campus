@@ -41,8 +41,8 @@ export async function GET(req: NextRequest) {
 
         if (tokens.length) {
           const name = norm(p.name);
-          const slug = norm((p as any).slug);
-          const descr = norm((p as any).description);
+          const slug = norm(p.slug);
+          const descr = norm(p.description);
           return tokens.every((t) => name.includes(t) || slug.includes(t) || descr.includes(t));
         }
 

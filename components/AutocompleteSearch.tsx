@@ -20,7 +20,16 @@ interface Place {
 }
 
 const MAX_SUGGESTIONS = 50;
-const FETCH_URL = "/api/places?limit=1000";
+const FETCH_URL = "/api/places?limit=all";
+
+function norm(s?: string) {
+  return (s ?? "")
+    .toLowerCase()
+    .replace(/\u00a0/g, " ")
+    .trim()
+    .replace(/\s+/g, " ")
+    .replace(/[^a-z0-9]+/g, "-");
+}
 
 export default function AutocompleteSearch({ defaultValue = "" }: { defaultValue?: string }) {
   const router = useRouter();
@@ -34,6 +43,30 @@ export default function AutocompleteSearch({ defaultValue = "" }: { defaultValue
   const listboxId = "autocomplete-listbox";
   const abortRef = useRef<AbortController | null>(null);
   const hasFetched = useRef(false);
+
+  const fetchAll = useCallback(async () => {
+    if (isLoading) return;
+    setIsLoading(true);
+    const controller = new AbortController();
+    abortRef.current = controller;
+
+    try {
+      const resp = await fetch(FETCH_URL, { signal: controller.signal });
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const data = (await resp.json()) as { places?: Place[] } | Place[];
+
+      if (Array.isArray(data)) setPlaces(data);
+      else if (Array.isArray(data?.places)) setPlaces(data.places);
+      else setPlaces([]);
+    } catch (err) {
+      if (!abortRef.current?.signal.aborted) {
+        console.error("Autocomplete fetch failed:", err);
+        setPlaces([]);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     function onDocClick(event: MouseEvent) {
@@ -51,60 +84,52 @@ export default function AutocompleteSearch({ defaultValue = "" }: { defaultValue
   useEffect(() => {
     if (hasFetched.current) return;
     hasFetched.current = true;
-    abortRef.current?.abort();
-    const controller = new AbortController();
-    abortRef.current = controller;
-    setIsLoading(true);
+    fetchAll();
+    return () => abortRef.current?.abort();
+  }, [fetchAll]);
 
-    fetch(FETCH_URL, { signal: controller.signal })
-      .then(async (response) => {
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return response.json() as Promise<{ places: Place[] }>;
-      })
-      .then((data) => {
-        setPlaces(Array.isArray(data.places) ? data.places : []);
-      })
-      .catch((error) => {
-        if (controller.signal.aborted) return;
-        console.error("Autocomplete fetch failed:", error);
-        setPlaces([]);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-
-    return () => controller.abort();
-  }, []);
-
-  useEffect(() => {
-    if (debounced.trim() && places.length > 0) {
-      setOpen(true);
-      setHighlightIndex(0);
-    } else if (!debounced.trim()) {
-      setHighlightIndex(-1);
-    }
-  }, [debounced, places.length]);
+useEffect(() => {
+    const hasText = debounced.trim().length > 0;
+    setOpen(hasText);
+    if (!hasText) setHighlightIndex(-1);
+  }, [debounced]);
 
   const filtered = useMemo(() => {
-    const query = debounced.trim().toLowerCase();
-    if (!query) return [];
+    const nq = norm(debounced);
+    if (!nq) return [];
 
-    const scored = places.map((place) => ({
-      place,
-      score: scorePlace(place, query),
-    }));
+    const tokens = nq.split("-").filter(Boolean);
 
-    return scored
-      .filter((item) => item.score > 0)
-      .sort((a, b) => (b.score === a.score ? a.place.name.localeCompare(b.place.name) : b.score - a.score))
-      .slice(0, MAX_SUGGESTIONS)
-      .map((item) => item.place);
+    const scored = places
+      .map((place) => {
+        const name = norm(place.name);
+        const slug = norm(place.slug);
+        const descr = norm(place.description);
+
+        const allHay = [name, slug, descr];
+
+        const everyTokenFound = tokens.every((t) => allHay.some((h) => h.includes(t)));
+        if (!everyTokenFound) return null;
+
+        let score = 0;
+        if (slug === nq || name === nq) score += 3;
+        if (slug.startsWith(nq) || name.startsWith(nq)) score += 2;
+        if (slug.includes(nq) || name.includes(nq)) score += 1;
+
+        return { place, score };
+      })
+      .filter(Boolean) as { place: Place; score: number }[];
+
+    scored.sort((a, b) => b.score - a.score);
+    return scored.slice(0, MAX_SUGGESTIONS).map((s) => s.place);
   }, [debounced, places]);
 
   const navigateTo = useCallback(
     (place: Place) => {
+      if (!place.building) return;
       const slugParam = place.slug ? `&slug=${place.slug}` : "";
-      const href = `/buildings/${place.building}?floor=${place.floor}${slugParam}`;
+      const floorParam = place.floor ?? "0";
+      const href = `/buildings/${place.building}?floor=${floorParam}${slugParam}`;
       setOpen(false);
       startTransition(() => router.push(href));
     },
@@ -163,7 +188,9 @@ export default function AutocompleteSearch({ defaultValue = "" }: { defaultValue
         value={term}
         onChange={(event) => setTerm(event.target.value)}
         onFocus={() => {
-          if (filtered.length > 0) setOpen(true);
+          const hasText = debounced.trim().length > 0 || term.trim().length > 0;
+          setOpen(hasText);
+          if (places.length === 0 && !isLoading) fetchAll();
         }}
         onKeyDown={onKeyDown}
         className="w-full px-4 py-6 text-lg"
@@ -179,6 +206,9 @@ export default function AutocompleteSearch({ defaultValue = "" }: { defaultValue
           className="absolute z-50 mt-2 w-full rounded-xl border bg-background shadow-md"
         >
           <div className="max-h-80 overflow-y-auto">
+            {isLoading && debounced.trim() && places.length === 0 && (
+              <div className="px-4 py-3 text-sm text-muted-foreground">Loading…</div>
+            )}
             {filtered.map((place, index) => {
               const active = index === highlightIndex;
               return (
@@ -203,7 +233,9 @@ export default function AutocompleteSearch({ defaultValue = "" }: { defaultValue
                     <Badge variant="outline" className="text-[10px]">
                       Floor {FLOOR_LABEL[place.floor] ?? String(place.floor)}
                     </Badge>
-                    <Badge className={cn("text-[10px]", badgeClasses(place.category))}>{place.category}</Badge>
+                    {place.category && (
+                      <Badge className={cn("text-[10px]", badgeClasses(place.category))}>{place.category}</Badge>
+                    )}
                   </div>
                   {place.description && (
                     <div className="mt-1 line-clamp-1 text-xs text-muted-foreground">{place.description}</div>
@@ -232,15 +264,3 @@ export default function AutocompleteSearch({ defaultValue = "" }: { defaultValue
   );
 }
 
-function scorePlace(place: Place, query: string): number {
-  const name = place.name.toLowerCase();
-  const slug = (place.slug ?? "").toLowerCase();
-  const description = (place.description ?? "").toLowerCase();
-
-  if (name.startsWith(query)) return 100;
-  if (slug.startsWith(query)) return 90;
-  if (name.includes(query)) return 60;
-  if (slug.includes(query)) return 50;
-  if (description.includes(query)) return 30;
-  return 0;
-}

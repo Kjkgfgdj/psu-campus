@@ -1,8 +1,13 @@
 'use client';
 
-import type { Place } from "@/lib/airtable";
-import { badgeClasses } from "@/lib/categories";
-import { cn } from "@/lib/utils";
+interface Place {
+  id: string;
+  name?: string;
+  building?: number | string;
+  floor?: number | string;
+  category?: string;
+  slug?: string;
+}
 import Link from "next/link";
 import {
   NavigationMenu,
@@ -19,7 +24,8 @@ interface NavMenuUIProps {
   foodItems: Place[];
 }
 
-const EMPTY_TEXT = "No items yet. Connect Airtable.";
+const EMPTY_EXAM_TEXT = "No exam rooms found yet. Add classroom rows in Airtable (e.g. “E-140”) and they’ll appear here.";
+const EMPTY_FOOD_TEXT = "No food spots yet. Add rows in Airtable to see them here.";
 
 function renderList(items: Place[], kind: "exam" | "food") {
   const hasItems = items.length > 0;
@@ -38,17 +44,25 @@ function renderList(items: Place[], kind: "exam" | "food") {
                 <Link
                   href={
                     kind === "exam"
-                      ? `/buildings/${place.building}?floor=${place.floor}&cat=exam${place.slug ? `&slug=${place.slug}` : ""}`
-                      : `/buildings/${place.building}?floor=${place.floor}&cat=food${place.slug ? `&slug=${place.slug}` : ""}`
+                      ? `/buildings/${place.building ?? ""}?floor=${place.floor ?? ""}&cat=exam${place.slug ? `&slug=${place.slug}` : ""}`
+                      : `/buildings/${place.building ?? ""}?floor=${place.floor ?? ""}&cat=food${place.slug ? `&slug=${place.slug}` : ""}`
                   }
                   className="block rounded-md px-2 py-2 transition hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                   aria-label={`${place.name}, building ${place.building}, floor ${place.floor}`}
                 >
                   <div className="text-sm font-medium">{place.name}</div>
                   <div className="mt-1 flex flex-wrap items-center gap-2 text-[11px] text-muted-foreground">
-                    <span className="rounded-full bg-gray-100 px-2 py-0.5 text-gray-700">Bldg {place.building}</span>
-                    <span className="rounded-full bg-gray-100 px-2 py-0.5 text-gray-700">Floor {place.floor}</span>
-                    <span className={cn("rounded-full px-2 py-0.5", badgeClasses(place.category))}>{place.category}</span>
+                    {place.building !== undefined && place.building !== null && (
+                      <span className="rounded-full bg-gray-100 px-2 py-0.5 text-gray-700">Bldg {place.building}</span>
+                    )}
+                    {place.floor !== undefined && place.floor !== null && (
+                      <span className="rounded-full bg-gray-100 px-2 py-0.5 text-gray-700">Floor {place.floor}</span>
+                    )}
+                    {place.category && (
+                      <span className="rounded-full bg-gray-100 px-2 py-0.5 text-gray-700">
+                        {place.category}
+                      </span>
+                    )}
                   </div>
                 </Link>
               </li>
@@ -56,7 +70,7 @@ function renderList(items: Place[], kind: "exam" | "food") {
           : (
               <li>
                 <div className="rounded-md border border-dashed bg-muted/30 px-3 py-6 text-center text-xs text-muted-foreground">
-                  {EMPTY_TEXT}
+                  {kind === "exam" ? EMPTY_EXAM_TEXT : EMPTY_FOOD_TEXT}
                 </div>
               </li>
             )}
@@ -76,12 +90,7 @@ export function NavMenuUI({ examItems, foodItems }: NavMenuUIProps) {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>
-            <span
-              className={cn(
-                "inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium ring-1",
-                badgeClasses("Popular exam places"),
-              )}
-            >
+            <span className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium ring-1 ring-[#9FE6FF]/60 bg-[#D9F0FF] text-[#003A57]">
               Popular exam places
             </span>
           </NavigationMenuTrigger>
@@ -89,13 +98,8 @@ export function NavMenuUI({ examItems, foodItems }: NavMenuUIProps) {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>
-            <span
-              className={cn(
-                "inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium ring-1",
-                badgeClasses("Food & drinks"),
-              )}
-            >
-              Food &amp; drinks
+            <span className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium bg-[#2AFD32] text-white">
+              Food & drinks
             </span>
           </NavigationMenuTrigger>
           <NavigationMenuContent>{renderList(foodItems, "food")}</NavigationMenuContent>
@@ -103,11 +107,6 @@ export function NavMenuUI({ examItems, foodItems }: NavMenuUIProps) {
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
             <Link href="/search">Search</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/videos">Videos</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>

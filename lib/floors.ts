@@ -1,7 +1,7 @@
-export const BUILDING_FLOORS: Record<string, number[]> = {
-  "101": [0, 1, 2],
-  "105": [0, 1, 2],
-  "104": [0, 1, 2, 3],
+export const BUILDING_FLOORS: Record<number, number[]> = {
+  101: [0, 1, 2],
+  104: [0, 1, 2, 3],
+  105: [0, 1, 2],
 };
 
 export const FLOOR_LABEL: Record<number, string> = {

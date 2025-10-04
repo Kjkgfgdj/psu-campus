@@ -10,7 +10,7 @@ export const ZONE_TO_NAME: Record<string, Record<string, string>> = {
     "z-101-0-rm-116-119": "RM. 116",
     "z-101-0-e-fo-3-west": "Faculty Office near E-118",
     "z-101-0-n-rest-4": "KUDU",
-    "z-101-0-a-151-154-cafes": "Caffe add it's name1",
+    "z-101-0-a-151-154-cafes": "A151",
     "z-101-0-e-pubfac-145": "E-148",
     "z-101-0-e-139-157-cafes-east": "ALSHEGREY",
     "z-101-0-a-141-imp": "A141",

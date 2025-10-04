@@ -1,12 +1,19 @@
 import Link from "next/link";
 import NavMenuUI from "@/components/NavMenuUI.client";
-import { getFoodAndDrinks, getPopularExamPlaces } from "@/lib/airtable";
+import { listPlaces } from "@/lib/airtable";
+
+const FOOD_CATEGORIES = ["Food & drinks", "Food", "Cafe", "Café", "Restaurant"];
 
 export default async function SiteNav() {
-  const [examItems, foodItems] = await Promise.all([
-    getPopularExamPlaces(8).catch(() => []),
-    getFoodAndDrinks(8).catch(() => []),
-  ]);
+  const places = await listPlaces();
+
+  const examItems = places
+    .filter((p) => p.category === "Popular exam places")
+    .slice(0, 8);
+
+  const foodItems = places
+    .filter((p) => (p.category ? FOOD_CATEGORIES.includes(p.category) : false))
+    .slice(0, 8);
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">

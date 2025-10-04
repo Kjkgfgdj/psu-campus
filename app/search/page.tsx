@@ -57,6 +57,7 @@ function SearchPageContent() {
   const rawCat = searchParams.get("cat")
   const selectedCategory = categoryFromQuery(rawCat)
   const normalizedRef = useRef(false)
+  const didInitFromUrl = useRef(false)
 
   // Local state for filters
   const [filters, setFilters] = useState<Filters>({
@@ -74,14 +75,9 @@ function SearchPageContent() {
   // Debounced filters for API calls
   const debouncedFilters = useDebouncedValue(filters, 250)
 
-  // Hydration tracking
-  const hydrated = useRef(false)
   useEffect(() => {
-    hydrated.current = true
-  }, [])
+    if (didInitFromUrl.current) return
 
-  // On mount only, read window.location.search and initialize filters
-  useEffect(() => {
     const params = searchParams
     const nextFilters: Filters = {
       building: params.get("building") ?? ALL,
@@ -99,11 +95,13 @@ function SearchPageContent() {
         router.replace(cleaned, { scroll: false })
       }
     }
+
+    didInitFromUrl.current = true
   }, [pathname, rawCat, router, searchParams])
 
   // Synchronize filters (excluding category chips) to the URL
   useEffect(() => {
-    if (!hydrated.current) return
+    if (!didInitFromUrl.current) return
 
     const patch: Record<string, string | null> = {
       building: filters.building !== ALL ? filters.building : null,
@@ -133,7 +131,8 @@ function SearchPageContent() {
         if (debouncedFilters.category !== ALL) params.set("category", debouncedFilters.category)
         if (debouncedFilters.q.trim()) params.set("q", debouncedFilters.q.trim())
 
-        const url = `/api/places${params.toString() ? `?${params.toString()}` : ""}`
+        const baseParams = params.toString()
+        const url = `/api/places${baseParams ? `?${baseParams}&limit=all` : "?limit=all"}`
 
         const response = await fetch(url, {
           signal: ctrl.signal,
@@ -144,13 +143,17 @@ function SearchPageContent() {
           throw new Error(errorData.error || `HTTP ${response.status}`)
         }
 
-        const data: ApiResponse = await response.json()
+        const data = (await response.json()) as ApiResponse | Place[]
 
-        if (data.error) {
-          throw new Error(data.error)
+        if (Array.isArray(data)) {
+          setPlaces(data)
+        } else {
+          if (data.error) {
+            throw new Error(data.error)
+          }
+
+          setPlaces(data.places || [])
         }
-
-        setPlaces(data.places || [])
       } catch (err) {
         if (err instanceof Error && err.name === "AbortError") {
           return

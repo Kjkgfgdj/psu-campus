@@ -1,12 +1,23 @@
 import "server-only";
 import { cache } from "react";
 
-const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN;
-const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
-const AIRTABLE_TABLE_PLACES = process.env.AIRTABLE_TABLE_PLACES;
+const API_KEY = process.env.AIRTABLE_API_KEY ?? process.env.AIRTABLE_TOKEN ?? "";
+const BASE_ID = process.env.AIRTABLE_BASE_ID ?? "";
+const TABLE_NAME = process.env.AIRTABLE_TABLE_NAME ?? process.env.AIRTABLE_TABLE_PLACES ?? "";
 
-if (!AIRTABLE_TOKEN || !AIRTABLE_BASE_ID || !AIRTABLE_TABLE_PLACES) {
-  console.warn("[airtable] Missing env vars: AIRTABLE_TOKEN, AIRTABLE_BASE_ID, AIRTABLE_TABLE_PLACES");
+if (!API_KEY || !BASE_ID || !TABLE_NAME) {
+  throw new Error(
+    "Missing Airtable configuration. Required: AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_TABLE_NAME"
+  );
+}
+
+function norm(s?: string) {
+  return (s ?? "")
+    .toLowerCase()
+    .replace(/\u00a0/g, " ")
+    .trim()
+    .replace(/\s+/g, " ")
+    .replace(/[^a-z0-9]+/g, "-");
 }
 
 export type Place = {
@@ -40,10 +51,6 @@ type AirtableResponse = {
 };
 
 const listAllPlacesCached = cache(async (): Promise<Place[]> => {
-  if (!AIRTABLE_TOKEN || !AIRTABLE_BASE_ID || !AIRTABLE_TABLE_PLACES) {
-    return [];
-  }
-
   const collected: Place[] = [];
   const params = new URLSearchParams({ pageSize: "100", "sort[0][field]": "name", "sort[0][direction]": "asc" });
   let offset: string | undefined;
@@ -52,12 +59,12 @@ const listAllPlacesCached = cache(async (): Promise<Place[]> => {
     if (offset) params.set("offset", offset);
     else params.delete("offset");
 
-    const url = new URL(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_PLACES}`);
+    const url = new URL(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`);
     params.forEach((value, key) => url.searchParams.set(key, value));
 
     const response = await fetch(url.toString(), {
       headers: {
-        Authorization: `Bearer ${AIRTABLE_TOKEN}`,
+        Authorization: `Bearer ${API_KEY}`,
       },
       next: { revalidate: 60 },
     });
@@ -81,6 +88,12 @@ const listAllPlacesCached = cache(async (): Promise<Place[]> => {
 
 function mapPlace(record: AirtableRecord): Place {
   const fields = record.fields ?? {};
+  const slugSource = typeof fields.slug === "string" && fields.slug.trim().length > 0
+    ? (fields.slug as string)
+    : typeof fields.x === "string" && fields.x.trim().length > 0
+      ? (fields.x as string)
+      : "";
+  const slug = slugSource ? norm(slugSource) : norm(fields.name as string);
   return {
     id: record.id,
     name: String(fields.name ?? ""),
@@ -91,7 +104,7 @@ function mapPlace(record: AirtableRecord): Place {
     videoUrl: (fields.videoUrl as string) ?? undefined,
     x: Number(fields.x ?? 0) || undefined,
     y: Number(fields.y ?? 0) || undefined,
-    slug: (fields.slug as string) ?? undefined,
+    slug: slug || undefined,
   };
 }
 
@@ -109,9 +122,8 @@ export async function listAllPlaces(): Promise<Place[]> {
   return listAllPlacesCached();
 }
 
-export async function getPlaces(): Promise<Place[]> {
-  return listAllPlaces();
-}
+// Back-compat so old imports continue working
+export { listAllPlaces as listPlaces };
 
 export async function getPlacesByCategory(categoryName: string): Promise<Place[]> {
   const all = await listAllPlaces();
@@ -126,5 +138,40 @@ export async function getPopularExamPlaces(limit = 8): Promise<Place[]> {
 export async function getFoodAndDrinks(limit = 8): Promise<Place[]> {
   const deduped = uniqBySlug(await getPlacesByCategory(CATEGORY.food));
   return deduped.slice(0, limit);
+}
+
+export async function findVideoUrlByName(
+  building: string | number,
+  name: string
+): Promise<string | null> {
+  const wantBuilding = String(building).trim()
+  const wantNameLowerTrim = String(name).trim().toLowerCase().replace(/'/g, "\\'")
+
+  const params = new URLSearchParams({
+    maxRecords: "10",
+    filterByFormula: `LOWER(TRIM({name}))='${wantNameLowerTrim}'`,
+  })
+
+  const url = new URL(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`)
+  params.forEach((value, key) => url.searchParams.set(key, value))
+
+  const response = await fetch(url.toString(), {
+    headers: { Authorization: `Bearer ${API_KEY}` },
+    next: { revalidate: 60 },
+  })
+
+  if (!response.ok) {
+    const body = await response.text()
+    console.error(`[airtable] API error (${response.status}): ${body}`)
+    return null
+  }
+
+  const data = (await response.json()) as AirtableResponse
+  const records = Array.isArray(data.records) ? data.records : []
+
+  const match = records.find((record) => String(record?.fields?.building ?? "").trim() === wantBuilding)
+  const chosen = match ?? records[0]
+  const urlField = chosen?.fields?.videoUrl
+  return typeof urlField === "string" && urlField.trim() ? urlField.trim() : null
 }
 

@@ -58,6 +58,8 @@ function PlaceCard({ place }: { place: Place }) {
   
   const deepLinkUrl = `/buildings/${place.building}?floor=${place.floor}${place.slug ? `&slug=${place.slug}` : ""}`;
 
+  const FOOD_CATEGORIES = ["Food & drinks", "Food", "Cafe", "Café", "Restaurant"]
+
   return (
     <Link href={deepLinkUrl} className="block">
       <Card className="transition-shadow hover:shadow-md cursor-pointer">
@@ -78,7 +80,21 @@ function PlaceCard({ place }: { place: Place }) {
             </Badge>
           )}
           {place.category && (
-            <Badge className={cn("text-xs", badgeClasses(place.category))}>
+            <Badge
+              variant={
+                place.category === "Popular exam places"
+                  ? "exam"
+                  : FOOD_CATEGORIES.includes(place.category)
+                  ? "food"
+                  : "secondary"
+              }
+              className={cn(
+                "text-xs",
+                place.category === "Popular exam places" || FOOD_CATEGORIES.includes(place.category)
+                  ? undefined
+                  : badgeClasses(place.category),
+              )}
+            >
               {place.category}
             </Badge>
           )}

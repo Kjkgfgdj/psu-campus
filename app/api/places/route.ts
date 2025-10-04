@@ -1,39 +1,62 @@
-import { NextResponse } from "next/server";
-import { CATEGORY, type CategorySlug, listAllPlaces } from "@/lib/airtable";
+import { NextRequest, NextResponse } from "next/server";
+import { listAllPlaces } from "@/lib/airtable";
 
-export const revalidate = 60;
+function norm(s?: string) {
+  return (s ?? "")
+    .toLowerCase()
+    .replace(/\u00a0/g, " ")
+    .trim()
+    .replace(/\s+/g, " ")
+    .replace(/[^a-z0-9]+/g, "-");
+}
 
-export async function GET(request: Request) {
+export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
-    const q = (searchParams.get("q") ?? "").toLowerCase().trim();
-    const category = searchParams.get("category") ?? searchParams.get("cat");
-    const limitParam = searchParams.get("limit");
-    const limit = Math.max(1, Math.min(Number(limitParam) || 1000, 5000));
+    const url = new URL(req.url);
 
-    let places = await listAllPlaces();
+    const limitParam = url.searchParams.get("limit");
+    const all = limitParam === "all";
+    const n = Number(limitParam);
+    const limit = all ? Number.MAX_SAFE_INTEGER : Number.isFinite(n) ? Math.min(Math.max(n, 1), 100) : 8;
 
-    if (category) {
-      const slug = category.toLowerCase() as CategorySlug;
-      if (CATEGORY[slug]) {
-        places = places.filter((place) => place.category === CATEGORY[slug]);
-      } else {
-        places = places.filter((place) => place.category === category);
-      }
+    const q = url.searchParams.get("q") ?? "";
+    const building = url.searchParams.get("building");
+    const floor = url.searchParams.get("floor");
+    const category = url.searchParams.get("category");
+    const format = url.searchParams.get("format") ?? "array";
+
+    const nq = norm(q);
+    const tokens = nq ? nq.split("-").filter(Boolean) : [];
+
+    const items = (await listAllPlaces())
+      .filter((p) => {
+        if (building && String(p.building) !== building) return false;
+        if (floor && String(p.floor) !== floor) return false;
+
+        if (category) {
+          const want = norm(category);
+          const have = norm(p.category);
+          if (want !== have) return false;
+        }
+
+        if (tokens.length) {
+          const name = norm(p.name);
+          const slug = norm(p.slug);
+          const descr = norm(p.description);
+          return tokens.every((t) => name.includes(t) || slug.includes(t) || descr.includes(t));
+        }
+
+        return true;
+      })
+      .slice(0, limit);
+
+    if (format === "legacy") {
+      return NextResponse.json({ places: items });
     }
 
-    if (q) {
-      places = places.filter((place) => {
-        const haystack = [place.name, place.slug, place.description]
-          .filter(Boolean)
-          .map((value) => String(value).toLowerCase());
-        return haystack.some((value) => value.includes(q));
-      });
-    }
-
-    return NextResponse.json({ places: places.slice(0, limit) });
-  } catch (error) {
-    console.error("Places API error:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(items);
+  } catch (err) {
+    console.error("[api/places] GET error:", err);
+    return NextResponse.json([], { status: 500 });
   }
 }

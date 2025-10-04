@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { X } from "lucide-react"
+import { BUILDING_FLOORS, FLOOR_LABEL } from "@/lib/floors"
+import { CANONICAL_CATEGORIES } from "@/lib/categories"
 
 export type Filters = { 
   building: string
@@ -19,37 +21,18 @@ export interface SearchFiltersProps {
   onClear?: () => void
 }
 
-// These would ideally come from your data source or be configurable
-const BUILDINGS = [
-  { value: "105", label: "Building 105" },
-  { value: "110", label: "Building 110" },
-  { value: "115", label: "Building 115" },
-  { value: "120", label: "Building 120" },
-  { value: "125", label: "Building 125" },
-]
+const BUILDINGS = Object.keys(BUILDING_FLOORS)
+  .map((value) => ({ value, label: `Building ${value}` }))
+  .sort((a, b) => Number(a.value) - Number(b.value))
 
-const FLOORS = [
-  { value: "0", label: "Ground Floor" },
-  { value: "1", label: "1st Floor" }, 
-  { value: "2", label: "2nd Floor" },
-  { value: "3", label: "3rd Floor" },
-  { value: "4", label: "4th Floor" },
-  { value: "5", label: "5th Floor" },
-  { value: "-1", label: "Basement" },
-]
-
-const CATEGORIES = [
-  "Important places",
-  "Classroom",
-  "Laboratory", 
-  "Office",
-  "Study Space",
-  "Recreation",
-  "Dining",
-  "Services",
-  "Restroom",
-  "Other"
-]
+function getFloorsForBuilding(building: string) {
+  if (building && building !== "__all__" && BUILDING_FLOORS[Number(building)]) {
+    return BUILDING_FLOORS[Number(building)]
+  }
+  const union = new Set<number>()
+  Object.values(BUILDING_FLOORS).forEach((floors) => floors.forEach((floor) => union.add(floor)))
+  return Array.from(union).sort((a, b) => a - b)
+}
 
 export function SearchFilters({
   value,
@@ -59,8 +42,12 @@ export function SearchFilters({
 }: SearchFiltersProps) {
   const hasActiveFilters = value.building !== "__all__" || value.floor !== "__all__" || value.category !== "__all__" || value.q.trim() !== ""
 
+  const floorOptions = getFloorsForBuilding(value.building)
+
   const handleBuildingChange = (building: string) => {
-    onChange({ ...value, building })
+    const nextFloors = getFloorsForBuilding(building)
+    const nextFloor = building === "__all__" ? "__all__" : nextFloors.map(String).includes(value.floor) ? value.floor : "__all__"
+    onChange({ ...value, building, floor: nextFloor })
   }
 
   const handleFloorChange = (floor: string) => {
@@ -143,9 +130,9 @@ export function SearchFilters({
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="__all__">All floors</SelectItem>
-              {FLOORS.map((floor) => (
-                <SelectItem key={floor.value} value={floor.value}>
-                  {floor.label}
+              {floorOptions.map((floor) => (
+                <SelectItem key={floor} value={String(floor)}>
+                  Floor {FLOOR_LABEL[floor] ?? String(floor)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -161,7 +148,7 @@ export function SearchFilters({
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="__all__">All categories</SelectItem>
-              {CATEGORIES.map((categoryName) => (
+              {CANONICAL_CATEGORIES.map((categoryName) => (
                 <SelectItem key={categoryName} value={categoryName}>
                   {categoryName}
                 </SelectItem>

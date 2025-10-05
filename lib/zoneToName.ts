@@ -16,6 +16,20 @@ export const ZONE_TO_NAME: Record<string, Record<string, string>> = {
     "z-101-0-a-141-imp": "A141",
     "z-101-0-a-ksi-only": "King Sejong Institute",
     "z-101-0-a-pr-media": "Entrance 101",
+    "z-101-1-e-250-252": "E-222",
+    "z-101-1-e-230-234": "E-230",
+    "z-101-1-a-lib-i-c": "Central Library",
+    "z-101-1-e-236-257": "E-236",
+    "z-101-1-e-211-fo-ric": "E-211",
+    "z-101-1-e-216-gs-218-wing": "E-216",
+    "z-101-1-a-iao": "International Affairs Office",
+    "z-101-1-a-iao-afd": "A-118",
+    "z-101-1-a-202-206-207": "A-202",
+    "z-101-1-a-245-246": "A-245",
+    "z-101-1-e-240-244": "E-240",
+    "z-101-1-a-201-205": "A-201",
+
+
   },
 };
 

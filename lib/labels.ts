@@ -55,6 +55,17 @@ export const LABELS: Record<string, string> = {
   "E-323–E-325 — Faculty Offices\n• Male toilet (beside E-323)\n• Faculty offices beside E-323",
   "z-101-2-e-336-357":
   "North corridor — Faculty Offices\n• E-336–E-349 — Faculty Offices\n• E-354–E-357 — Faculty Offices\n• A-341–A-344 — Faculty Offices\n",
+  "z-105-0-a-01-02":
+  "A-01 — Tharaa Financial Center; A-02 — Physics & Chemistry Lab",
+  "z-105-0-a-05-18":
+  "A-05 — Computer Lab; A-06 — Computer Lab; A-08 — Classroom; A-09 — Computer Lab; A-10 — Classroom; A-11 — Computer Lab; A-12 — Classroom; A-13 — Computer Lab; A-14 — Classroom; A-15 — Classroom; A-16 — Computer Lab; A-18 — Industry 4.0 Center",
+  "z-105-0-b-05-06":
+  "B-05 — PSU Prosthetic & Orthotic Center; B-06 — Classroom",
+  "z-105-0-b-pubfac":
+  "Public Facilities: Security & Information; Clinic; Dean of Student Affairs; Head of Students Services & Activities Unit; Control Room",
+  "z-105-0-b-19-26": "B-19 — B-26",
+
+  
 
 
 

@@ -39,6 +39,15 @@ export const ZONE_TO_NAME: Record<string, Record<string, string>> = {
 
 
   },
+
+  "105": {
+    "z-105-0-a-01-02": "G-A01",
+    "z-105-0-a-05-18": "G-A05",
+    "z-105-0-b-05-06": "G-B05",
+    "z-105-0-b-pubfac": "Male Toilet - Opposite to G-B06",
+    "z-105-0-b-19-26": "G-B19",
+  },
+
 };
 
 

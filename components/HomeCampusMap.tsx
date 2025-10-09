@@ -21,6 +21,7 @@ export default function HomeCampusMap() {
 
   useEffect(() => {
     let cancelled = false;
+    let tip: HTMLDivElement | null = null;
 
     (async () => {
       try {
@@ -34,6 +35,23 @@ export default function HomeCampusMap() {
 
         const svg = overlayRef.current.querySelector("svg");
         if (!svg) return;
+
+        // Tooltip fallback (tiny, no dependency)
+        tip = document.createElement("div");
+        tip.style.position = "fixed";
+        tip.style.padding = "4px 8px";
+        tip.style.borderRadius = "6px";
+        tip.style.fontSize = "12px";
+        tip.style.background = "rgba(0,0,0,.8)";
+        tip.style.color = "#fff";
+        tip.style.pointerEvents = "none";
+        tip.style.zIndex = "50";
+        tip.style.transform = "translate(-50%, -150%)";
+        tip.style.display = "none";
+        document.body.appendChild(tip);
+        const show = (t: string) => { if (!tip) return; tip.textContent = t; tip.style.display = "block"; };
+        const hide = () => { if (!tip) return; tip.style.display = "none"; };
+        const move = (e: MouseEvent) => { if (!tip) return; tip.style.left = `${e.clientX}px`; tip.style.top = `${e.clientY}px`; };
 
         // Remove any full-canvas blocking rects
         svg.querySelectorAll("rect").forEach((r) => {
@@ -49,13 +67,13 @@ export default function HomeCampusMap() {
 
         // Make the building shapes interactive & accessible
         svg.querySelectorAll<SVGPathElement>('[id^="b-"]').forEach((p) => {
-          const id = (p as SVGPathElement).id;
+          const id = p.id;
           const label = LABELS[id] ?? id;
 
           // Reliable hit-testing
           if (!p.getAttribute("fill")) p.setAttribute("fill", "#D9D9D9");
-          p.setAttribute("fill-opacity", "0.08");
-          (p as unknown as HTMLElement).style.cursor = "pointer";
+          if (!p.getAttribute("fill-opacity")) p.setAttribute("fill-opacity", "0.08");
+          p.style.cursor = "pointer";
 
           // A11y
           p.setAttribute("role", "button");
@@ -67,6 +85,13 @@ export default function HomeCampusMap() {
             p.appendChild(t);
           }
 
+          // Hover/focus tooltip fallback
+          p.addEventListener("mouseenter", () => show(label));
+          p.addEventListener("mouseleave", hide);
+          p.addEventListener("mousemove", move);
+          p.addEventListener("focus", () => show(label));
+          p.addEventListener("blur", hide);
+
           // Click / keyboard -> route
           const go = () => { const to = ROUTES[id]; if (to) router.push(to); };
           p.addEventListener("click", go);
@@ -76,13 +101,13 @@ export default function HomeCampusMap() {
           });
         });
 
-        // Hover/focus styles
+        // Hover tint styles
         const style = document.createElement("style");
         style.textContent = `
-          :where(#b-101,#b-104,#b-105){ transition: fill 120ms ease; outline: none; }
-          #b-101:hover, #b-101:focus { fill: rgba(34,197,94,.28); }   /* green  */
-          #b-104:hover, #b-104:focus { fill: rgba(59,130,246,.28); }  /* blue   */
-          #b-105:hover, #b-105:focus { fill: rgba(234,179,8,.32); }   /* amber  */
+          :where(#b-101,#b-104,#b-105){ transition: fill 120ms ease }
+          #b-101:hover{ fill: rgba(34,197,94,.28) }
+          #b-104:hover{ fill: rgba(59,130,246,.28) }
+          #b-105:hover{ fill: rgba(234,179,8,.32) }
         `;
         svg.appendChild(style);
       } catch {
@@ -90,22 +115,22 @@ export default function HomeCampusMap() {
       }
     })();
 
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      if (tip) { tip.remove(); tip = null; }
+    };
   }, [router]);
 
   return (
-    // Rounded wrapper clips the overlay too
     <div className="relative mx-auto max-w-6xl rounded-xl overflow-hidden shadow-sm">
-      <picture>
-        <source type="image/webp" srcSet="/maps/home/home_page.webp" />
-        <img
-          src="/maps/home/home_page.png"
-          alt="PSU campus overview"
-          className="w-full h-auto select-none rounded-xl shadow-sm"
-          draggable={false}
-        />
-      </picture>
-      <div ref={overlayRef} className="absolute inset-0 pointer-events-auto" style={{ zIndex: 1 }} />
+      {/* Base image will be added later; path is fine even if missing now */}
+      <img
+        src="/maps/home/home_page.webp"
+        alt="PSU campus overview"
+        className="w-full h-auto select-none"
+        draggable={false}
+      />
+      <div ref={overlayRef} className="absolute inset-0 pointer-events-auto" />
     </div>
   );
 }

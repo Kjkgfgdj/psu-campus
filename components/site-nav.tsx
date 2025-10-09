@@ -16,7 +16,7 @@ export default async function SiteNav() {
     .slice(0, 8);
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
+    <header className="bg-page sticky top-0 z-50 border-b border-black/5">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         <Link href="/" className="font-semibold">
           PSU Campus

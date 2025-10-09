@@ -96,12 +96,15 @@ export default function HomeCampusMap() {
   return (
     // Rounded wrapper clips the overlay too
     <div className="relative mx-auto max-w-6xl rounded-xl overflow-hidden shadow-sm">
-      <img
-        src="/maps/home/home_page.webp"
-        alt="PSU campus overview"
-        className="w-full h-auto select-none"
-        draggable={false}
-      />
+      <picture>
+        <source type="image/webp" srcSet="/maps/home/home_page.webp" />
+        <img
+          src="/maps/home/home_page.png"
+          alt="PSU campus overview"
+          className="w-full h-auto select-none rounded-xl shadow-sm"
+          draggable={false}
+        />
+      </picture>
       <div ref={overlayRef} className="absolute inset-0 pointer-events-auto" style={{ zIndex: 1 }} />
     </div>
   );

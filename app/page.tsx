@@ -1,5 +1,5 @@
 import AutocompleteSearch from "@/components/AutocompleteSearch";
-import BuildingCard from "@/components/BuildingCard";
+import HomeCampusMap from "@/components/HomeCampusMap";
 
 export const revalidate = 60;
 
@@ -15,14 +15,9 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Quick Buildings Section */}
+        {/* Campus Map Section */}
         <div className="mt-16">
-          <h2 className="mb-6 text-center text-2xl font-semibold">Quick Buildings</h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <BuildingCard building="105" href="/buildings/105?floor=0" />
-            <BuildingCard building="101" href="/buildings/101?floor=0" />
-            <BuildingCard building="104" href="/buildings/104?floor=0" />
-          </div>
+          <HomeCampusMap />
         </div>
       </div>
     </div>

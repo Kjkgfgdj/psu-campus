@@ -193,7 +193,7 @@ useEffect(() => {
           if (places.length === 0 && !isLoading) fetchAll();
         }}
         onKeyDown={onKeyDown}
-        className="w-full px-4 py-6 text-lg"
+        className="w-full max-w-3xl rounded-xl bg-white text-slate-900 placeholder-slate-400 ring-1 ring-black/10 focus:outline-none focus:ring-2 focus:ring-sky-400/30 shadow-sm px-4 py-3"
         aria-autocomplete="list"
         aria-controls="autocomplete-listbox"
         aria-activedescendant={highlightIndex >= 0 ? `ac-item-${highlightIndex}` : undefined}

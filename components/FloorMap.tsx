@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LABELS } from "@/lib/labels";
 import {
@@ -10,7 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import * as YouTubeEmbedModule from "@/components/YouTubeEmbed";
-import type { ReactElement } from "react"
+import type { ReactElement } from "react";
 
 type YouTubeEmbedComponent = (props: {
   url: string;
@@ -38,15 +37,8 @@ export default function FloorMap({ building, floor }: Props) {
   const [selection, setSelection] = useState<Selection | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
-
-  const [baseExt, setBaseExt] = useState<"webp" | "png">("webp");
-  const baseSrc = `/maps/${building}/${building}_${floor}-base.${baseExt}`;
-
-  const overlaySrc = `/maps/${building}/${building}_${floor}-overlay.svg`;
-
-  useEffect(() => {
-    setBaseExt("webp");
-  }, [building, floor]);
+  const baseSrcBase = `/maps/${building}/${building}_${floor}-base`;
+  const overlayUrl = `/maps/${building}/${building}_${floor}-overlay.svg?v=${building}-${floor}`;
 
   useEffect(() => () => cleanupRef.current?.(), []);
 
@@ -131,26 +123,28 @@ export default function FloorMap({ building, floor }: Props) {
         aspectRatio: "1200 / 800",
       }}
     >
-      <Image
-        src={baseSrc}
-        alt={`Building ${building} — Floor ${floor}`}
-        fill
-        sizes="(min-width:1100px) 1100px, 100vw"
-        style={{ objectFit: "contain" }}
-        onError={() => {
-          if (baseExt === "webp") {
-            setBaseExt("png");
+      <img
+        key={baseSrcBase}
+        src={`${baseSrcBase}.webp`}
+        onError={(e) => {
+          const el = e.currentTarget as HTMLImageElement & { dataset: { fallback?: string } };
+          if (!el.dataset.fallback) {
+            el.dataset.fallback = "1";
+            el.src = `${baseSrcBase}.png`;
           }
         }}
+        alt={`Building ${building} — Floor ${floor}`}
+        className="absolute inset-0 w-full h-full object-contain"
       />
 
       <object
         ref={objRef}
+        key={overlayUrl}
         type="image/svg+xml"
-        data={overlaySrc}
+        data={overlayUrl}
         onLoad={onOverlayLoad}
-        aria-label="Interactive overlay"
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+        aria-label={`Overlay for building ${building} floor ${floor}`}
+        className="absolute inset-0 w-full h-full"
       />
 
       <Dialog open={open} onOpenChange={setOpen}>

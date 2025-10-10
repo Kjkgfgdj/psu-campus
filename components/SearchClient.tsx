@@ -94,7 +94,10 @@ export default function SearchClient({ initialParams }: { initialParams?: Record
         value={{ building, floor, q }}
         onChange={onFiltersChange}
         loading={isLoading}
-        onClear={() => onFiltersChange({ building: "__all__", floor: "__all__", q: "" })}
+        onClear={() => {
+          setParam("cat", "all")
+          onFiltersChange({ building: "__all__", floor: "__all__", q: "" })
+        }}
       />
 
       <div className="flex flex-wrap items-center gap-3">

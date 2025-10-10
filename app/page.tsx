@@ -1,6 +1,5 @@
 import AutocompleteSearch from "@/components/AutocompleteSearch";
 import HomeCampusMap from "@/components/HomeCampusMap";
-import HomeTopFilters from "@/components/HomeTopFilters";
 
 export const revalidate = 60;
 
@@ -14,9 +13,7 @@ export default function Home() {
           <div className="mx-auto max-w-xl">
             <AutocompleteSearch />
           </div>
-          <div className="mt-6">
-            <HomeTopFilters />
-          </div>
+          
         </div>
 
         {/* Campus Map Section */}

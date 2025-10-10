@@ -37,6 +37,17 @@ export const CANONICAL_CATEGORIES = [
   "Classroom",
 ] as const;
 
+export const CATEGORY_SLUGS = ["food", "important", "exam", "public", "classroom"] as const;
+export const CATEGORY_LABEL: Record<string, string> = {
+  food: "Food & drinks",
+  important: "Important places",
+  exam: "Popular exam places",
+  public: "Public facilities",
+  classroom: "Classroom",
+};
+export const CATEGORY_ALIAS: Record<string, string> = { exams: "exam" };
+export const isValidCat = (v?: string) => !!v && (CATEGORY_SLUGS as readonly string[]).includes(v);
+
 const FOOD_SYNONYMS = new Set(["food", "food-drinks", "cafe", "caf\u00e9", "restaurant"]);
 
 export function normalizeCategory(raw?: string): string {

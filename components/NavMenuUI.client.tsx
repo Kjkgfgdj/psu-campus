@@ -16,7 +16,7 @@ export function NavMenuUI() {
       <NavigationMenuList>
         <NavCategoryMenu
           label="Popular exam places"
-          slug="exams"
+          slug="exam"
           pillClasses="ring-cyan-200 bg-cyan-100 text-slate-900"
         />
         <NavCategoryMenu

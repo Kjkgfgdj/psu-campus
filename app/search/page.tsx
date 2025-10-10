@@ -5,7 +5,7 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation"
 import { SearchFilters, type Filters } from "@/components/SearchFilters"
 import { PlacesList } from "@/components/PlacesList"
 import { useDebouncedValue } from "@/components/useDebouncedValue"
-import { CategoryChips } from "@/components/CategoryChips"
+import CategoryChip from "@/components/CategoryChip"
 import {
   CATEGORY,
   type CategoryFilter,
@@ -19,7 +19,8 @@ const ALL = "__all__"
 const same = (a: Filters, b: Filters) =>
   a.building === b.building && a.floor === b.floor && a.category === b.category && a.q === b.q
 
-const VALID_CAT_PARAMS = new Set(["all", "public", "exam", "exams", "food", "classroom", "important"])
+const VALID_CAT_PARAMS = new Set(["all", "public", "exam", "food", "classroom", "important"])
+const ALIASES: Record<string, string> = { exams: "exam" }
 
 function buildUrl(pathname: string, params: URLSearchParams, patch: Record<string, string | null>) {
   const next = new URLSearchParams(params)
@@ -54,8 +55,9 @@ function SearchPageContent() {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
-  const rawCat = searchParams.get("cat")
-  const selectedCategory = categoryFromQuery(rawCat)
+  const raw = searchParams.get("cat") ?? searchParams.get("category") ?? "all"
+  const cat = VALID_CAT_PARAMS.has(raw) ? raw : (ALIASES[raw] ?? "all")
+  const selectedCategory = categoryFromQuery(cat)
   const normalizedRef = useRef(false)
   const didInitFromUrl = useRef(false)
 
@@ -90,14 +92,17 @@ function SearchPageContent() {
 
     if (!normalizedRef.current) {
       normalizedRef.current = true
-      if (rawCat && !VALID_CAT_PARAMS.has(rawCat)) {
+      if (searchParams.get("category")) {
+        const cleaned = buildUrl(pathname, params, { category: null, cat: cat })
+        router.replace(cleaned, { scroll: false })
+      } else if (!VALID_CAT_PARAMS.has(cat)) {
         const cleaned = buildUrl(pathname, params, { cat: null })
         router.replace(cleaned, { scroll: false })
       }
     }
 
     didInitFromUrl.current = true
-  }, [pathname, rawCat, router, searchParams])
+  }, [pathname, cat, router, searchParams])
 
   // Synchronize filters (excluding category chips) to the URL
   useEffect(() => {
@@ -106,7 +111,7 @@ function SearchPageContent() {
     const patch: Record<string, string | null> = {
       building: filters.building !== ALL ? filters.building : null,
       floor: filters.floor !== ALL ? filters.floor : null,
-      category: filters.category !== ALL ? filters.category : null,
+      category: null,
       q: filters.q.trim() ? filters.q.trim() : null,
     }
 
@@ -180,18 +185,15 @@ function SearchPageContent() {
 
   const onChangeCategory = useCallback(
     (next: CategoryFilter) => {
-      const nextQuery = categoryToQuery(next)
-      const nextValue = nextQuery === "all" ? null : nextQuery
-      const prevValue = rawCat ?? null
-      if (prevValue === nextValue) return
-
+      const nextValue = categoryToQuery(next)
       const sp = new URLSearchParams(searchParams)
-      if (nextValue === null) sp.delete("cat")
+      if (nextValue === "all") sp.delete("cat")
       else sp.set("cat", nextValue)
+      sp.delete("category")
       const target = sp.toString() ? `${pathname}?${sp.toString()}` : pathname
       startTransition(() => router.replace(target, { scroll: false }))
     },
-    [pathname, rawCat, router, searchParams],
+    [pathname, router, searchParams],
   )
 
   const filteredPlaces = useMemo(
@@ -215,7 +217,17 @@ function SearchPageContent() {
         onClear={handleClearFilters}
       />
 
-      <CategoryChips selected={selectedCategory} onChange={onChangeCategory} />
+      <div className="flex flex-wrap items-center gap-3">
+        {[
+          { slug: "food" as const },
+          { slug: "important" as const },
+          { slug: "exam" as const },
+          { slug: "public" as const },
+          { slug: "classroom" as const },
+        ].map(({ slug }) => (
+          <CategoryChip key={slug} slug={slug} href={{ pathname: "/search", query: { cat: slug } }} />
+        ))}
+      </div>
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">

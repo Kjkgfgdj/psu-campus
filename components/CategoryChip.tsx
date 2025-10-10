@@ -1,12 +1,13 @@
 import Link from "next/link";
 import clsx from "clsx";
+import type { UrlObject } from "url";
 
-export type CatSlug = "food" | "important" | "exams" | "public" | "classroom";
+export type CatSlug = "food" | "important" | "exam" | "public" | "classroom";
 
 export const CAT_STYLES: Record<CatSlug, { label: string; bg: string; text: string; ring: string }> = {
   food:       { label: "Food & drinks",       bg: "bg-green-700",  text: "text-white",     ring: "ring-green-700"  },
   important:  { label: "Important places",    bg: "bg-red-600",    text: "text-white",     ring: "ring-red-600"    },
-  exams:      { label: "Popular exam places", bg: "bg-cyan-100",   text: "text-slate-900", ring: "ring-cyan-200"   },
+  exam:       { label: "Popular exam places", bg: "bg-cyan-100",   text: "text-slate-900", ring: "ring-cyan-200"   },
   public:     { label: "Public facilities",   bg: "bg-blue-700",   text: "text-white",     ring: "ring-blue-700"   },
   classroom:  { label: "Classroom",           bg: "bg-amber-400",  text: "text-black",     ring: "ring-amber-400"  },
 };
@@ -16,7 +17,7 @@ export function toCatSlug(name: string): CatSlug | null {
   const n = (name || "").toLowerCase();
   if (n.includes("food")) return "food";
   if (n.includes("important")) return "important";
-  if (n.includes("exam")) return "exams";
+  if (n.includes("exam")) return "exam";
   if (n.includes("public")) return "public";
   if (n.includes("classroom")) return "classroom";
   return null;
@@ -30,7 +31,7 @@ export default function CategoryChip({
   className,
 }: {
   slug: CatSlug;
-  href?: string;
+  href?: string | UrlObject;
   label?: string;
   size?: "sm" | "md";
   className?: string;

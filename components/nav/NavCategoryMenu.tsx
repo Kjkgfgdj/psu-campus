@@ -21,7 +21,7 @@ type Place = {
 
 type Props = {
   label: string; // e.g. "Public facilities"
-  slug: 'exams' | 'food' | 'public' | 'important' | 'classroom';
+  slug: 'exam' | 'food' | 'public' | 'important' | 'classroom';
   pillClasses: string; // bg/text/ring classes
 };
 
@@ -43,7 +43,6 @@ export default function NavCategoryMenu({ label, slug, pillClasses }: Props) {
 
         const filtered = all.filter((p) => {
           const s = toCatSlug(String(p.category ?? ''));
-          if (slug === 'exams') return s === 'exams';
           return s === slug;
         });
 
@@ -58,7 +57,7 @@ export default function NavCategoryMenu({ label, slug, pillClasses }: Props) {
     };
   }, [slug]);
 
-  const seeAllHref = `/search?cat=${slug}`;
+  const seeAllHref = { pathname: '/search', query: { cat: slug } } as const;
 
   return (
     <NavigationMenuItem>

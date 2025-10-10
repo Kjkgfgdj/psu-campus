@@ -44,11 +44,7 @@ export function NavMenuUI() {
             <Link href="/search">Search</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/about">About</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
+        
       </NavigationMenuList>
     </NavigationMenu>
   );

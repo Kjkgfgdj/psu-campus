@@ -1,128 +1,251 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { SearchFilters, type Filters } from "@/components/SearchFilters"
 import { PlacesList } from "@/components/PlacesList"
-import CategoryChip, { toCatSlug, type CatSlug } from "@/components/CategoryChip"
 import type { Place } from "@/lib/types"
 
-const VALID = new Set(["food", "important", "exam", "public", "classroom"])
-function normalizeCat(v?: string | null): "all" | CatSlug {
-  if (!v) return "all"
-  const m = v.toLowerCase()
-  if (m === "exams") return "exam"
-  return (VALID.has(m) ? (m as CatSlug) : "all")
+type Props = {
+  places?: Place[]
+  isLoading?: boolean
+  error?: string | null
 }
 
-export default function SearchClient({ initialParams }: { initialParams?: Record<string, string | undefined> }) {
+const CAT_MAP: Record<string, string> = {
+  food: "Food & drinks",
+  important: "Important places",
+  exam: "Popular exam places",
+  public: "Public facilities",
+  classroom: "Classroom",
+}
+
+function useAllPlaces() {
+  const [data, setData] = useState<Place[]>([])
+  const [loading, setLoading] = useState(true)
+  const [err, setErr] = useState<string | null>(null)
+
+  useEffect(() => {
+    let alive = true
+    ;(async () => {
+      try {
+        setLoading(true)
+        const res = await fetch('/api/places?limit=all', { cache: 'no-store' })
+        const json = await res.json()
+        const arr: Place[] = Array.isArray(json) ? json : (json?.places ?? json?.records ?? [])
+        if (alive) setData(arr ?? [])
+      } catch (e) {
+        if (alive) setErr((e as Error).message)
+      } finally {
+        if (alive) setLoading(false)
+      }
+    })()
+    return () => { alive = false }
+  }, [])
+
+  return { data, isLoading: loading, error: err }
+}
+
+function useQuerySync() {
   const router = useRouter()
   const pathname = usePathname()
-  const sp = useSearchParams()
+  const searchParams = useSearchParams()
 
-  // Source of truth: URL params (read every render)
-  const cat = normalizeCat(sp.get("cat") ?? initialParams?.cat)
-  const building = sp.get("building") ?? initialParams?.building ?? "__all__"
-  const floor = sp.get("floor") ?? initialParams?.floor ?? "__all__"
-  const q = sp.get("q") ?? initialParams?.q ?? ""
+  const setParam = useCallback((key: string, value?: string) => {
+    const sp = new URLSearchParams(searchParams?.toString())
+    if (!value) sp.delete(key)
+    else sp.set(key, value)
+    router.replace(`${pathname}?${sp.toString()}`, { scroll: false })
+  }, [router, pathname, searchParams])
 
-  // Local data state
-  const [places, setPlaces] = useState<Place[]>([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const get = (k: string) => searchParams?.get(k) ?? undefined
+  return { get, set: setParam }
+}
 
-  // Helper to update a single URL param without stacking conflicting filters
-  const setParam = (key: string, value?: string) => {
-    const next = new URLSearchParams(sp)
-    if (!value || value === "__all__" || value === "all") next.delete(key)
-    else next.set(key, value)
-    const qs = next.toString()
-    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false })
-  }
+export default function SearchClient({ places, isLoading, error }: Props) {
+  const { data: fetchedPlaces, isLoading: loadingFetch, error: errorFetch } = useAllPlaces()
+  const items = useMemo<Place[]>(() => places ?? fetchedPlaces ?? [], [places, fetchedPlaces])
+  const safePlaces = useMemo<Place[]>(
+    () => (Array.isArray(places) ? places : (Array.isArray(fetchedPlaces) ? fetchedPlaces : [])),
+    [places, fetchedPlaces],
+  )
 
-  const onFiltersChange = (next: Filters) => {
-    setParam("building", next.building)
-    setParam("floor", next.floor)
-    setParam("q", next.q)
-  }
+  const { get, set } = useQuerySync()
 
-  // Fetch places whenever URL-derived filters change
+  // URL-driven values
+  const qParam = (get('q') ?? '').trim()
+  const catParam = (get('cat') ?? '').toLowerCase()
+  const buildingParam = get('building') ?? ''
+  const floorParam = get('floor') ?? ''
+
+  const activeCategoryLabel = CAT_MAP[catParam] ?? ''
+  const [selectedBuilding, setSelectedBuilding] = useState<number | null>(
+    buildingParam ? (Number.isFinite(Number(buildingParam)) ? Number(buildingParam) : null) : null,
+  )
+  const [selectedFloor, setSelectedFloor] = useState<number | null>(
+    floorParam !== '' ? (Number.isFinite(Number(floorParam)) ? Number(floorParam) : null) : null,
+  )
+
+  // Keep local controlled state in sync with URL when it changes externally
   useEffect(() => {
-    const ctrl = new AbortController()
-    setIsLoading(true)
-    setError(null)
+    const b = buildingParam ? Number(buildingParam) : NaN
+    setSelectedBuilding(Number.isFinite(b) ? b : null)
+  }, [buildingParam])
 
-    const fetchPlaces = async () => {
-      try {
-        const params = new URLSearchParams()
-        if (building !== "__all__") params.set("building", building)
-        if (floor !== "__all__") params.set("floor", floor)
-        if (q.trim()) params.set("q", q.trim())
+  useEffect(() => {
+    const f = floorParam !== '' ? Number(floorParam) : NaN
+    setSelectedFloor(Number.isFinite(f) ? f : null)
+  }, [floorParam])
 
-        const base = params.toString()
-        const url = `/api/places${base ? `?${base}&limit=all` : "?limit=all"}`
-        const res = await fetch(url, { signal: ctrl.signal })
-        if (!res.ok) throw new Error(`HTTP ${res.status}`)
-        const data = await res.json()
-        setPlaces(Array.isArray(data) ? data as Place[] : (data?.places ?? []))
-      } catch (e) {
-        if ((e as Error).name === "AbortError") return
-        setError((e as Error).message)
-        setPlaces([])
-      } finally {
-        setIsLoading(false)
-      }
+  // Helper to compute place slug from either slug or label
+  const toSlug = useCallback((p: Place): string => {
+    const raw = String((p as any).category ?? '').toLowerCase()
+    if (raw in CAT_MAP) return raw
+    for (const [slug, label] of Object.entries(CAT_MAP)) {
+      if (String((p as any).category ?? '').toLowerCase() === label.toLowerCase()) return slug
+    }
+    return ''
+  }, [])
+
+  const buildingOptions = useMemo(() => {
+    if (!safePlaces.length) return [] as number[]
+    const uniq = Array.from(
+      new Set(
+        safePlaces
+          .map((p) => Number((p as any)?.building))
+          .filter((n) => Number.isFinite(n) && n > 0),
+      ),
+    ) as number[]
+    return uniq.sort((a, b) => a - b)
+  }, [safePlaces])
+
+  const floorOptions = useMemo(() => {
+    if (!safePlaces.length) return [] as string[]
+    const uniqNums = Array.from(
+      new Set(
+        safePlaces
+          .map((p) => Number((p as any)?.floor))
+          .filter((n) => Number.isFinite(n)),
+      ),
+    ) as number[]
+    uniqNums.sort((a, b) => a - b)
+    return uniqNums.map((n) => String(n))
+  }, [safePlaces])
+
+  const filtered = useMemo(() => {
+    let next = items
+
+    // 1) Category by slug
+    if (catParam) {
+      next = next.filter((p) => toSlug(p) === catParam)
     }
 
-    fetchPlaces()
-    return () => ctrl.abort()
-  }, [building, floor, q])
+    // 2) Building
+    if (selectedBuilding !== null && Number.isFinite(selectedBuilding)) {
+      next = next.filter(p => Number(p.building) === selectedBuilding)
+    }
 
-  const filtered: Place[] = useMemo(() => {
-    if (cat === "all") return places
-    return places.filter((p) => toCatSlug(String(p.category)) === cat)
-  }, [places, cat])
+    // 3) Floor (0 means G)
+    if (selectedFloor !== null && Number.isFinite(selectedFloor)) {
+      next = next.filter(p => Number(p.floor) === selectedFloor)
+    }
+
+    // 4) Name-only q
+    if (qParam) {
+      const q = qParam.toLowerCase()
+      next = next.filter(p => (p.name ?? '').toLowerCase().includes(q))
+    }
+
+    return next
+  }, [items, catParam, selectedBuilding, selectedFloor, qParam, toSlug])
 
   return (
     <div className="space-y-6">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Search Places</h1>
-        <p className="text-muted-foreground">Find places on campus with instant search and filtering</p>
-      </div>
+      <div className="rounded-2xl border border-neutral-200 bg-white/70 p-4 md:p-6">
+        <div className="grid gap-4 md:grid-cols-3">
+          <div>
+            <div className="text-sm font-medium text-neutral-700 mb-1">Search</div>
+            <input
+              value={qParam}
+              onChange={(e) => set('q', e.target.value || undefined)}
+              className="w-full rounded-xl border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-sky-400"
+              placeholder="Search places..."
+            />
+          </div>
 
-      <SearchFilters
-        value={{ building, floor, q }}
-        onChange={onFiltersChange}
-        loading={isLoading}
-        onClear={() => {
-          setParam("cat", "all")
-          onFiltersChange({ building: "__all__", floor: "__all__", q: "" })
-        }}
-      />
+          <div>
+            <div className="text-sm font-medium text-neutral-700 mb-1">Building</div>
+            <select
+              value={selectedBuilding === null ? '' : String(selectedBuilding)}
+              onChange={(e) => {
+                const v = e.target.value
+                const n = v === '' ? null : Number(v)
+                setSelectedBuilding(n)
+                set('building', v || undefined)
+                // reset floor when building changes
+                setSelectedFloor(null)
+                set('floor', undefined)
+              }}
+              className="w-full rounded-xl border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-sky-400"
+            >
+              <option value="">All buildings</option>
+              {buildingOptions.map(b => (
+                <option key={b} value={String(b)}>{`Building ${b}`}</option>
+              ))}
+            </select>
+          </div>
 
-      <div className="flex flex-wrap items-center gap-3">
-        <a
-          href="/search"
-          className={`inline-flex items-center rounded-full ring-1 transition hover:opacity-95 focus:outline-none focus:ring-2 px-4 py-2 ${cat === "all" ? 'bg-gray-900 text-white ring-gray-900' : 'bg-white text-gray-700 ring-gray-200'}`}
-          aria-label="All categories"
-        >
-          All categories
-        </a>
-        {(["food","important","exam","public","classroom"] as CatSlug[]).map((slug) => (
-          <CategoryChip key={slug} slug={slug} href={{ pathname: "/search", query: { cat: slug } }} />
-        ))}
-      </div>
-
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold">
-            {isLoading ? "Searching..." : `${filtered.length} place${filtered.length !== 1 ? "s" : ""} found`}
-          </h2>
+          <div>
+            <div className="text-sm font-medium text-neutral-700 mb-1">Floor</div>
+            <select
+              value={selectedFloor === null ? '' : String(selectedFloor)}
+              onChange={(e) => {
+                const v = e.target.value
+                const n = v === '' ? null : Number(v)
+                setSelectedFloor(n)
+                set('floor', v || undefined)
+              }}
+              className="w-full rounded-xl border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-sky-400"
+            >
+              <option value="">All floors</option>
+              {floorOptions.map(v => {
+                const label = v === '0' ? 'Floor G' : `Floor ${v}`
+                return (
+                  <option key={v} value={v}>{label}</option>
+                )
+              })}
+            </select>
+          </div>
         </div>
-
-        <PlacesList places={filtered} isLoading={isLoading} error={error} emptyMessage="No results for this filter." />
       </div>
+
+      <div className="flex flex-wrap gap-3">
+        <Chip active={!catParam} label="All categories" onClick={() => { set('cat', undefined); set('building', undefined); set('floor', undefined); }} />
+        <Chip active={catParam === 'food'} label="Food & drinks" color="green" onClick={() => { set('cat', 'food'); set('building', undefined); set('floor', undefined); }} />
+        <Chip active={catParam === 'important'} label="Important places" color="red" onClick={() => { set('cat', 'important'); set('building', undefined); set('floor', undefined); }} />
+        <Chip active={catParam === 'exam'} label="Popular exam places" color="sky" onClick={() => { set('cat', 'exam'); set('building', undefined); set('floor', undefined); }} />
+        <Chip active={catParam === 'public'} label="Public facilities" color="blue" onClick={() => { set('cat', 'public'); set('building', undefined); set('floor', undefined); }} />
+        <Chip active={catParam === 'classroom'} label="Classroom" color="amber" onClick={() => { set('cat', 'classroom'); set('building', undefined); set('floor', undefined); }} />
+      </div>
+
+      <PlacesList places={filtered} isLoading={isLoading ?? loadingFetch} error={error ?? errorFetch} emptyMessage="No results for this filter." />
     </div>
+  )
+}
+
+function Chip({ active, label, onClick, color = 'neutral' }: { active?: boolean; label: string; onClick: () => void; color?: 'green' | 'red' | 'sky' | 'blue' | 'amber' | 'neutral' }) {
+  const colorMap: Record<string, string> = {
+    green: 'bg-green-600 text-white',
+    red: 'bg-red-600 text-white',
+    sky: 'bg-sky-600 text-white',
+    blue: 'bg-blue-600 text-white',
+    amber: 'bg-amber-500 text-white',
+    neutral: 'bg-neutral-200 text-neutral-800',
+  }
+  const inactive = 'bg-neutral-100 text-neutral-800 hover:bg-neutral-200'
+  return (
+    <button type="button" onClick={onClick} className={`rounded-full px-3 py-1.5 text-sm transition ${active ? colorMap[color] : inactive}`}>
+      {label}
+    </button>
   )
 }
 

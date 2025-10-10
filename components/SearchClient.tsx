@@ -15,16 +15,16 @@ function normalizeCat(v?: string | null): "all" | CatSlug {
   return (VALID.has(m) ? (m as CatSlug) : "all")
 }
 
-export default function SearchClient() {
+export default function SearchClient({ initialParams }: { initialParams?: Record<string, string | undefined> }) {
   const router = useRouter()
   const pathname = usePathname()
   const sp = useSearchParams()
 
   // Source of truth: URL params (read every render)
-  const cat = normalizeCat(sp.get("cat"))
-  const building = sp.get("building") ?? "__all__"
-  const floor = sp.get("floor") ?? "__all__"
-  const q = sp.get("q") ?? ""
+  const cat = normalizeCat(sp.get("cat") ?? initialParams?.cat)
+  const building = sp.get("building") ?? initialParams?.building ?? "__all__"
+  const floor = sp.get("floor") ?? initialParams?.floor ?? "__all__"
+  const q = sp.get("q") ?? initialParams?.q ?? ""
 
   // Local data state
   const [places, setPlaces] = useState<Place[]>([])

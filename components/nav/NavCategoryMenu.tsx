@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import type { Place } from '@/lib/types';
 import { useEffect, useState } from 'react';
 import { toCatSlug } from '@/components/CategoryChip';
 import {
@@ -10,14 +11,7 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 
-type Place = {
-  id: string;
-  name?: string;
-  building?: number | string;
-  floor?: number | string;
-  category?: string;
-  slug?: string;
-};
+// Use shared Place type for consistency
 
 type Props = {
   label: string; // e.g. "Public facilities"

@@ -5,27 +5,15 @@ import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import CategoryChip, { toCatSlug } from "@/components/CategoryChip"
+import type { Place } from "@/lib/types"
 import { Button } from "@/components/ui/button"
 import { YouTubeEmbed } from "@/components/YouTubeEmbed"
 import { Play, X, AlertCircle } from "lucide-react"
 
-interface Place {
-  id: string
-  name: string
-  building: number
-  floor: number
-  category: string
-  description: string
-  videoUrl: string
-  x: number
-  y: number
-  slug: string
-}
-
-interface PlacesListProps {
+type PlacesListProps = {
   places: Place[]
-  isLoading: boolean
-  error: string | null
+  isLoading?: boolean
+  error?: string | null
   emptyMessage?: string
 }
 
@@ -53,11 +41,10 @@ function PlaceSkeleton() {
 function PlaceCard({ place }: { place: Place }) {
   const [showVideo, setShowVideo] = useState(false)
 
-  const hasVideo = place.videoUrl && place.videoUrl.trim() !== ""
+  const videoUrl = place.videoUrl ?? ""
+  const hasVideo = videoUrl.trim() !== ""
   
   const deepLinkUrl = `/buildings/${place.building}?floor=${place.floor}${place.slug ? `&slug=${place.slug}` : ""}`;
-
-  const FOOD_CATEGORIES = ["Food & drinks", "Food", "Cafe", "Café", "Restaurant"]
 
   return (
     <Link href={deepLinkUrl} className="block">
@@ -79,7 +66,7 @@ function PlaceCard({ place }: { place: Place }) {
             </Badge>
           )}
           {place.category && (() => {
-            const slug = toCatSlug(place.category)
+            const slug = toCatSlug(String(place.category))
             return slug ? <CategoryChip slug={slug} size="sm" className="!px-3 !py-1" /> : null
           })()}
           {place.slug && (
@@ -128,7 +115,7 @@ function PlaceCard({ place }: { place: Place }) {
             {showVideo && (
               <div className="mt-3">
                 <YouTubeEmbed
-                  url={place.videoUrl}
+                  url={videoUrl}
                   title={`Video for ${place.name}`}
                   className="rounded-md"
                 />

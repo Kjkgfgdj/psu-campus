@@ -5,19 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { SearchFilters, type Filters } from "@/components/SearchFilters"
 import { PlacesList } from "@/components/PlacesList"
 import CategoryChip, { toCatSlug, type CatSlug } from "@/components/CategoryChip"
-
-type Place = {
-  id: string
-  name: string
-  building: number
-  floor: number
-  category: string
-  description?: string
-  videoUrl?: string
-  x?: number
-  y?: number
-  slug?: string
-}
+import type { Place } from "@/lib/types"
 
 const VALID = new Set(["food", "important", "exam", "public", "classroom"])
 function normalizeCat(v?: string | null): "all" | CatSlug {
@@ -90,9 +78,9 @@ export default function SearchClient() {
     return () => ctrl.abort()
   }, [building, floor, q])
 
-  const filtered = useMemo(() => {
+  const filtered: Place[] = useMemo(() => {
     if (cat === "all") return places
-    return places.filter((p) => toCatSlug(p.category) === cat)
+    return places.filter((p) => toCatSlug(String(p.category)) === cat)
   }, [places, cat])
 
   return (

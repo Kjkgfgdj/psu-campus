@@ -1,5 +1,6 @@
 import AutocompleteSearch from "@/components/AutocompleteSearch";
 import HomeCampusMap from "@/components/HomeCampusMap";
+import HomeTopFilters from "@/components/HomeTopFilters";
 
 export const revalidate = 60;
 
@@ -12,6 +13,9 @@ export default function Home() {
           <h1 className="mb-6 text-4xl font-bold">PSU Campus Navigator</h1>
           <div className="mx-auto max-w-xl">
             <AutocompleteSearch />
+          </div>
+          <div className="mt-6">
+            <HomeTopFilters />
           </div>
         </div>
 

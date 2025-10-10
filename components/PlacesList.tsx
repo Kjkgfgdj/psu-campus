@@ -4,8 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { badgeClasses } from "@/lib/categories"
-import { cn } from "@/lib/utils"
+import CategoryChip, { toCatSlug } from "@/components/CategoryChip"
 import { Button } from "@/components/ui/button"
 import { YouTubeEmbed } from "@/components/YouTubeEmbed"
 import { Play, X, AlertCircle } from "lucide-react"
@@ -79,25 +78,10 @@ function PlaceCard({ place }: { place: Place }) {
               Floor {place.floor}
             </Badge>
           )}
-          {place.category && (
-            <Badge
-              variant={
-                place.category === "Popular exam places"
-                  ? "exam"
-                  : FOOD_CATEGORIES.includes(place.category)
-                  ? "food"
-                  : "secondary"
-              }
-              className={cn(
-                "text-xs",
-                place.category === "Popular exam places" || FOOD_CATEGORIES.includes(place.category)
-                  ? undefined
-                  : badgeClasses(place.category),
-              )}
-            >
-              {place.category}
-            </Badge>
-          )}
+          {place.category && (() => {
+            const slug = toCatSlug(place.category)
+            return slug ? <CategoryChip slug={slug} size="sm" className="!px-3 !py-1" /> : null
+          })()}
           {place.slug && (
             <Badge variant="secondary" className="text-xs font-mono">
               {place.slug}

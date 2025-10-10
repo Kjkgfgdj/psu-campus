@@ -13,6 +13,7 @@ export default function Home() {
           <div className="mx-auto max-w-xl">
             <AutocompleteSearch />
           </div>
+          
         </div>
 
         {/* Campus Map Section */}

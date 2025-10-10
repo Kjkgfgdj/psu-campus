@@ -19,7 +19,7 @@ const ALL = "__all__"
 const same = (a: Filters, b: Filters) =>
   a.building === b.building && a.floor === b.floor && a.category === b.category && a.q === b.q
 
-const VALID_CAT_PARAMS = new Set(["all", "public", "exam", "food", "classroom", "important"])
+const VALID_CAT_PARAMS = new Set(["all", "public", "exam", "exams", "food", "classroom", "important"])
 
 function buildUrl(pathname: string, params: URLSearchParams, patch: Record<string, string | null>) {
   const next = new URLSearchParams(params)

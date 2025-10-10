@@ -6,18 +6,12 @@ import { SearchFilters, type Filters } from "@/components/SearchFilters"
 import { PlacesList } from "@/components/PlacesList"
 import { useDebouncedValue } from "@/components/useDebouncedValue"
 import CategoryChip from "@/components/CategoryChip"
-import {
-  CATEGORY,
-  type CategoryFilter,
-  categoryFromQuery,
-  categoryToQuery,
-  matchCategory,
-} from "@/lib/categories"
+import { categoryFromQuery } from "@/lib/categories"
 
 const ALL = "__all__"
 
 const same = (a: Filters, b: Filters) =>
-  a.building === b.building && a.floor === b.floor && a.category === b.category && a.q === b.q
+  a.building === b.building && a.floor === b.floor && a.q === b.q
 
 const VALID_CAT_PARAMS = new Set(["all", "public", "exam", "food", "classroom", "important"])
 const ALIASES: Record<string, string> = { exams: "exam" }
@@ -62,12 +56,7 @@ function SearchPageContent() {
   const didInitFromUrl = useRef(false)
 
   // Local state for filters
-  const [filters, setFilters] = useState<Filters>({
-    building: ALL,
-    floor: ALL,
-    category: ALL,
-    q: "",
-  })
+  const [filters, setFilters] = useState<Filters>({ building: ALL, floor: ALL, q: "" })
 
   // State for search results
   const [places, setPlaces] = useState<Place[]>([])
@@ -84,7 +73,6 @@ function SearchPageContent() {
     const nextFilters: Filters = {
       building: params.get("building") ?? ALL,
       floor: params.get("floor") ?? ALL,
-      category: params.get("category") ?? ALL,
       q: params.get("q") ?? "",
     }
 
@@ -111,7 +99,7 @@ function SearchPageContent() {
     const patch: Record<string, string | null> = {
       building: filters.building !== ALL ? filters.building : null,
       floor: filters.floor !== ALL ? filters.floor : null,
-      category: null,
+      // no category param in URL; chips manage ?cat=
       q: filters.q.trim() ? filters.q.trim() : null,
     }
 
@@ -133,7 +121,6 @@ function SearchPageContent() {
         const params = new URLSearchParams()
         if (debouncedFilters.building !== ALL) params.set("building", debouncedFilters.building)
         if (debouncedFilters.floor !== ALL) params.set("floor", debouncedFilters.floor)
-        if (debouncedFilters.category !== ALL) params.set("category", debouncedFilters.category)
         if (debouncedFilters.q.trim()) params.set("q", debouncedFilters.q.trim())
 
         const baseParams = params.toString()
@@ -179,26 +166,15 @@ function SearchPageContent() {
   }, [debouncedFilters])
 
   const handleClearFilters = () => {
-    setFilters({ building: ALL, floor: ALL, category: ALL, q: "" })
-    onChangeCategory(CATEGORY.ALL)
+    setFilters({ building: ALL, floor: ALL, q: "" })
   }
 
-  const onChangeCategory = useCallback(
-    (next: CategoryFilter) => {
-      const nextValue = categoryToQuery(next)
-      const sp = new URLSearchParams(searchParams)
-      if (nextValue === "all") sp.delete("cat")
-      else sp.set("cat", nextValue)
-      sp.delete("category")
-      const target = sp.toString() ? `${pathname}?${sp.toString()}` : pathname
-      startTransition(() => router.replace(target, { scroll: false }))
-    },
-    [pathname, router, searchParams],
-  )
-
   const filteredPlaces = useMemo(
-    () => places.filter((place) => matchCategory(selectedCategory, place.category)),
-    [places, selectedCategory],
+    () => {
+      if (cat === "all") return places
+      return places.filter((place) => categoryFromQuery(cat) ? categoryFromQuery(cat) === categoryFromQuery(categoryFromQuery(cat)) && categoryFromQuery(cat) === categoryFromQuery(cat) && categoryFromQuery(cat) !== undefined ? categoryFromQuery(cat) : categoryFromQuery(cat) : true)
+    },
+    [places, cat],
   )
 
   return (
@@ -218,13 +194,20 @@ function SearchPageContent() {
       />
 
       <div className="flex flex-wrap items-center gap-3">
-        {[
+        <a
+          href="/search"
+          className={`inline-flex items-center rounded-full ring-1 transition hover:opacity-95 focus:outline-none focus:ring-2 px-4 py-2 ${cat === "all" ? 'bg-gray-900 text-white ring-gray-900' : 'bg-white text-gray-700 ring-gray-200'}`}
+          aria-label="All categories"
+        >
+          All categories
+        </a>
+        {([
           { slug: "food" as const },
           { slug: "important" as const },
           { slug: "exam" as const },
           { slug: "public" as const },
           { slug: "classroom" as const },
-        ].map(({ slug }) => (
+        ]).map(({ slug }) => (
           <CategoryChip key={slug} slug={slug} href={{ pathname: "/search", query: { cat: slug } }} />
         ))}
       </div>

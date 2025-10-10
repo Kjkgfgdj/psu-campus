@@ -5,12 +5,11 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { X } from "lucide-react"
 import { BUILDING_FLOORS, FLOOR_LABEL } from "@/lib/floors"
-import { CANONICAL_CATEGORIES } from "@/lib/categories"
+// category dropdown removed; chips control category via ?cat=
 
 export type Filters = { 
   building: string
   floor: string
-  category: string
   q: string
 }
 
@@ -40,7 +39,7 @@ export function SearchFilters({
   loading = false,
   onClear,
 }: SearchFiltersProps) {
-  const hasActiveFilters = value.building !== "__all__" || value.floor !== "__all__" || value.category !== "__all__" || value.q.trim() !== ""
+  const hasActiveFilters = value.building !== "__all__" || value.floor !== "__all__" || value.q.trim() !== ""
 
   const floorOptions = getFloorsForBuilding(value.building)
 
@@ -54,10 +53,6 @@ export function SearchFilters({
     onChange({ ...value, floor })
   }
 
-  const handleCategoryChange = (category: string) => {
-    onChange({ ...value, category })
-  }
-
   const handleQueryChange = (q: string) => {
     onChange({ ...value, q })
   }
@@ -66,7 +61,7 @@ export function SearchFilters({
     if (onClear) {
       onClear()
     } else {
-      onChange({ building: "__all__", floor: "__all__", category: "__all__", q: "" })
+      onChange({ building: "__all__", floor: "__all__", q: "" })
     }
   }
 
@@ -88,7 +83,7 @@ export function SearchFilters({
         )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Search Query */}
         <div className="space-y-2">
           <label htmlFor="search-query" className="text-sm font-medium">Search</label>
@@ -139,23 +134,7 @@ export function SearchFilters({
           </Select>
         </div>
 
-        {/* Category Filter */}
-        <div className="space-y-2">
-          <label htmlFor="category-select" className="text-sm font-medium">Category</label>
-          <Select value={value.category} onValueChange={handleCategoryChange} disabled={loading}>
-            <SelectTrigger id="category-select">
-              <SelectValue placeholder="All categories" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="__all__">All categories</SelectItem>
-              {CANONICAL_CATEGORIES.map((categoryName) => (
-                <SelectItem key={categoryName} value={categoryName}>
-                  {categoryName}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+        
       </div>
     </div>
   )

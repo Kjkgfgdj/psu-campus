@@ -64,6 +64,32 @@ export const LABELS: Record<string, string> = {
   "z-105-0-b-pubfac":
   "Public Facilities: Security & Information; Clinic; Dean of Student Affairs; Head of Students Services & Activities Unit; Control Room",
   "z-105-0-b-19-26": "B-19 — B-26",
+  "z-105-0-examhale2": "Exam Hall (2) — Popular exam place",
+  "z-105-0-food":
+  "Food & drinks\n• dr. CAFE COFFEE\n• Ristretto Cafe\n• MINI MARKET\n• toast point",
+  "z-105-0-bathroom":
+  "Public facilities — Toilets\n• Female Toilet — between G-A18 and MINI MARKET\n• Male Toilet — opposite G-A05 (near toast point)",
+  // 105 — First floor
+  "z-105-1-a-04-21": "A-04–A-21 — First-floor rooms (classrooms/labs)",
+  "z-105-1-a-01-03": "A-01–A-03 — First-floor rooms",
+  "z-105-1-b-04-20": "B-04–B-20 — First-floor rooms / offices",
+  "z-105-1-b-01-02": "B-01–B-02 — First-floor rooms",
+  "z-105-1-etc-launge": "ETC Lounge — student/lounge area",
+  "z-105-1-it-support": "IT Support — help desk / services",
+  "z-105-1-bathroom": "Public facilities — Toilets (first floor)",
+  "z-105-2-a-25-31": "A-25–A-31 — Second-floor rooms",
+  "z-105-2-a-35-42": "A-35–A-42 — Second-floor rooms",
+  "z-105-2-examhale3": "Exam Hall (3) — Popular exam place",
+  "z-105-2-b-19-24": "B-19–B-24 — Second-floor rooms / offices",
+  "z-105-2-a-18-21": "A-18–A-21 — Second-floor rooms",
+  "z-105-2-a-15-17": "A-15–A-17 — Second-floor rooms",
+  "z-105-2-a-09-35": "A-09–A-35 — Second-floor corridor (rooms, labs)",
+  "z-105-2-b-04-28": "B-04–B-28 — Second-floor rooms / offices",
+  "z-105-2-a-18-21_2": "A-18–A-21 (wing) — Second-floor rooms",
+  "z-105-2-a-18-21_3": "A-18–A-21 (wing) — Second-floor rooms",
+
+
+
 
   
 

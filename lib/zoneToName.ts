@@ -46,6 +46,32 @@ export const ZONE_TO_NAME: Record<string, Record<string, string>> = {
     "z-105-0-b-05-06": "G-B05",
     "z-105-0-b-pubfac": "Male Toilet - Opposite to G-B06",
     "z-105-0-b-19-26": "G-B19",
+    "z-105-0-examhale2": "Exam Hall E2",
+    "z-105-0-food": "Food Court",
+    "z-105-0-bathroom": "Bathroom",
+    // 105 — First floor (IDs must match your SVG)
+    "z-105-1-a-04-21": "A-04",
+    "z-105-1-a-01-03": "A-01",
+    "z-105-1-b-04-20": "B-04",
+    "z-105-1-b-01-02": "B-01",
+    "z-105-1-etc-launge": "ETC Lounge",   // keep the id spelling exactly as in the SVG
+    "z-105-1-it-support": "IT Support",
+    "z-105-1-bathroom": "Bathroom",
+    "z-105-2-a-25-31": "A-25",
+    "z-105-2-a-35-42": "A-35",
+    "z-105-2-examhale3": "Exam Hall E3",
+    "z-105-2-b-19-24": "B-19",
+    "z-105-2-a-18-21": "A-18",
+    "z-105-2-a-15-17": "A-15",
+    "z-105-2-a-09-35": "A-09",
+    "z-105-2-b-04-28": "B-04",
+    "z-105-2-a-18-21_2": "A-18",
+    "z-105-2-a-18-21_3": "A-18",
+
+
+    
+
+
   },
 
 };

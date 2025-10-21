@@ -87,6 +87,117 @@ export const LABELS: Record<string, string> = {
   "z-105-2-b-04-28": "B-04–B-28 — Second-floor rooms / offices",
   "z-105-2-a-18-21_2": "A-18–A-21 (wing) — Second-floor rooms",
   "z-105-2-a-18-21_3": "A-18–A-21 (wing) — Second-floor rooms",
+  "z-104-2-north-scr-1-4":
+  "Second Floor — North corridor (SCR-1…SCR-4)\n\
+  • SCR-1 — Office (name TBD)\n\
+  • SCR-2A — Classroom\n\
+  • SCR-2B — Classroom\n\
+  • SCR-3A — Classroom\n\
+  • SCR-3B — Classroom\n\
+  • SCR-4 — Office for women (name TBD)\n\
+  • Male Toilet — next to SCR-4",
+
+"z-104-2-south-scr-5-8":
+  "Second Floor — South corridor (SCR-5…SCR-8)\n\
+  • SCR-5 — Classroom\n\
+  • Male Toilet — next to SCR-5\n\
+  • SCR-6A — Classroom\n\
+  • SCR-6B — Classroom\n\
+  • SCR-7A — Classroom\n\
+  • SCR-7B — Classroom\n\
+  • SCR-8 — Classroom",
+
+"z-104-2-east-vert":
+  "East vertical corridor — links North & South halls\n\
+  • Mosque (east side)\n\
+  • Prayer Area (near central cross-axis)\n\
+  • Nearby: Public Relations Unit; Office of VP for Academic Affairs",
+
+"z-104-2-west-vert":
+  "West vertical corridor — links North & South halls",
+  "z-104-3-north":
+  "Third Floor — North wing\n\
+  • Vice Rector for Academic Affairs & Research\n\
+  • Vice Rector for Administrate & Financial Affairs\n\
+  • Services beside the door of Vice Rector for Administrate & Financial Affairs\n\
+  • Male Toilet beside the door of Vice Rector for Administrate & Financial Affairs",
+
+"z-104-3-west":
+  "Third Floor — West wing\n\
+  • Board Meeting Room",
+
+"z-104-3-east":
+  "Third Floor — East wing\n\
+  • Chairman of the Board of Trustees of the University",
+
+"z-104-3-south":
+  "Third Floor — South wing\n\
+  • Services besides president's office\n\
+  • Male Toilet besides president's office\n\
+  • President's Office\n\
+  • Director of the President's Office\n\
+  • Administrative of the Rector Office\n\
+  • Public Relations",
+  "z-104-1-north":
+    "First Floor — North corridor\n\
+    • FCR-16 — Classroom\n\
+    • Male Toilet — next to FCR-16\n\
+    • FCR-15 — Classroom\n\
+    • FCR-14 — Classroom\n\
+    • FCR-13 — Classroom\n\
+    • FCR-12 — Classroom\n\
+    • FCR-11 — Classroom\n\
+    • FCR-10 — Classroom\n\
+    • FCR-9 — Classroom",
+
+  "z-104-1-west":
+    "First Floor — West wing\n\
+    • EAAC Storage Room\n\
+    • INSTITUTIONAL ACCREDITATION ROOM\n\
+    • Assistant to The Vice President for Administrative & Financial Affairs",
+
+  "z-104-1-east":
+    "First Floor — East corridor\n\
+    • (No marked rooms on this corridor)",
+
+  "z-104-1-south":
+    "First Floor — South corridor\n\
+    • FCR-1 — Housing Department & Procurement Department\n\
+    • Male Toilet — next to FCR-1\n\
+    • FCR-2 — Student Accounts Department\n\
+    • FCR-3 — Public Accounts Department\n\
+    • FCR-4 — Internal Audit & Account Manager\n\
+    • FCR-5 — Medical Insurance & Tickets; Government Relations\n\
+    • FCR-6 — Human Resources Manager\n\
+    • FCR-7 — Maintenance Supervisor & Payroll Department\n\
+    • FCR-8 — Personnel Department",
+    "z-104-0-north":
+    "Ground Floor — North wing\n\
+    • Male Toilet — beside Center for Sustainability & Climate\n\
+    • University Exhibition Hall\n\
+    • VIP Lounge\n\
+    • Cafeteria 101 (name TBD)\n\
+    • Offices (names TBD) — near Cafeteria 101",
+
+  "z-104-0-west":
+    "Ground Floor — West wing\n\
+    • Center for Sustainability & Climate\n\
+    • University Exhibition Hall",
+
+  "z-104-0-east":
+    "Ground Floor — East entrance\n\
+    • Entrance to Building 105",
+
+  "z-104-0-south":
+    "Ground Floor — South corridor (Deanship of Admissions & Registration)\n\
+    • Dean of Deanship of Admissions & Registration\n\
+    • Statistical Unit — Deanship of A&R\n\
+    • Vice Dean's Office — Deanship of A&R\n\
+    • Student Registration — Deanship of A&R\n\
+    • Admission & Registration — Deanship of A&R\n\
+    • Student Admission — Deanship of A&R\n\
+    • Male Toilet — beside Center for Sustainability & Climate",
+
 
 
 

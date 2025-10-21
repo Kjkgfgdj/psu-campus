@@ -74,6 +74,25 @@ export const ZONE_TO_NAME: Record<string, Record<string, string>> = {
 
   },
 
+  "104": {
+  "z-104-2-north-scr-1-4": "North corridor — SCR-1 to SCR-4",
+  "z-104-2-south-scr-5-8": "South corridor — SCR-5 to SCR-8",
+  "z-104-2-east-vert":     "East vertical corridor — by Mosque",
+  "z-104-2-west-vert":     "West vertical corridor",
+  "z-104-3-north": "North wing — Vice Rectors area",
+  "z-104-3-west":  "West wing — Board Meeting Room",
+  "z-104-3-east":  "East wing — Chairman of the Board of Trustees",
+  "z-104-3-south": "South wing — President’s Office & PR",
+  "z-104-1-north": "North corridor — FCR-16 to FCR-9",
+  "z-104-1-west":  "West wing — EAAC & Institutional Accreditation",
+  "z-104-1-east":  "East corridor",
+  "z-104-1-south": "South corridor — FCR-1 to FCR-8",
+  "z-104-0-north": "North wing — VIP Lounge, Cafeteria & Offices",
+  "z-104-0-west":  "West wing — Sustainability & Exhibition Hall",
+  "z-104-0-east":  "East entrance — to Building 105",
+  "z-104-0-south": "South corridor — Deanship of Admissions & Registration",
+},
+
 };
 
 

@@ -35,6 +35,14 @@ export default function HomeCampusMap() {
         const svg = overlayRef.current.querySelector("svg");
         if (!svg) return;
 
+        // Make SVG fill the container and be clickable
+        svg.style.width = "100%";
+        svg.style.height = "100%";
+        svg.style.position = "absolute";
+        svg.style.top = "0";
+        svg.style.left = "0";
+        svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
         // Tooltip
         tip = document.createElement("div");
         tip.style.position = "fixed";
@@ -121,15 +129,19 @@ export default function HomeCampusMap() {
 
   return (
     <div className="card relative mx-auto max-w-6xl overflow-hidden">
-      {/* Ensure decorative elements don't block clicks */}
-      <div className="absolute inset-0 pointer-events-none rounded-[14px]" />
+      {/* Base image */}
       <img
         src="/maps/home/home_page.webp"
         alt="PSU campus overview"
-        className="w-full h-auto select-none"
+        className="w-full h-auto select-none block"
         draggable={false}
       />
-      <div ref={overlayRef} className="absolute inset-0 pointer-events-auto" />
+      {/* SVG overlay - positioned absolutely on top with higher z-index */}
+      <div 
+        ref={overlayRef} 
+        className="absolute inset-0 pointer-events-auto"
+        style={{ zIndex: 10 }}
+      />
     </div>
   );
 }

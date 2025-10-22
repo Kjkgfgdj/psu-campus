@@ -9,7 +9,7 @@ export default function Home() {
       <div className="max-w-4xl mx-auto">
         {/* Search Section */}
         <div className="mb-12 text-center">
-          <h1 className="mb-8 text-6xl font-bold font-[family-name:var(--font-playfair)] bg-gradient-to-r from-amber-800 via-orange-700 to-amber-900 bg-clip-text text-transparent drop-shadow-sm">
+          <h1 className="mb-8 text-6xl font-bold font-[family-name:var(--font-playfair)] bg-gradient-to-r from-amber-800 via-orange-700 to-amber-900 bg-clip-text text-transparent drop-shadow-sm leading-tight pb-2">
             PSU Campus Navigator
           </h1>
           <p className="mb-6 text-lg text-slate-600 max-w-2xl mx-auto">

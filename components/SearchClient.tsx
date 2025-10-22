@@ -160,20 +160,20 @@ export default function SearchClient({ places, isLoading, error }: Props) {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl border border-neutral-200 bg-white/70 p-4 md:p-6">
+      <div className="rounded-2xl border-2 border-amber-200 bg-white shadow-xl p-4 md:p-6">
         <div className="grid gap-4 md:grid-cols-3">
           <div>
-            <div className="text-sm font-medium text-neutral-700 mb-1">Search</div>
+            <div className="text-sm font-semibold text-amber-900 mb-2">Search</div>
             <input
               value={qParam}
               onChange={(e) => set('q', e.target.value || undefined)}
-              className="w-full rounded-xl border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full rounded-xl border-2 border-amber-200 px-4 py-2.5 outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-400 transition-all"
               placeholder="Search places..."
             />
           </div>
 
           <div>
-            <div className="text-sm font-medium text-neutral-700 mb-1">Building</div>
+            <div className="text-sm font-semibold text-amber-900 mb-2">Building</div>
             <select
               value={selectedBuilding === null ? '' : String(selectedBuilding)}
               onChange={(e) => {
@@ -185,7 +185,7 @@ export default function SearchClient({ places, isLoading, error }: Props) {
                 setSelectedFloor(null)
                 set('floor', undefined)
               }}
-              className="w-full rounded-xl border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full rounded-xl border-2 border-amber-200 px-4 py-2.5 outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-400 transition-all bg-white"
             >
               <option value="">All buildings</option>
               {buildingOptions.map(b => (
@@ -195,7 +195,7 @@ export default function SearchClient({ places, isLoading, error }: Props) {
           </div>
 
           <div>
-            <div className="text-sm font-medium text-neutral-700 mb-1">Floor</div>
+            <div className="text-sm font-semibold text-amber-900 mb-2">Floor</div>
             <select
               value={selectedFloor === null ? '' : String(selectedFloor)}
               onChange={(e) => {
@@ -204,7 +204,7 @@ export default function SearchClient({ places, isLoading, error }: Props) {
                 setSelectedFloor(n)
                 set('floor', v || undefined)
               }}
-              className="w-full rounded-xl border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full rounded-xl border-2 border-amber-200 px-4 py-2.5 outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-400 transition-all bg-white"
             >
               <option value="">All floors</option>
               {floorOptions.map(v => {
@@ -234,16 +234,16 @@ export default function SearchClient({ places, isLoading, error }: Props) {
 
 function Chip({ active, label, onClick, color = 'neutral' }: { active?: boolean; label: string; onClick: () => void; color?: 'green' | 'red' | 'sky' | 'blue' | 'amber' | 'neutral' }) {
   const colorMap: Record<string, string> = {
-    green: 'bg-green-600 text-white',
-    red: 'bg-red-600 text-white',
-    sky: 'bg-sky-600 text-white',
-    blue: 'bg-blue-600 text-white',
-    amber: 'bg-amber-500 text-white',
-    neutral: 'bg-neutral-200 text-neutral-800',
+    green: 'bg-green-700 text-white shadow-md',
+    red: 'bg-red-600 text-white shadow-md',
+    sky: 'bg-cyan-100 text-slate-900 shadow-md',
+    blue: 'bg-blue-700 text-white shadow-md',
+    amber: 'bg-amber-400 text-black shadow-md',
+    neutral: 'bg-amber-100 text-amber-900 shadow-md font-medium',
   }
-  const inactive = 'bg-neutral-100 text-neutral-800 hover:bg-neutral-200'
+  const inactive = 'bg-white text-slate-700 hover:bg-amber-50 border-2 border-amber-200'
   return (
-    <button type="button" onClick={onClick} className={`rounded-full px-3 py-1.5 text-sm transition ${active ? colorMap[color] : inactive}`}>
+    <button type="button" onClick={onClick} className={`rounded-full px-4 py-2 text-sm font-medium transition-all hover:scale-105 ${active ? colorMap[color] : inactive}`}>
       {label}
     </button>
   )

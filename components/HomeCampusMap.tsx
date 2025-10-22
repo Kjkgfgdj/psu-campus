@@ -122,7 +122,7 @@ export default function HomeCampusMap() {
   }, [router]);
 
   return (
-    <div className="relative mx-auto max-w-6xl rounded-xl overflow-hidden shadow-sm">
+    <div className="relative mx-auto max-w-6xl rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-200/40 bg-white">
       {/* Base image will be added later; path is fine even if missing now */}
       <img
         src="/maps/home/home_page.webp"

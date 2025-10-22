@@ -76,16 +76,15 @@ function NavigationMenuTrigger({
       data-slot="navigation-menu-trigger"
       className={cn(
         navigationMenuTriggerStyle(),
-        // Use page surface for trigger background to blend with header
-        // and keep a subtle border with harmonized hover/focus states.
-        "bg-[var(--surface)] border border-[var(--surface-border)]",
-        "hover:bg-[var(--surface-hover)] focus:bg-[var(--surface-hover)]",
-        // Maintain readable text color without switching to accent fg
-        "text-foreground",
-        // Soft focus ring that matches the surface tones
-        "focus-visible:ring-[var(--surface-ring)]/60 focus-visible:ring-[3px] focus-visible:outline-1",
-        // When open, keep the same surface hover treatment (no white card)
-        "data-[state=open]:bg-[var(--surface-hover)] data-[state=open]:hover:bg-[var(--surface-hover)]",
+        // Transparent background with white text for dark brown header
+        "bg-transparent border-0",
+        "hover:bg-amber-900/30 focus:bg-amber-900/30",
+        // White text on dark brown background
+        "text-white",
+        // Focus ring
+        "focus-visible:ring-amber-400/60 focus-visible:ring-[2px] focus-visible:outline-none",
+        // When open, subtle background
+        "data-[state=open]:bg-amber-900/40 data-[state=open]:hover:bg-amber-900/40",
         "group",
         className
       )}

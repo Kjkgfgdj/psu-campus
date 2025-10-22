@@ -47,10 +47,10 @@ function PlaceCard({ place }: { place: Place }) {
   const deepLinkUrl = `/buildings/${place.building}?floor=${place.floor}${place.slug ? `&slug=${place.slug}` : ""}`;
 
   return (
-    <Link href={deepLinkUrl} className="block">
-      <Card className="transition-shadow hover:shadow-md cursor-pointer">
+    <Link href={deepLinkUrl} className="block group">
+      <Card className="transition-all hover:shadow-xl cursor-pointer border-2 border-amber-100 hover:border-amber-300 bg-white group-hover:scale-[1.02]">
         <CardHeader className="pb-3">
-          <CardTitle className="text-lg font-semibold">
+          <CardTitle className="text-lg font-semibold text-amber-900 group-hover:text-amber-700">
             {place.name}
           </CardTitle>
         

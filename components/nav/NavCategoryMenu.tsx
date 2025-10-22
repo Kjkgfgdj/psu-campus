@@ -57,7 +57,7 @@ export default function NavCategoryMenu({ label, slug, pillClasses }: Props) {
     <NavigationMenuItem>
       <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>
         <span className={[
-          'inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium ring-1',
+          'inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium',
           pillClasses,
         ].join(' ')}>
           {label}

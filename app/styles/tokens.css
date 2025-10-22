@@ -20,10 +20,10 @@
   --radius-sm: 10px;
 
   /* Shadow */
-  --shadow: 0 8px 24px rgba(2, 6, 23, .06), 0 1px 2px rgba(2, 6, 23, .04);
+  --shadow: 0 4px 12px rgba(2, 6, 23, .06), 0 1px 2px rgba(2, 6, 23, .04);
   
   /* Typography */
-  --font-sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
 /* Base */
@@ -32,8 +32,6 @@ html, body {
   color: var(--text);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -63,8 +61,6 @@ a {
   padding: .65rem 1rem;
   font-weight: 600;
   border: 1px solid transparent;
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .btn-primary {
@@ -81,38 +77,44 @@ a {
   border: 1px solid var(--muted);
   border-radius: 999px;
   padding: .8rem 1rem;
-  transition: all 0.2s ease;
 }
 
 .input:focus {
   outline: 2px solid color-mix(in oklab, var(--accent) 60%, white);
-  outline-offset: 2px;
 }
 
-.badge {
+.badge, .chip {
   display: inline-flex;
   align-items: center;
   gap: .35rem;
-  border-radius: 999px;
-  padding: .25rem .6rem;
   background: #F1F5F9;
-  border: 1px solid var(--muted);
   color: #0F172A;
+  border: 1px solid var(--muted);
+  border-radius: 999px;
   font-weight: 500;
-  font-size: 0.75rem;
+}
+
+.chip.is-active {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
 }
 
 .clamp-2 {
-  display: -webkit-box;
   -webkit-line-clamp: 2;
+  display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .clamp-3 {
-  display: -webkit-box;
   -webkit-line-clamp: 3;
+  display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
+:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent) 60%, white);
+  outline-offset: 2px;
+}

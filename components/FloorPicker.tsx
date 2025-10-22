@@ -1,5 +1,4 @@
 import { FLOOR_LABEL } from "@/lib/floors";
-import { Button } from "@/components/ui/button";
 
 type FloorPickerProps = {
   value: number;
@@ -9,30 +8,28 @@ type FloorPickerProps = {
 
 export default function FloorPicker({ value, onChange, floors }: FloorPickerProps) {
   return (
-    <div className="rounded-xl bg-amber-50/95 backdrop-blur border-2 border-amber-200 shadow-lg p-1.5">
-      <div className="flex flex-col gap-1">
-        {floors.map((floor) => {
-          const isActive = floor === value;
-          const label = FLOOR_LABEL[floor] ?? String(floor);
+    <div className="inline-flex items-center gap-1 bg-slate-100 p-1 rounded-full border border-slate-200">
+      {floors.map((floor) => {
+        const isActive = floor === value;
+        const label = FLOOR_LABEL[floor] ?? String(floor);
 
-          return (
-            <Button
-              key={floor}
-              onClick={() => onChange(floor)}
-              variant={isActive ? "default" : "ghost"}
-              size="sm"
-              aria-pressed={isActive}
-              className={`w-12 h-10 font-semibold transition-all ${
-                isActive
-                  ? "bg-gradient-to-r from-amber-700 to-orange-600 text-white hover:from-amber-800 hover:to-orange-700 shadow-md"
-                  : "text-amber-800 hover:bg-amber-100 hover:text-amber-900"
-              }`}
-            >
-              {label}
-            </Button>
-          );
-        })}
-      </div>
+        return (
+          <button
+            key={floor}
+            onClick={() => onChange(floor)}
+            aria-pressed={isActive}
+            className={`
+              px-4 py-2 rounded-full text-sm font-semibold transition-all
+              ${isActive 
+                ? "bg-green-600 text-white shadow-sm" 
+                : "text-slate-700 hover:bg-slate-200"
+              }
+            `}
+          >
+            {label}
+          </button>
+        );
+      })}
     </div>
   );
 }

@@ -25,7 +25,7 @@ export function PageHeader({
       )}
     >
       <div className={cn("flex items-center gap-4", centered && "justify-center")}>
-        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
+        <h1 className="text-3xl md:text-[44px] font-bold text-slate-900 tracking-[-0.02em] leading-tight">
           {title}
         </h1>
         {action && <div className="ml-auto">{action}</div>}

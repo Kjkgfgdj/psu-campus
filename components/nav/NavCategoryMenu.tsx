@@ -65,7 +65,7 @@ export default function NavCategoryMenu({ label, slug, pillClasses }: Props) {
       </NavigationMenuTrigger>
       <NavigationMenuContent>
         <div className="w-[320px] max-h-[60vh] overflow-auto p-3">
-          <p className="px-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          <p className="px-2 text-xs font-semibold uppercase tracking-wide text-amber-700">
             {label}
           </p>
           <ul className="mt-2 space-y-2">
@@ -73,25 +73,25 @@ export default function NavCategoryMenu({ label, slug, pillClasses }: Props) {
               <li key={p.id}>
                 <Link
                   href={`/buildings/${p.building ?? ''}?floor=${p.floor ?? ''}&cat=${slug}${p.slug ? `&slug=${p.slug}` : ''}`}
-                  className="block rounded-md px-2 py-2 transition hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                  className="block rounded-md px-2 py-2 transition hover:bg-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2"
                   aria-label={`${p.name}, building ${p.building}, floor ${p.floor}`}
                 >
-                  <div className="text-sm font-medium">{p.name}</div>
-                  <div className="mt-1 flex flex-wrap items-center gap-2 text-[11px] text-muted-foreground">
+                  <div className="text-sm font-medium text-amber-950">{p.name}</div>
+                  <div className="mt-1 flex flex-wrap items-center gap-2 text-[11px] text-amber-700">
                     {p.building !== undefined && p.building !== null && (
-                      <span className="rounded-full bg-gray-100 px-2 py-0.5 text-gray-700">Bldg {p.building}</span>
+                      <span className="rounded-full bg-amber-100 px-2 py-0.5 text-amber-800">Bldg {p.building}</span>
                     )}
                     {p.floor !== undefined && p.floor !== null && (
-                      <span className="rounded-full bg-gray-100 px-2 py-0.5 text-gray-700">Floor {p.floor}</span>
+                      <span className="rounded-full bg-amber-100 px-2 py-0.5 text-amber-800">Floor {p.floor}</span>
                     )}
-                    <span className="rounded-full bg-gray-100 px-2 py-0.5 text-gray-700">{label}</span>
+                    <span className="rounded-full bg-amber-100 px-2 py-0.5 text-amber-800">{label}</span>
                   </div>
                 </Link>
               </li>
             ))}
           </ul>
-          <div className="mt-3 border-t pt-3 text-right">
-            <Link href={seeAllHref} className="text-sm font-medium text-primary underline-offset-2 hover:underline">
+          <div className="mt-3 border-t border-amber-200 pt-3 text-right">
+            <Link href={seeAllHref} className="text-sm font-medium text-amber-800 underline-offset-2 hover:text-amber-900 hover:underline">
               See all →
             </Link>
           </div>

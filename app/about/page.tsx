@@ -4,7 +4,7 @@ export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto py-8 space-y-8">
       <div className="text-center">
-        <h1 className="text-4xl font-bold font-[family-name:var(--font-playfair)] bg-gradient-to-r from-amber-800 to-orange-700 bg-clip-text text-transparent mb-4">
+        <h1 className="text-4xl font-bold font-[family-name:var(--font-playfair)] bg-gradient-to-r from-amber-800 to-orange-700 bg-clip-text text-transparent mb-4 leading-tight pb-2">
           About PSU Campus Navigator
         </h1>
         <p className="text-lg text-slate-600">

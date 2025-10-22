@@ -234,11 +234,11 @@ export default function SearchClient({ places, isLoading, error }: Props) {
 
 function Chip({ active, label, onClick, color = 'neutral' }: { active?: boolean; label: string; onClick: () => void; color?: 'green' | 'red' | 'sky' | 'blue' | 'amber' | 'neutral' }) {
   const colorMap: Record<string, string> = {
-    green: 'bg-green-700 text-white shadow-md',
-    red: 'bg-red-600 text-white shadow-md',
-    sky: 'bg-cyan-100 text-slate-900 shadow-md',
-    blue: 'bg-blue-700 text-white shadow-md',
-    amber: 'bg-amber-400 text-black shadow-md',
+    green: 'bg-amber-100 text-amber-900 shadow-md font-medium',
+    red: 'bg-amber-100 text-amber-900 shadow-md font-medium',
+    sky: 'bg-amber-100 text-amber-900 shadow-md font-medium',
+    blue: 'bg-amber-100 text-amber-900 shadow-md font-medium',
+    amber: 'bg-amber-100 text-amber-900 shadow-md font-medium',
     neutral: 'bg-amber-100 text-amber-900 shadow-md font-medium',
   }
   const inactive = 'bg-white text-slate-700 hover:bg-amber-50 border-2 border-amber-200'

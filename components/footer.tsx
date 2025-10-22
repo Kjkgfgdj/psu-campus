@@ -9,8 +9,8 @@ export default function Footer() {
           {/* About Section */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="bg-amber-100 p-1.5 rounded-lg">
-                <Building2 className="h-5 w-5 text-amber-800" />
+              <div className="bg-amber-900/30 p-1.5 rounded-lg border border-amber-600/30">
+                <Building2 className="h-5 w-5 text-amber-200" />
               </div>
               <h3 className="text-lg font-bold">PSU Campus</h3>
             </div>

@@ -170,7 +170,11 @@ export default function SearchClient({ places, isLoading, error }: Props) {
             <input
               value={qParam}
               onChange={(e) => set('q', e.target.value || undefined)}
-              className="w-full rounded-full border border-slate-200 pl-12 pr-4 py-3 text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-green-600/50 focus:border-green-600 transition-all"
+              className="w-full rounded-full border border-slate-200 pl-12 pr-4 text-base shadow-sm transition-all focus:outline-none"
+              style={{
+                height: '52px',
+                outline: qParam ? '2px solid color-mix(in oklab, #16A34A 60%, white)' : undefined
+              }}
               placeholder="Search places..."
             />
           </div>
@@ -229,7 +233,7 @@ export default function SearchClient({ places, isLoading, error }: Props) {
           </div>
 
           {/* Category Chips */}
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2">
             <Chip active={!catParam} label="All categories" onClick={() => { set('cat', undefined); set('building', undefined); set('floor', undefined); }} />
             <Chip active={catParam === 'food'} label="Food & drinks" onClick={() => { set('cat', 'food'); set('building', undefined); set('floor', undefined); }} />
             <Chip active={catParam === 'important'} label="Important places" onClick={() => { set('cat', 'important'); set('building', undefined); set('floor', undefined); }} />

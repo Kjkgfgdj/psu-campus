@@ -25,7 +25,7 @@ export default function Home() {
           </div>
 
           {/* Category Chips */}
-          <div className="pt-4 flex flex-wrap justify-center gap-3">
+          <div className="pt-4 flex flex-wrap justify-center gap-2">
             <Link href="/search">
               <Chip label="All Places" />
             </Link>

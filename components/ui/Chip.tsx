@@ -9,25 +9,25 @@ interface ChipProps {
 
 export function Chip({ label, active, onClick, variant = "default" }: ChipProps) {
   const baseClasses =
-    "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all cursor-pointer";
+    "inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium transition-all cursor-pointer";
   
   const variantClasses = {
     default: active
-      ? "bg-green-600 text-white shadow-md"
-      : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50",
+      ? "bg-green-600 text-white border-transparent"
+      : "bg-[#F1F5F9] text-[#0F172A] border border-[#E2E8F0] hover:bg-slate-200",
     primary: active
-      ? "bg-green-600 text-white shadow-md"
-      : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50",
+      ? "bg-green-600 text-white border-transparent"
+      : "bg-[#F1F5F9] text-[#0F172A] border border-[#E2E8F0] hover:bg-slate-200",
     secondary: active
-      ? "bg-slate-900 text-white shadow-md"
-      : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50",
+      ? "bg-green-600 text-white border-transparent"
+      : "bg-[#F1F5F9] text-[#0F172A] border border-[#E2E8F0] hover:bg-slate-200",
   };
 
   return (
     <button
       type="button"
       onClick={onClick}
-      className={cn(baseClasses, variantClasses[variant], active && "scale-105")}
+      className={cn(baseClasses, variantClasses[variant])}
     >
       {label}
     </button>

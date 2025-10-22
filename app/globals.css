@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import "./styles/tokens.css";
 
 @plugin "tailwindcss-animate";
 
@@ -142,5 +141,54 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  
+  /* Custom tokens */
+  :root {
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --text: #0F172A;
+    --muted: #E2E8F0;
+    --accent-custom: #16A34A;
+    --accent-600: #15803D;
+    --danger: #DC2626;
+    --info: #0EA5E9;
+    --radius-custom: 14px;
+    --radius-sm-custom: 10px;
+    --shadow-custom: 0 8px 24px rgba(2, 6, 23, .06), 0 1px 2px rgba(2, 6, 23, .04);
+    --font-sans-custom: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans-custom);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a {
+    color: var(--accent-custom);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  .clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }

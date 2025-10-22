@@ -57,6 +57,10 @@ a {
   border: 1px solid var(--muted);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  /* Remove any colored pseudo-element borders */
+}
+.card::before, .card::after {
+  pointer-events: none;
 }
 
 .btn {

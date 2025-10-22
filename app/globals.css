@@ -198,8 +198,36 @@
     overflow: hidden;
   }
   
+  .slug-badge {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
   svg {
     width: 20px;
     height: 20px;
+  }
+  
+  /* Ensure card styling is neutral */
+  .card {
+    border: 1px solid var(--muted);
+    box-shadow: 0 2px 8px rgba(2, 6, 23, .04), 0 1px 0 rgba(2, 6, 23, .04);
+    border-radius: var(--radius-custom);
+  }
+  
+  .badge, .chip {
+    background: #F1F5F9;
+    color: #0F172A;
+    border: 1px solid var(--muted);
+    border-radius: 999px;
+    font-weight: 500;
+  }
+  
+  .chip.is-active {
+    background: var(--accent-custom);
+    color: #fff;
+    border-color: transparent;
   }
 }

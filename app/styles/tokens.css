@@ -18,6 +18,9 @@
   /* Border radius */
   --radius: 14px;
   --radius-sm: 10px;
+  
+  /* Grid */
+  --grid: 8px;
 
   /* Shadow */
   --shadow: 0 2px 8px rgba(2, 6, 23, .04), 0 1px 0 rgba(2, 6, 23, .04);
@@ -115,6 +118,11 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid color-mix(in oklab, var(--accent) 60%, white);
+  outline: 2px solid color-mix(in oklab, var(--accent) 65%, white);
   outline-offset: 2px;
+}
+
+svg {
+  width: 20px;
+  height: 20px;
 }

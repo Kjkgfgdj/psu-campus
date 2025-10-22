@@ -1,7 +1,8 @@
 @import "tailwindcss";
-@plugin "tailwindcss-animate";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "./styles/tokens.css";
+
+@plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
 

@@ -193,7 +193,7 @@ useEffect(() => {
           if (places.length === 0 && !isLoading) fetchAll();
         }}
         onKeyDown={onKeyDown}
-        className="w-full max-w-3xl rounded-xl bg-white text-slate-900 placeholder-slate-400 ring-1 ring-black/10 focus:outline-none focus:ring-2 focus:ring-sky-400/30 shadow-sm px-4 py-3"
+        className="w-full max-w-3xl rounded-2xl bg-white text-slate-900 placeholder-slate-400 ring-2 ring-amber-200/60 focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-lg hover:shadow-xl transition-all px-5 py-4 text-base"
         aria-autocomplete="list"
         aria-controls="autocomplete-listbox"
         aria-activedescendant={highlightIndex >= 0 ? `ac-item-${highlightIndex}` : undefined}
@@ -203,7 +203,7 @@ useEffect(() => {
         <div
           id="autocomplete-listbox"
           role="listbox"
-          className="absolute z-50 mt-2 w-full rounded-xl border bg-background shadow-md"
+          className="absolute z-50 mt-3 w-full rounded-2xl border border-amber-200 bg-white shadow-2xl overflow-hidden"
         >
           <div className="max-h-80 overflow-y-auto">
             {isLoading && debounced.trim() && places.length === 0 && (
@@ -248,10 +248,10 @@ useEffect(() => {
               <div className="px-4 py-3 text-sm text-muted-foreground">No places found.</div>
             )}
           </div>
-          <div className="border-t bg-muted/40 px-4 py-2 text-right text-sm">
+          <div className="border-t border-amber-100 bg-amber-50/50 px-4 py-3 text-right text-sm">
             <button
               type="button"
-              className="text-primary underline-offset-2 hover:underline"
+              className="text-amber-800 font-medium underline-offset-2 hover:underline hover:text-amber-900 transition-colors"
               onMouseDown={(event) => event.preventDefault()}
               onClick={onSubmitSearch}
             >

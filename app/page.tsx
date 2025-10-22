@@ -9,7 +9,12 @@ export default function Home() {
       <div className="max-w-4xl mx-auto">
         {/* Search Section */}
         <div className="mb-12 text-center">
-          <h1 className="mb-6 text-4xl font-bold">PSU Campus Navigator</h1>
+          <h1 className="mb-8 text-6xl font-bold font-[family-name:var(--font-playfair)] bg-gradient-to-r from-amber-800 via-orange-700 to-amber-900 bg-clip-text text-transparent drop-shadow-sm">
+            PSU Campus Navigator
+          </h1>
+          <p className="mb-6 text-lg text-slate-600 max-w-2xl mx-auto">
+            Discover and navigate Prince Sultan University with ease
+          </p>
           <div className="mx-auto max-w-xl">
             <AutocompleteSearch />
           </div>

@@ -39,8 +39,8 @@ export default function BuildingPage() {
     <main className="space-y-6 p-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold">Building {id}</h1>
-          <p className="text-sm text-muted-foreground">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-amber-800 to-orange-700 bg-clip-text text-transparent">Building {id}</h1>
+          <p className="text-base text-amber-700 font-medium mt-2 leading-relaxed">
             Floor {floorParam} overview with interactive zones. Activate a highlighted area for more details and videos.
           </p>
         </div>

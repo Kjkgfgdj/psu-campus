@@ -1,4 +1,8 @@
-/* Design Tokens - 2025 Modern PSU Campus */
+/* Design Tokens - 2025 Modern PSU Campus 
+ * 
+ * NOTE: These tokens are now inlined in globals.css using @layer.
+ * This file is kept for reference only.
+ */
 
 :root {
   /* Colors */

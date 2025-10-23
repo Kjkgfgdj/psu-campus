@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${inter.variable} antialiased min-h-screen bg-slate-50 text-slate-900 flex flex-col`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${inter.variable} antialiased min-h-screen bg-gradient-to-br from-slate-50 via-green-50/10 to-slate-50 text-slate-900 flex flex-col`}>
         <SiteNav />
         <main className="flex-grow w-full">{children}</main>
         <Footer />

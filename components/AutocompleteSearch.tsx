@@ -182,39 +182,59 @@ useEffect(() => {
       aria-owns={listboxId}
       className="relative w-full"
     >
-      <Input
-        type="text"
-        placeholder="Search for a classroom, office, or facility..."
-        value={term}
-        onChange={(event) => setTerm(event.target.value)}
-        onFocus={() => {
-          const hasText = debounced.trim().length > 0 || term.trim().length > 0;
-          setOpen(hasText);
-          if (places.length === 0 && !isLoading) fetchAll();
-        }}
-        onKeyDown={onKeyDown}
-        className="w-full max-w-3xl rounded-full bg-white text-slate-900 placeholder-slate-400 border border-slate-200 shadow-sm hover:shadow transition-all px-5 py-4 text-base focus:outline-none focus:outline-2 focus:outline-offset-0"
-        style={{
-          outline: term ? '2px solid color-mix(in oklab, #16A34A 60%, white)' : undefined,
-          height: '56px'
-        }}
-        aria-autocomplete="list"
-        aria-controls="autocomplete-listbox"
-        aria-activedescendant={highlightIndex >= 0 ? `ac-item-${highlightIndex}` : undefined}
-      />
+      <div className="relative w-full">
+        {/* Search icon */}
+        <div className="absolute left-5 top-1/2 -translate-y-1/2 pointer-events-none">
+          <svg className="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        
+        <Input
+          type="text"
+          placeholder="Search for a classroom, office, or facility..."
+          value={term}
+          onChange={(event) => setTerm(event.target.value)}
+          onFocus={() => {
+            const hasText = debounced.trim().length > 0 || term.trim().length > 0;
+            setOpen(hasText);
+            if (places.length === 0 && !isLoading) fetchAll();
+          }}
+          onKeyDown={onKeyDown}
+          className="w-full rounded-2xl bg-white/90 text-slate-900 placeholder-slate-500 border-2 border-slate-200 shadow-xl hover:shadow-2xl hover:border-green-300 focus:border-green-500 transition-all duration-300 pl-14 pr-6 py-6 text-lg font-medium focus:outline-none focus:ring-4 focus:ring-green-500/20"
+          style={{
+            height: '64px'
+          }}
+          aria-autocomplete="list"
+          aria-controls="autocomplete-listbox"
+          aria-activedescendant={highlightIndex >= 0 ? `ac-item-${highlightIndex}` : undefined}
+        />
+        
+        {/* Keyboard hint */}
+        {!term && (
+          <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none flex items-center gap-2">
+            <kbd className="hidden sm:inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-xs text-slate-500 font-mono">
+              <span className="text-[10px]">⌘</span>K
+            </kbd>
+          </div>
+        )}
+      </div>
 
       {open && debounced.trim() && (
         <div
           id="autocomplete-listbox"
           role="listbox"
-          className="absolute z-50 mt-3 w-full rounded-2xl border border-amber-200 bg-white shadow-2xl overflow-hidden"
+          className="absolute z-50 mt-4 w-full rounded-2xl border-2 border-slate-200 bg-white shadow-2xl backdrop-blur-xl ring-1 ring-black/5 overflow-hidden p-2"
         >
-          <div className="max-h-80 overflow-y-auto">
+          <div className="max-h-[220px] overflow-y-auto rounded-xl">
             {isLoading && debounced.trim() && places.length === 0 && (
               <div className="px-4 py-3 text-sm text-muted-foreground">Loading…</div>
             )}
             {filtered.map((place, index) => {
               const active = index === highlightIndex;
+              const isFirst = index === 0;
+              const isLast = index === filtered.length - 1;
+              
               return (
                 <div
                   key={place.id}
@@ -222,28 +242,52 @@ useEffect(() => {
                   role="option"
                   aria-selected={active}
                   className={cn(
-                    "cursor-pointer border-b px-4 py-3 last:border-b-0",
-                    active && "bg-accent",
+                    "group cursor-pointer border-b border-slate-100 px-6 py-4 transition-all duration-200 relative",
+                    isFirst && "rounded-t-xl",
+                    isLast && "border-b-0 rounded-b-xl",
+                    active ? "bg-gradient-to-r from-green-50 to-emerald-50" : "hover:bg-slate-50",
                   )}
                   onMouseEnter={() => setHighlightIndex(index)}
                   onMouseDown={(event) => event.preventDefault()}
                   onClick={() => navigateTo(place)}
                 >
-                  <div className="font-medium text-foreground">{place.name}</div>
-                  <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-                    <Badge variant="secondary" className="text-[10px]">
-                      Building {place.building}
-                    </Badge>
-                    <Badge variant="outline" className="text-[10px]">
-                      Floor {FLOOR_LABEL[place.floor] ?? String(place.floor)}
-                    </Badge>
-                    {place.category && (
-                      <Badge className={cn("text-[10px]", badgeClasses(place.category))}>{place.category}</Badge>
-                    )}
-                  </div>
-                  {place.description && (
-                    <div className="mt-1 line-clamp-1 text-xs text-muted-foreground">{place.description}</div>
+                  {/* Green accent bar for active item */}
+                  {active && (
+                    <div className="absolute left-2 top-2 bottom-2 w-1 bg-gradient-to-b from-green-600 to-emerald-600 rounded-full"></div>
                   )}
+                  
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <div className={cn(
+                        "font-semibold text-slate-900 text-base mb-2 group-hover:text-green-700 transition-colors",
+                        active && "text-green-700"
+                      )}>
+                        {place.name}
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <Badge variant="secondary" className="text-xs font-medium rounded-lg px-2.5 py-0.5 bg-green-50 text-green-700 border border-green-200">
+                          Building {place.building}
+                        </Badge>
+                        <Badge variant="outline" className="text-xs font-medium rounded-lg px-2.5 py-0.5 border-slate-300">
+                          Floor {FLOOR_LABEL[place.floor] ?? String(place.floor)}
+                        </Badge>
+                        {place.category && (
+                          <Badge className={cn("text-xs font-medium rounded-lg px-2.5 py-0.5", badgeClasses(place.category))}>
+                            {place.category}
+                          </Badge>
+                        )}
+                      </div>
+                      {place.description && (
+                        <div className="mt-2 line-clamp-1 text-sm text-slate-600">{place.description}</div>
+                      )}
+                    </div>
+                    <svg className={cn(
+                      "h-5 w-5 text-slate-400 opacity-0 group-hover:opacity-100 transition-all",
+                      active && "opacity-100 text-green-600"
+                    )} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
                 </div>
               );
             })}
@@ -252,14 +296,20 @@ useEffect(() => {
               <div className="px-4 py-3 text-sm text-muted-foreground">No places found.</div>
             )}
           </div>
-          <div className="border-t border-amber-100 bg-amber-50/50 px-4 py-3 text-right text-sm">
+          <div className="border-t border-slate-200 bg-gradient-to-r from-slate-50 to-green-50/30 px-6 py-4 flex items-center justify-between rounded-b-xl">
+            <span className="text-sm text-slate-600">
+              {filtered.length} {filtered.length === 1 ? 'result' : 'results'} found
+            </span>
             <button
               type="button"
-              className="text-amber-800 font-medium underline-offset-2 hover:underline hover:text-amber-900 transition-colors"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-green-700 hover:text-green-800 transition-all"
               onMouseDown={(event) => event.preventDefault()}
               onClick={onSubmitSearch}
             >
-              View all {filtered.length || 0} results →
+              View all results
+              <svg className="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>

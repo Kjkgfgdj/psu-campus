@@ -44,15 +44,18 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   
-  /* 2025 Design tokens */
+  /* 2025 Premium Design System - World Class Colors */
   --color-green-600: #16A34A;
   --color-green-700: #15803D;
-  --radius-sm: 10px;
-  --radius-md: 12px;
-  --radius-lg: 14px;
-  --radius-xl: 18px;
-  --shadow: 0 2px 8px rgba(2, 6, 23, .04), 0 1px 0 rgba(2, 6, 23, .04);
-  --shadow-lg: 0 4px 12px rgba(2, 6, 23, .06), 0 2px 0 rgba(2, 6, 23, .04);
+  --color-emerald-600: #10B981;
+  --color-emerald-500: #34D399;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --shadow: 0 4px 16px rgba(22, 163, 74, .08), 0 2px 4px rgba(2, 6, 23, .04);
+  --shadow-lg: 0 8px 32px rgba(22, 163, 74, .12), 0 4px 8px rgba(2, 6, 23, .06);
+  --shadow-xl: 0 12px 48px rgba(22, 163, 74, .15), 0 6px 12px rgba(2, 6, 23, .08);
 }
 
 :root {
@@ -159,6 +162,10 @@
     --font-sans-custom: var(--font-inter), system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   html, body {
     background: var(--bg);
     color: var(--text);
@@ -166,6 +173,14 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Prevent gradient text clipping */
+  .gradient-text {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   h1, h2, h3 {
@@ -184,6 +199,56 @@
 }
 
 @layer utilities {
+  /* Modern Animations */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-from-bottom {
+    from {
+      transform: translateY(1rem);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-in {
+    animation: fade-in 0.6s ease-out, slide-in-from-bottom 0.6s ease-out;
+  }
+
+  .fade-in {
+    animation: fade-in 0.6s ease-out;
+  }
+
+  .slide-in-from-bottom-4 {
+    animation: slide-in-from-bottom 0.6s ease-out;
+    animation-fill-mode: both;
+  }
+
+  .slide-in-from-bottom-8 {
+    animation: fade-in 0.8s ease-out, slide-in-from-bottom 0.8s ease-out;
+    animation-fill-mode: both;
+  }
+
+  .duration-1000 {
+    animation-duration: 1s;
+  }
+
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  /* Text Utilities */
   .clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -204,13 +269,19 @@
     height: 20px;
   }
   
-  /* Card styling with overflow protection */
+  /* Premium Card styling - 2025 Standards */
   .card {
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--muted);
-    box-shadow: 0 2px 8px rgba(2, 6, 23, .04), 0 1px 0 rgba(2, 6, 23, .04);
+    border: 2px solid var(--muted);
+    box-shadow: 0 4px 16px rgba(22, 163, 74, .08), 0 2px 4px rgba(2, 6, 23, .04);
     border-radius: var(--radius-custom);
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 32px rgba(22, 163, 74, .15), 0 4px 8px rgba(2, 6, 23, .08);
+    border-color: rgb(22, 163, 74);
   }
   
   .card * {

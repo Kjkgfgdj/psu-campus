@@ -63,14 +63,14 @@ export function CategoryMenu() {
 
             {isOpen && (
               <div className="absolute left-0 top-full z-50 pt-2 w-80">
-                <div className="rounded-2xl border-2 border-slate-200 bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden backdrop-blur-xl">
+                <div className="rounded-2xl border-2 border-slate-200 bg-white shadow-2xl ring-1 ring-black/5 backdrop-blur-xl">
                   {/* Category header */}
                   <div className="border-b border-slate-200 bg-gradient-to-r from-green-50 to-emerald-50 px-5 py-4">
                     <h3 className="text-xs font-bold bg-gradient-to-r from-green-700 to-emerald-700 bg-clip-text text-transparent uppercase tracking-wider">{cat.labelUpper}</h3>
                   </div>
 
                   {/* Places list */}
-                  <div className="max-h-96 overflow-y-auto py-1">
+                  <div className="max-h-96 overflow-y-auto overflow-x-hidden py-1">
                     {categoryPlaces.length === 0 ? (
                       <div className="px-5 py-8 text-center text-sm text-slate-500">No places found</div>
                     ) : (
@@ -78,8 +78,11 @@ export function CategoryMenu() {
                         <Link
                           key={place.id || place.slug}
                           href={`/buildings/${place.building}?floor=${place.floor}&highlight=${place.slug}`}
-                          className="group block px-5 py-4 transition-all duration-200 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 border-l-4 border-l-transparent hover:border-l-green-600"
+                          className="group relative block px-5 py-4 transition-all duration-200 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50"
                         >
+                          {/* Green accent bar on hover */}
+                          <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-green-600 to-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                          
                           <div className="flex items-center justify-between gap-3">
                             <div className="flex-1 min-w-0">
                               <div className="font-semibold text-slate-900 group-hover:text-green-700 transition-colors mb-2">

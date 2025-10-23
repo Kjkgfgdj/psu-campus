@@ -224,9 +224,9 @@ useEffect(() => {
         <div
           id="autocomplete-listbox"
           role="listbox"
-          className="absolute z-50 mt-4 w-full rounded-3xl border-2 border-slate-200 bg-white shadow-2xl overflow-hidden backdrop-blur-xl ring-1 ring-black/5"
+          className="absolute z-50 mt-4 w-full rounded-3xl border-2 border-slate-200 bg-white shadow-2xl backdrop-blur-xl ring-1 ring-black/5"
         >
-          <div className="max-h-96 overflow-y-auto">
+          <div className="max-h-96 overflow-y-auto overflow-x-hidden rounded-3xl">
             {isLoading && debounced.trim() && places.length === 0 && (
               <div className="px-4 py-3 text-sm text-muted-foreground">Loading…</div>
             )}
@@ -239,13 +239,18 @@ useEffect(() => {
                   role="option"
                   aria-selected={active}
                   className={cn(
-                    "group cursor-pointer border-b border-slate-100 px-6 py-4 last:border-b-0 transition-all duration-200",
-                    active ? "bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-l-green-600" : "hover:bg-slate-50",
+                    "group cursor-pointer border-b border-slate-100 px-6 py-4 last:border-b-0 transition-all duration-200 relative",
+                    active ? "bg-gradient-to-r from-green-50 to-emerald-50" : "hover:bg-slate-50",
                   )}
                   onMouseEnter={() => setHighlightIndex(index)}
                   onMouseDown={(event) => event.preventDefault()}
                   onClick={() => navigateTo(place)}
                 >
+                  {/* Green accent bar for active item */}
+                  {active && (
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-green-600 to-emerald-600"></div>
+                  )}
+                  
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1 min-w-0">
                       <div className={cn(

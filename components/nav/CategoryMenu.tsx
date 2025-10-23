@@ -48,11 +48,11 @@ export function CategoryMenu() {
             onMouseLeave={() => setOpenMenu(null)}
           >
             <button
-              className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-700 transition-all hover:bg-slate-100 hover:text-slate-900"
+              className="relative flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:bg-gradient-to-br hover:from-slate-50 hover:to-green-50/50 hover:text-slate-900 hover:shadow-sm group"
             >
               {cat.label}
               <svg
-                className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                className={`h-4 w-4 transition-all duration-300 group-hover:text-green-600 ${isOpen ? 'rotate-180' : ''}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -63,34 +63,43 @@ export function CategoryMenu() {
 
             {isOpen && (
               <div className="absolute left-0 top-full z-50 pt-2 w-80">
-                <div className="rounded-xl border border-slate-200 bg-white shadow-lg">
+                <div className="rounded-2xl border-2 border-slate-200 bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden backdrop-blur-xl">
                   {/* Category header */}
-                  <div className="border-b border-slate-100 px-4 py-3">
-                    <h3 className="text-xs font-bold text-green-700 uppercase tracking-wide">{cat.labelUpper}</h3>
+                  <div className="border-b border-slate-200 bg-gradient-to-r from-green-50 to-emerald-50 px-5 py-4">
+                    <h3 className="text-xs font-bold bg-gradient-to-r from-green-700 to-emerald-700 bg-clip-text text-transparent uppercase tracking-wider">{cat.labelUpper}</h3>
                   </div>
 
                   {/* Places list */}
-                  <div className="max-h-96 overflow-y-auto py-2">
+                  <div className="max-h-96 overflow-y-auto py-1">
                     {categoryPlaces.length === 0 ? (
-                      <div className="px-4 py-3 text-sm text-slate-500">No places found</div>
+                      <div className="px-5 py-8 text-center text-sm text-slate-500">No places found</div>
                     ) : (
-                      categoryPlaces.map((place) => (
+                      categoryPlaces.map((place, index) => (
                         <Link
                           key={place.id || place.slug}
                           href={`/buildings/${place.building}?floor=${place.floor}&highlight=${place.slug}`}
-                          className="block px-4 py-3 transition-colors hover:bg-slate-50"
+                          className="group block px-5 py-4 transition-all duration-200 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 border-l-4 border-l-transparent hover:border-l-green-600"
                         >
-                          <div className="mb-2 font-medium text-slate-900">{place.name}</div>
-                          <div className="flex flex-wrap gap-1.5">
-                            <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                              Bldg {place.building}
-                            </span>
-                            <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
-                              Floor {place.floor}
-                            </span>
-                            <span className="inline-flex items-center rounded-md bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-600/20">
-                              {normalizeCategory(place.category)}
-                            </span>
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="flex-1 min-w-0">
+                              <div className="font-semibold text-slate-900 group-hover:text-green-700 transition-colors mb-2">
+                                {place.name}
+                              </div>
+                              <div className="flex flex-wrap gap-1.5">
+                                <span className="inline-flex items-center rounded-lg bg-green-50 px-2.5 py-1 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20">
+                                  Bldg {place.building}
+                                </span>
+                                <span className="inline-flex items-center rounded-lg bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                                  Floor {place.floor}
+                                </span>
+                                <span className="inline-flex items-center rounded-lg bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-700 ring-1 ring-inset ring-slate-600/20">
+                                  {normalizeCategory(place.category)}
+                                </span>
+                              </div>
+                            </div>
+                            <svg className="h-4 w-4 text-slate-400 opacity-0 group-hover:opacity-100 group-hover:text-green-600 group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
                           </div>
                         </Link>
                       ))
@@ -99,12 +108,15 @@ export function CategoryMenu() {
 
                   {/* See all link */}
                   {count > 0 && (
-                    <div className="border-t border-slate-100 px-4 py-3 text-center">
+                    <div className="border-t border-slate-200 bg-gradient-to-r from-slate-50 to-green-50/30 px-5 py-4">
                       <Link
                         href={cat.href}
-                        className="text-sm font-medium text-green-700 transition-colors hover:text-green-800"
+                        className="group inline-flex items-center gap-2 text-sm font-bold text-green-700 hover:text-green-800 transition-all w-full justify-center"
                       >
-                        See all {count > 2 ? count : ''} →
+                        See all {count > 2 ? count : ''} results
+                        <svg className="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
                       </Link>
                     </div>
                   )}

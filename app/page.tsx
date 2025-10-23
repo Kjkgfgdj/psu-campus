@@ -33,7 +33,7 @@ export default function Home() {
               </div>
 
               {/* Floating Search Bar */}
-              <div className="mx-auto max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200 mb-32">
+              <div className="mx-auto max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
                 <div className="relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl blur-lg opacity-20"></div>
                   <div className="relative backdrop-blur-xl bg-white/80 rounded-2xl shadow-2xl ring-1 ring-slate-200/50 p-2">
@@ -43,7 +43,7 @@ export default function Home() {
               </div>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto animate-in fade-in duration-1000 delay-500">
+              <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto pt-8 animate-in fade-in duration-1000 delay-500">
                 <div className="text-center">
                   <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">5</div>
                   <div className="text-sm text-slate-600 mt-2 font-medium">Buildings</div>
@@ -60,7 +60,7 @@ export default function Home() {
             </div>
 
             {/* Interactive Campus Map - Integrated into Hero */}
-            <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in duration-1000 delay-700">
+            <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in duration-1000 delay-700 pt-32">
               {/* Section Label */}
               <div className="flex items-center justify-center gap-3">
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-green-300 to-transparent"></div>

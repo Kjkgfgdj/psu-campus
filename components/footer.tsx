@@ -35,7 +35,7 @@ export default function Footer() {
             
             {/* Social/Links */}
             <div className="flex gap-3">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="group relative">
+              <a href="https://github.com/Kjkgfgdj/psu-campus" target="_blank" rel="noopener noreferrer" className="group relative">
                 <div className="absolute -inset-2 bg-green-600/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition"></div>
                 <div className="relative p-3 bg-slate-800 rounded-xl border border-slate-700 hover:border-green-500 hover:bg-slate-700 transition-all">
                   <svg className="w-5 h-5 text-slate-400 group-hover:text-green-400" fill="currentColor" viewBox="0 0 24 24">
@@ -141,7 +141,7 @@ export default function Footer() {
                 <span className="group-hover:translate-x-0.5 inline-block transition-transform">Terms</span>
               </Link>
               <a 
-                href="https://github.com" 
+                href="https://github.com/Kjkgfgdj/psu-campus" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-slate-400 hover:text-green-400 transition-all text-sm font-medium group"

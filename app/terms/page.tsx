@@ -85,7 +85,7 @@ export default function TermsPage() {
                 <h2 className="text-2xl font-bold text-slate-900 mb-4">Acceptance of Terms</h2>
                 <div className="space-y-4 text-slate-700 leading-relaxed">
                   <p>
-                    By accessing and using PSU Campus Navigator ("the Service"), you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to these terms, please do not use the Service.
+                    By accessing and using PSU Campus Navigator (&quot;the Service&quot;), you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to these terms, please do not use the Service.
                   </p>
                   <p>
                     This Service is provided by students of Prince Sultan University for the benefit of the PSU community.
@@ -121,7 +121,7 @@ export default function TermsPage() {
                     We strive to provide reliable and accurate information, but please note:
                   </p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>The Service is provided "as is" without warranties of any kind</li>
+                    <li>The Service is provided &quot;as is&quot; without warranties of any kind</li>
                     <li>We do not guarantee uninterrupted or error-free service</li>
                     <li>Campus information may change, and we cannot guarantee real-time accuracy</li>
                     <li>We reserve the right to modify or discontinue the Service at any time</li>

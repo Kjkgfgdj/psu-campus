@@ -32,7 +32,7 @@ export default function PrivacyPage() {
                     <Shield className="h-8 w-8 text-green-600" />
                   </div>
                   <h3 className="text-sm font-bold text-slate-900">No Tracking</h3>
-                  <p className="text-xs text-slate-600">We don't track your activity</p>
+                  <p className="text-xs text-slate-600">We don&apos;t track your activity</p>
                 </div>
               </div>
             </div>
@@ -71,7 +71,7 @@ export default function PrivacyPage() {
                     <Database className="h-8 w-8 text-green-600" />
                   </div>
                   <h3 className="text-sm font-bold text-slate-900">Minimal Data</h3>
-                  <p className="text-xs text-slate-600">We collect only what's needed</p>
+                  <p className="text-xs text-slate-600">We collect only what&apos;s needed</p>
                 </div>
               </div>
             </div>

@@ -23,7 +23,7 @@ export default function VideosPage() {
                   Videos Coming Soon
                 </h2>
                 <p className="text-slate-600 max-w-md mx-auto">
-                  We're working on creating comprehensive video guides for all campus buildings and facilities.
+                  We&apos;re working on creating comprehensive video guides for all campus buildings and facilities.
                 </p>
               </div>
             </div>

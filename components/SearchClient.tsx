@@ -3,7 +3,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { PlacesList } from "@/components/PlacesList"
+import { Chip } from "@/components/ui/Chip"
 import type { Place } from "@/lib/types"
+import { Search } from "lucide-react"
 
 type Props = {
   places?: Place[]
@@ -159,94 +161,91 @@ export default function SearchClient({ places, isLoading, error }: Props) {
   }, [items, catParam, selectedBuilding, selectedFloor, qParam, toSlug])
 
   return (
-    <div className="space-y-6">
-      <div className="rounded-2xl border-2 border-amber-200 bg-white shadow-xl p-4 md:p-6">
-        <div className="grid gap-4 md:grid-cols-3">
-          <div>
-            <div className="text-sm font-semibold text-amber-900 mb-2">Search</div>
+    <div className="py-8">
+      {/* Sticky Search Bar */}
+      <div className="sticky top-16 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm -mx-4 px-4 py-4 mb-8">
+        <div className="container mx-auto max-w-[1120px]">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
             <input
               value={qParam}
               onChange={(e) => set('q', e.target.value || undefined)}
-              className="w-full rounded-xl border-2 border-amber-200 px-4 py-2.5 outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-400 transition-all"
+              className="w-full rounded-full border border-slate-200 pl-12 pr-4 text-base shadow-sm transition-all focus:outline-none"
+              style={{
+                height: '52px',
+                outline: qParam ? '2px solid color-mix(in oklab, #16A34A 60%, white)' : undefined
+              }}
               placeholder="Search places..."
             />
-          </div>
-
-          <div>
-            <div className="text-sm font-semibold text-amber-900 mb-2">Building</div>
-            <select
-              value={selectedBuilding === null ? '' : String(selectedBuilding)}
-              onChange={(e) => {
-                const v = e.target.value
-                const n = v === '' ? null : Number(v)
-                setSelectedBuilding(n)
-                set('building', v || undefined)
-                // reset floor when building changes
-                setSelectedFloor(null)
-                set('floor', undefined)
-              }}
-              className="w-full rounded-xl border-2 border-amber-200 px-4 py-2.5 outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-400 transition-all bg-white"
-            >
-              <option value="">All buildings</option>
-              {buildingOptions.map(b => (
-                <option key={b} value={String(b)}>{`Building ${b}`}</option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <div className="text-sm font-semibold text-amber-900 mb-2">Floor</div>
-            <select
-              value={selectedFloor === null ? '' : String(selectedFloor)}
-              onChange={(e) => {
-                const v = e.target.value
-                const n = v === '' ? null : Number(v)
-                setSelectedFloor(n)
-                set('floor', v || undefined)
-              }}
-              className="w-full rounded-xl border-2 border-amber-200 px-4 py-2.5 outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-400 transition-all bg-white"
-            >
-              <option value="">All floors</option>
-              {floorOptions.map(v => {
-                const label = v === '0' ? 'Floor G' : `Floor ${v}`
-                return (
-                  <option key={v} value={v}>{label}</option>
-                )
-              })}
-            </select>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-3">
-        <Chip active={!catParam} label="All categories" onClick={() => { set('cat', undefined); set('building', undefined); set('floor', undefined); }} />
-        <Chip active={catParam === 'food'} label="Food & drinks" color="green" onClick={() => { set('cat', 'food'); set('building', undefined); set('floor', undefined); }} />
-        <Chip active={catParam === 'important'} label="Important places" color="red" onClick={() => { set('cat', 'important'); set('building', undefined); set('floor', undefined); }} />
-        <Chip active={catParam === 'exam'} label="Popular exam places" color="sky" onClick={() => { set('cat', 'exam'); set('building', undefined); set('floor', undefined); }} />
-        <Chip active={catParam === 'public'} label="Public facilities" color="blue" onClick={() => { set('cat', 'public'); set('building', undefined); set('floor', undefined); }} />
-        <Chip active={catParam === 'classroom'} label="Classroom" color="amber" onClick={() => { set('cat', 'classroom'); set('building', undefined); set('floor', undefined); }} />
-      </div>
+      <div className="container mx-auto max-w-[1120px] px-4">
+        <div className="space-y-6">
+          {/* Filters Panel */}
+          <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-6">
+            <div className="grid gap-4 md:grid-cols-2">
+              <div>
+                <label className="text-sm font-semibold text-slate-900 mb-2 block">Building</label>
+                <select
+                  value={selectedBuilding === null ? '' : String(selectedBuilding)}
+                  onChange={(e) => {
+                    const v = e.target.value
+                    const n = v === '' ? null : Number(v)
+                    setSelectedBuilding(n)
+                    set('building', v || undefined)
+                    // reset floor when building changes
+                    setSelectedFloor(null)
+                    set('floor', undefined)
+                  }}
+                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-green-600/50 focus:border-green-600 transition-all bg-white"
+                >
+                  <option value="">All buildings</option>
+                  {buildingOptions.map(b => (
+                    <option key={b} value={String(b)}>{`Building ${b}`}</option>
+                  ))}
+                </select>
+              </div>
 
-      <PlacesList places={filtered} isLoading={isLoading ?? loadingFetch} error={error ?? errorFetch} emptyMessage="No results for this filter." />
+              <div>
+                <label className="text-sm font-semibold text-slate-900 mb-2 block">Floor</label>
+                <select
+                  value={selectedFloor === null ? '' : String(selectedFloor)}
+                  onChange={(e) => {
+                    const v = e.target.value
+                    const n = v === '' ? null : Number(v)
+                    setSelectedFloor(n)
+                    set('floor', v || undefined)
+                  }}
+                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-green-600/50 focus:border-green-600 transition-all bg-white"
+                >
+                  <option value="">All floors</option>
+                  {floorOptions.map(v => {
+                    const label = v === '0' ? 'Floor G' : `Floor ${v}`
+                    return (
+                      <option key={v} value={v}>{label}</option>
+                    )
+                  })}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Category Chips */}
+          <div className="flex flex-wrap gap-2">
+            <Chip active={!catParam} label="All categories" onClick={() => { set('cat', undefined); set('building', undefined); set('floor', undefined); }} />
+            <Chip active={catParam === 'food'} label="Food & drinks" onClick={() => { set('cat', 'food'); set('building', undefined); set('floor', undefined); }} />
+            <Chip active={catParam === 'important'} label="Important places" onClick={() => { set('cat', 'important'); set('building', undefined); set('floor', undefined); }} />
+            <Chip active={catParam === 'exam'} label="Popular exam places" onClick={() => { set('cat', 'exam'); set('building', undefined); set('floor', undefined); }} />
+            <Chip active={catParam === 'public'} label="Public facilities" onClick={() => { set('cat', 'public'); set('building', undefined); set('floor', undefined); }} />
+            <Chip active={catParam === 'classroom'} label="Classroom" onClick={() => { set('cat', 'classroom'); set('building', undefined); set('floor', undefined); }} />
+          </div>
+
+          {/* Results */}
+          <PlacesList places={filtered} isLoading={isLoading ?? loadingFetch} error={error ?? errorFetch} emptyMessage="No results for this filter." />
+        </div>
+      </div>
     </div>
   )
 }
-
-function Chip({ active, label, onClick, color = 'neutral' }: { active?: boolean; label: string; onClick: () => void; color?: 'green' | 'red' | 'sky' | 'blue' | 'amber' | 'neutral' }) {
-  const colorMap: Record<string, string> = {
-    green: 'bg-amber-100 text-amber-900 shadow-md font-medium',
-    red: 'bg-amber-100 text-amber-900 shadow-md font-medium',
-    sky: 'bg-amber-100 text-amber-900 shadow-md font-medium',
-    blue: 'bg-amber-100 text-amber-900 shadow-md font-medium',
-    amber: 'bg-amber-100 text-amber-900 shadow-md font-medium',
-    neutral: 'bg-amber-100 text-amber-900 shadow-md font-medium',
-  }
-  const inactive = 'bg-white text-slate-700 hover:bg-amber-50 border-2 border-amber-200'
-  return (
-    <button type="button" onClick={onClick} className={`rounded-full px-4 py-2 text-sm font-medium transition-all hover:scale-105 ${active ? colorMap[color] : inactive}`}>
-      {label}
-    </button>
-  )
-}
-
-

@@ -1,31 +1,43 @@
 import AutocompleteSearch from "@/components/AutocompleteSearch";
 import HomeCampusMap from "@/components/HomeCampusMap";
+import { Container } from "@/components/ui/Container";
+import { PageHeader } from "@/components/ui/PageHeader";
 
 export const revalidate = 60;
 
 export default function Home() {
   return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="max-w-4xl mx-auto">
-        {/* Search Section */}
-        <div className="mb-12 text-center">
-          <h1 className="mb-8 text-6xl font-bold font-[family-name:var(--font-playfair)] bg-gradient-to-r from-amber-800 via-orange-700 to-amber-900 bg-clip-text text-transparent drop-shadow-sm leading-tight pb-2">
-            PSU Campus Navigator
-          </h1>
-          <p className="mb-6 text-lg text-slate-600 max-w-2xl mx-auto">
-            Discover and navigate Prince Sultan University with ease
-          </p>
-          <div className="mx-auto max-w-xl">
+    <div className="py-12 space-y-16">
+      {/* Hero Section */}
+      <Container>
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <PageHeader
+            title="PSU Campus Navigator"
+            subtitle="Discover and navigate Prince Sultan University with ease. Search buildings, classrooms, and facilities across campus."
+            centered
+          />
+          
+          {/* Large Search Bar */}
+          <div className="mx-auto max-w-2xl">
             <AutocompleteSearch />
           </div>
-          
         </div>
+      </Container>
 
-        {/* Campus Map Section */}
-        <div className="mt-16">
+      {/* Campus Map Section */}
+      <Container>
+        <div className="rounded-2xl border border-slate-200 bg-white shadow-lg overflow-hidden p-6">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold text-slate-900 mb-2">
+              Campus Overview
+            </h2>
+            <p className="text-slate-600">
+              Interactive map showing all PSU buildings and facilities
+            </p>
+          </div>
           <HomeCampusMap />
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

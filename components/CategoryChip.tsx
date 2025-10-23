@@ -5,11 +5,11 @@ import type { UrlObject } from "url";
 export type CatSlug = "food" | "important" | "exam" | "public" | "classroom";
 
 export const CAT_STYLES: Record<CatSlug, { label: string; bg: string; text: string; ring: string }> = {
-  food:       { label: "Food & drinks",       bg: "bg-amber-100",  text: "text-amber-800",     ring: "ring-amber-200"  },
-  important:  { label: "Important places",    bg: "bg-amber-100",  text: "text-amber-800",     ring: "ring-amber-200"  },
-  exam:       { label: "Popular exam places", bg: "bg-amber-100",  text: "text-amber-800",     ring: "ring-amber-200"  },
-  public:     { label: "Public facilities",   bg: "bg-amber-100",  text: "text-amber-800",     ring: "ring-amber-200"  },
-  classroom:  { label: "Classroom",           bg: "bg-amber-100",  text: "text-amber-800",     ring: "ring-amber-200"  },
+  food:       { label: "Food & drinks",       bg: "bg-[#F1F5F9]",  text: "text-[#0F172A]",  ring: "ring-slate-200"  },
+  important:  { label: "Important places",    bg: "bg-[#F1F5F9]",  text: "text-[#0F172A]",  ring: "ring-slate-200"  },
+  exam:       { label: "Popular exam places", bg: "bg-[#F1F5F9]",  text: "text-[#0F172A]",  ring: "ring-slate-200"  },
+  public:     { label: "Public facilities",   bg: "bg-[#F1F5F9]",  text: "text-[#0F172A]",  ring: "ring-slate-200"  },
+  classroom:  { label: "Classroom",           bg: "bg-[#F1F5F9]",  text: "text-[#0F172A]",  ring: "ring-slate-200"  },
 };
 
 // Loose mapping from Airtable names to our slugs

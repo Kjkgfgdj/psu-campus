@@ -1,0 +1,132 @@
+/* Design Tokens - 2025 Modern PSU Campus 
+ * 
+ * NOTE: These tokens are now inlined in globals.css using @layer.
+ * This file is kept for reference only.
+ */
+
+:root {
+  /* Colors */
+  --bg: #F8FAFC;
+  --surface: #FFFFFF;
+  --text: #0F172A;
+  --muted: #E2E8F0;
+  --accent: #16A34A;
+  --accent-600: #15803D;
+  --danger: #DC2626;
+  --info: #0EA5E9;
+
+  /* Border radius */
+  --radius: 14px;
+  --radius-sm: 10px;
+  
+  /* Grid */
+  --grid: 8px;
+
+  /* Shadow */
+  --shadow: 0 2px 8px rgba(2, 6, 23, .04), 0 1px 0 rgba(2, 6, 23, .04);
+  
+  /* Typography */
+  --font-sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Base */
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--accent);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--muted);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  /* Remove any colored pseudo-element borders */
+}
+.card::before, .card::after {
+  pointer-events: none;
+}
+
+.btn {
+  border-radius: 999px;
+  padding: .65rem 1rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-600);
+}
+
+.input {
+  background: #fff;
+  border: 1px solid var(--muted);
+  border-radius: 999px;
+  padding: .8rem 1rem;
+}
+
+.input:focus {
+  outline: 2px solid color-mix(in oklab, var(--accent) 60%, white);
+}
+
+.badge, .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  background: #F1F5F9;
+  color: #0F172A;
+  border: 1px solid var(--muted);
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.chip.is-active {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
+}
+
+.clamp-2 {
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.clamp-3 {
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent) 65%, white);
+  outline-offset: 2px;
+}
+
+svg {
+  width: 20px;
+  height: 20px;
+}

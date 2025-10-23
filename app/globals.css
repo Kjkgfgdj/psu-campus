@@ -1,13 +1,13 @@
 @import "tailwindcss";
-@plugin "tailwindcss-animate";
 
+@plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-page: #F7F5F2;
+  --color-page: #F8FAFC;
   --color-surface: var(--surface);
   --color-surface-hover: var(--surface-hover);
   --color-surface-border: var(--surface-border);
@@ -43,50 +43,56 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  
+  /* 2025 Design tokens */
+  --color-green-600: #16A34A;
+  --color-green-700: #15803D;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --shadow: 0 2px 8px rgba(2, 6, 23, .04), 0 1px 0 rgba(2, 6, 23, .04);
+  --shadow-lg: 0 4px 12px rgba(2, 6, 23, .06), 0 2px 0 rgba(2, 6, 23, .04);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
+  --radius: 0.875rem;
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F172A;
+  --primary: #16A34A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #E2E8F0;
+  --secondary-foreground: #0F172A;
+  --muted: #E2E8F0;
+  --muted-foreground: #64748B;
+  --accent: #16A34A;
+  --accent-foreground: #FFFFFF;
+  --destructive: #DC2626;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #16A34A;
   /* Page surface and related tones for nav chip triggers */
-  --surface: var(--color-page);
-  --surface-hover: oklch(0.95 0.002 90);
-  --surface-border: oklch(0.92 0.004 86);
-  --surface-ring: oklch(0.8 0.01 85);
+  --surface: #FFFFFF;
+  --surface-hover: #F1F5F9;
+  --surface-border: #E2E8F0;
+  --surface-ring: #CBD5E1;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #0F172A;
+  --sidebar-primary: #16A34A;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #E2E8F0;
+  --sidebar-accent-foreground: #0F172A;
+  --sidebar-border: #E2E8F0;
+  --sidebar-ring: #16A34A;
 }
 
 .dark {
@@ -134,5 +140,132 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  
+  /* Custom tokens - 2025 Design System */
+  :root {
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --text: #0F172A;
+    --muted: #E2E8F0;
+    --accent-custom: #16A34A;
+    --accent-600: #15803D;
+    --danger: #DC2626;
+    --info: #0EA5E9;
+    --radius-custom: 14px;
+    --radius-sm-custom: 10px;
+    --grid: 8px;
+    --shadow-custom: 0 2px 8px rgba(2, 6, 23, .04), 0 1px 0 rgba(2, 6, 23, .04);
+    --font-sans-custom: var(--font-inter), system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-inter), var(--font-sans-custom);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3 {
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  a {
+    color: var(--accent-custom);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  .clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Card styling with overflow protection */
+  .card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--muted);
+    box-shadow: 0 2px 8px rgba(2, 6, 23, .04), 0 1px 0 rgba(2, 6, 23, .04);
+    border-radius: var(--radius-custom);
+  }
+  
+  .card * {
+    min-width: 0; /* allow flex children to shrink */
+  }
+  
+  .card-title {
+    color: var(--text);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  
+  .wrap-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+  
+  .slug-badge {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    background: #E5EBF3;
+    color: #0F172A;
+    border: 1px solid var(--muted);
+  }
+  
+  .card p, .card li {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  
+  /* Neutral badges & chips */
+  .badge, .chip {
+    background: #F1F5F9;
+    color: #0F172A;
+    border: 1px solid var(--muted);
+    border-radius: 999px;
+    font-weight: 500;
+  }
+  
+  .chip.is-active {
+    background: var(--accent-custom);
+    color: #fff;
+    border-color: transparent;
+  }
+  
+  /* Ensure headings are NOT green */
+  h1, h2, h3 {
+    color: var(--text);
   }
 }

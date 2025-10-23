@@ -193,7 +193,11 @@ useEffect(() => {
           if (places.length === 0 && !isLoading) fetchAll();
         }}
         onKeyDown={onKeyDown}
-        className="w-full max-w-3xl rounded-2xl bg-white text-slate-900 placeholder-slate-400 ring-2 ring-amber-200/60 focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-lg hover:shadow-xl transition-all px-5 py-4 text-base"
+        className="w-full max-w-3xl rounded-full bg-white text-slate-900 placeholder-slate-400 border border-slate-200 shadow-sm hover:shadow transition-all px-5 py-4 text-base focus:outline-none focus:outline-2 focus:outline-offset-0"
+        style={{
+          outline: term ? '2px solid color-mix(in oklab, #16A34A 60%, white)' : undefined,
+          height: '56px'
+        }}
         aria-autocomplete="list"
         aria-controls="autocomplete-listbox"
         aria-activedescendant={highlightIndex >= 0 ? `ac-item-${highlightIndex}` : undefined}

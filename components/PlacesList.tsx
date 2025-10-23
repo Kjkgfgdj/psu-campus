@@ -19,19 +19,19 @@ type PlacesListProps = {
 
 function PlaceSkeleton() {
   return (
-    <Card className="animate-pulse">
+    <Card className="animate-pulse rounded-2xl border-slate-200">
       <CardHeader>
-        <div className="h-6 bg-muted rounded w-3/4"></div>
+        <div className="h-6 bg-slate-200 rounded w-3/4"></div>
         <div className="flex gap-2 mt-2">
-          <div className="h-5 bg-muted rounded w-16"></div>
-          <div className="h-5 bg-muted rounded w-12"></div>
-          <div className="h-5 bg-muted rounded w-20"></div>
+          <div className="h-5 bg-slate-200 rounded w-16"></div>
+          <div className="h-5 bg-slate-200 rounded w-12"></div>
+          <div className="h-5 bg-slate-200 rounded w-20"></div>
         </div>
       </CardHeader>
       <CardContent>
         <div className="space-y-2">
-          <div className="h-4 bg-muted rounded w-full"></div>
-          <div className="h-4 bg-muted rounded w-2/3"></div>
+          <div className="h-4 bg-slate-200 rounded w-full"></div>
+          <div className="h-4 bg-slate-200 rounded w-2/3"></div>
         </div>
       </CardContent>
     </Card>
@@ -48,20 +48,20 @@ function PlaceCard({ place }: { place: Place }) {
 
   return (
     <Link href={deepLinkUrl} className="block group">
-      <Card className="transition-all hover:shadow-xl cursor-pointer border-2 border-amber-100 hover:border-amber-300 bg-white group-hover:scale-[1.02]">
+      <Card className="card transition-all hover:shadow-lg cursor-pointer border border-slate-200 hover:border-green-600 bg-white group-hover:scale-[1.02] rounded-2xl">
         <CardHeader className="pb-3">
-          <CardTitle className="text-lg font-semibold text-amber-900 group-hover:text-amber-700">
+          <CardTitle className="card-title clamp-2 text-lg font-semibold text-slate-900 group-hover:text-green-600">
             {place.name}
           </CardTitle>
         
-        <div className="flex flex-wrap gap-2 mt-2">
+        <div className="wrap-row mt-2">
           {place.building && (
-            <Badge variant="secondary" className="text-xs">
+            <Badge variant="secondary" className="text-xs rounded-full">
               Building {place.building}
             </Badge>
           )}
           {place.floor && (
-            <Badge variant="outline" className="text-xs">
+            <Badge variant="outline" className="text-xs rounded-full">
               Floor {place.floor}
             </Badge>
           )}
@@ -70,16 +70,16 @@ function PlaceCard({ place }: { place: Place }) {
             return slug ? <CategoryChip slug={slug} size="sm" className="!px-3 !py-1" /> : null
           })()}
           {place.slug && (
-            <Badge variant="secondary" className="text-xs font-mono">
+            <span className="slug-badge text-xs">
               {place.slug}
-            </Badge>
+            </span>
           )}
         </div>
       </CardHeader>
 
       <CardContent className="space-y-4">
         {place.description && (
-          <p className="text-sm text-muted-foreground leading-relaxed">
+          <p className="text-sm text-slate-600 leading-relaxed clamp-3">
             {place.description}
           </p>
         )}
@@ -87,7 +87,7 @@ function PlaceCard({ place }: { place: Place }) {
         {hasVideo && (
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Video</span>
+              <span className="text-sm font-medium text-slate-900">Video</span>
               <Button
                 variant="outline"
                 size="sm"
@@ -96,7 +96,7 @@ function PlaceCard({ place }: { place: Place }) {
                   e.preventDefault();
                   setShowVideo(!showVideo);
                 }}
-                className="h-8 px-3 text-xs"
+                className="h-8 px-3 text-xs rounded-full"
               >
                 {showVideo ? (
                   <>
@@ -117,7 +117,7 @@ function PlaceCard({ place }: { place: Place }) {
                 <YouTubeEmbed
                   url={videoUrl}
                   title={`Video for ${place.name}`}
-                  className="rounded-md"
+                  className="rounded-xl overflow-hidden"
                 />
               </div>
             )}
@@ -132,12 +132,12 @@ function PlaceCard({ place }: { place: Place }) {
 export function PlacesList({ places, isLoading, error, emptyMessage }: PlacesListProps) {
   if (error) {
     return (
-      <Card className="border-destructive/50 bg-destructive/5">
+      <Card className="border-red-200 bg-red-50/50 rounded-2xl">
         <CardContent className="flex items-center gap-3 p-6">
-          <AlertCircle className="h-5 w-5 text-destructive" />
+          <AlertCircle className="h-5 w-5 text-red-600" />
           <div>
-            <h3 className="font-semibold text-destructive">Error loading places</h3>
-            <p className="text-sm text-destructive/80 mt-1">{error}</p>
+            <h3 className="font-semibold text-red-900">Error loading places</h3>
+            <p className="text-sm text-red-700 mt-1">{error}</p>
           </div>
         </CardContent>
       </Card>
@@ -156,13 +156,13 @@ export function PlacesList({ places, isLoading, error, emptyMessage }: PlacesLis
 
   if (places.length === 0) {
     return (
-      <Card className="bg-muted/30">
+      <Card className="bg-slate-50 rounded-2xl border-slate-200">
         <CardContent className="flex flex-col items-center justify-center p-12 text-center">
-          <div className="rounded-full bg-muted p-3 mb-4">
-            <AlertCircle className="h-6 w-6 text-muted-foreground" />
+          <div className="rounded-full bg-slate-200 p-3 mb-4">
+            <AlertCircle className="h-6 w-6 text-slate-600" />
           </div>
-          <h3 className="font-semibold text-lg mb-2">No places found</h3>
-          <p className="text-muted-foreground">
+          <h3 className="font-semibold text-lg mb-2 text-slate-900">No places found</h3>
+          <p className="text-slate-600">
             {emptyMessage ?? "Try adjusting your search filters or search terms."}
           </p>
         </CardContent>

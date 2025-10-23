@@ -21,8 +21,7 @@ export function withViewTransition(callback: () => void | Promise<void>): void {
     return;
   }
 
-  // @ts-expect-error - View Transitions API type support
-  document.startViewTransition(async () => {
+  (document as any).startViewTransition(async () => {
     await callback();
   });
 }
@@ -55,8 +54,7 @@ export function transitionNavigate(
   `;
   document.head.appendChild(style);
 
-  // @ts-expect-error - View Transitions API type support
-  document.startViewTransition(async () => {
+  (document as any).startViewTransition(async () => {
     await callback();
   }).finished.finally(() => {
     style.remove();
@@ -73,8 +71,7 @@ export function createNamedTransition(name: string, callback: () => void | Promi
     return;
   }
 
-  // @ts-expect-error - View Transitions API type support
-  document.startViewTransition(callback);
+  (document as any).startViewTransition(callback);
 }
 
 /**

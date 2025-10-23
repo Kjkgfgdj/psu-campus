@@ -4,26 +4,36 @@ import { Building2, Search } from "lucide-react";
 
 export default function SiteNav() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200/60 bg-white/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/80 shadow-sm">
-      {/* Subtle top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-green-600 via-emerald-500 to-green-600"></div>
+    <header className="sticky top-0 z-50 w-full">
+      {/* Premium gradient background with glass effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-2xl"></div>
       
-      <div className="container mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
-        {/* Logo with premium styling */}
+      {/* Animated gradient line at top */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-600 via-emerald-500 to-green-600 animate-pulse"></div>
+      
+      <div className="relative container mx-auto flex max-w-7xl items-center justify-between gap-8 px-6 py-4">
+        {/* Premium Logo */}
         <Link 
           href="/" 
-          className="flex items-center gap-3 text-slate-900 hover:text-green-600 transition-all duration-300 group"
+          className="flex items-center gap-3 group"
         >
           <div className="relative">
-            {/* Glow effect on hover */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-300"></div>
-            <div className="relative bg-gradient-to-br from-green-600 to-emerald-600 p-2.5 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-green-600/20">
-              <Building2 className="h-5 w-5 text-white" />
+            {/* Multi-layer glow */}
+            <div className="absolute -inset-2 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition duration-500"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl blur-md opacity-30 group-hover:opacity-70 transition duration-500"></div>
+            
+            <div className="relative bg-gradient-to-br from-green-600 via-emerald-600 to-green-600 p-3 rounded-2xl group-hover:scale-110 transition-transform duration-500 shadow-2xl shadow-green-600/40">
+              <Building2 className="h-6 w-6 text-white" />
             </div>
           </div>
+          
           <div className="flex flex-col">
-            <span className="text-lg font-bold tracking-tight leading-tight">PSU Campus</span>
-            <span className="text-[10px] text-slate-500 font-medium tracking-wide">NAVIGATOR</span>
+            <span className="text-xl font-bold tracking-tight leading-tight text-white group-hover:text-green-400 transition-colors">
+              PSU Campus
+            </span>
+            <span className="text-[11px] text-green-400 font-bold tracking-widest uppercase">
+              NAVIGATOR
+            </span>
           </div>
         </Link>
 
@@ -35,15 +45,21 @@ export default function SiteNav() {
         {/* Premium Search Button */}
         <Link
           href="/search"
-          className="group relative flex items-center gap-2 overflow-hidden rounded-xl border border-slate-200/60 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition-all duration-300 hover:border-green-600/50 hover:text-green-600 hover:shadow-lg hover:shadow-green-600/10"
+          className="group relative flex items-center gap-2.5 overflow-hidden rounded-2xl bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:shadow-2xl hover:shadow-green-600/50 hover:scale-105"
         >
-          {/* Hover gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-green-50 to-emerald-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          {/* Shine effect on hover */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
           
-          <Search className="relative h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
-          <span className="relative">Search...</span>
+          <Search className="relative h-4 w-4 group-hover:rotate-12 transition-transform duration-300" />
+          <span className="relative">Search</span>
+          <svg className="relative h-3 w-3 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+          </svg>
         </Link>
       </div>
+      
+      {/* Bottom gradient accent */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-600/30 to-transparent"></div>
     </header>
   );
 }

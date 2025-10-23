@@ -248,7 +248,7 @@ useEffect(() => {
                 >
                   {/* Green accent bar for active item */}
                   {active && (
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-green-600 to-emerald-600"></div>
+                    <div className="absolute left-1 top-2 bottom-2 w-1 bg-gradient-to-b from-green-600 to-emerald-600 rounded-full"></div>
                   )}
                   
                   <div className="flex items-start justify-between gap-4">

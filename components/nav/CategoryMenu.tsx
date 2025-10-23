@@ -81,7 +81,7 @@ export function CategoryMenu() {
                           className="group relative block px-5 py-4 transition-all duration-200 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50"
                         >
                           {/* Green accent bar on hover */}
-                          <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-green-600 to-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                          <div className="absolute left-1 top-2 bottom-2 w-1 bg-gradient-to-b from-green-600 to-emerald-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
                           
                           <div className="flex items-center justify-between gap-3">
                             <div className="flex-1 min-w-0">

@@ -48,13 +48,13 @@ function PlaceCard({ place }: { place: Place }) {
 
   return (
     <Link href={deepLinkUrl} className="block group">
-      <Card className="transition-all hover:shadow-lg cursor-pointer border border-slate-200 hover:border-green-600 bg-white group-hover:scale-[1.02] rounded-2xl">
+      <Card className="card transition-all hover:shadow-lg cursor-pointer border border-slate-200 hover:border-green-600 bg-white group-hover:scale-[1.02] rounded-2xl">
         <CardHeader className="pb-3">
-          <CardTitle className="text-lg font-semibold text-slate-900 group-hover:text-green-600 clamp-2">
+          <CardTitle className="card-title clamp-2 text-lg font-semibold text-slate-900 group-hover:text-green-600">
             {place.name}
           </CardTitle>
         
-        <div className="flex flex-wrap gap-2 mt-2">
+        <div className="wrap-row mt-2">
           {place.building && (
             <Badge variant="secondary" className="text-xs rounded-full">
               Building {place.building}
@@ -70,9 +70,9 @@ function PlaceCard({ place }: { place: Place }) {
             return slug ? <CategoryChip slug={slug} size="sm" className="!px-3 !py-1" /> : null
           })()}
           {place.slug && (
-            <Badge variant="secondary" className="text-xs font-mono rounded-full slug-badge">
+            <span className="slug-badge text-xs">
               {place.slug}
-            </Badge>
+            </span>
           )}
         </div>
       </CardHeader>

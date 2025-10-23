@@ -11,12 +11,6 @@ export function NavMenuUI() {
       >
         Search
       </Link>
-      <Link 
-        href="/buildings" 
-        className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600/65"
-      >
-        Buildings
-      </Link>
     </nav>
   );
 }

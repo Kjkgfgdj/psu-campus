@@ -198,25 +198,58 @@
     overflow: hidden;
   }
   
-  .slug-badge {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
   
   svg {
     width: 20px;
     height: 20px;
   }
   
-  /* Ensure card styling is neutral */
+  /* Card styling with overflow protection */
   .card {
+    position: relative;
+    overflow: hidden;
     border: 1px solid var(--muted);
     box-shadow: 0 2px 8px rgba(2, 6, 23, .04), 0 1px 0 rgba(2, 6, 23, .04);
     border-radius: var(--radius-custom);
   }
   
+  .card * {
+    min-width: 0; /* allow flex children to shrink */
+  }
+  
+  .card-title {
+    color: var(--text);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  
+  .wrap-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+  
+  .slug-badge {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    background: #E5EBF3;
+    color: #0F172A;
+    border: 1px solid var(--muted);
+  }
+  
+  .card p, .card li {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  
+  /* Neutral badges & chips */
   .badge, .chip {
     background: #F1F5F9;
     color: #0F172A;
@@ -229,5 +262,10 @@
     background: var(--accent-custom);
     color: #fff;
     border-color: transparent;
+  }
+  
+  /* Ensure headings are NOT green */
+  h1, h2, h3 {
+    color: var(--text);
   }
 }

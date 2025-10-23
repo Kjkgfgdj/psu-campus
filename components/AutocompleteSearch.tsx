@@ -226,7 +226,7 @@ useEffect(() => {
           role="listbox"
           className="absolute z-50 mt-4 w-full rounded-2xl border-2 border-slate-200 bg-white shadow-2xl backdrop-blur-xl ring-1 ring-black/5 overflow-hidden p-2"
         >
-          <div className="max-h-96 overflow-y-auto rounded-xl">
+          <div className="max-h-[400px] overflow-y-auto rounded-xl">
             {isLoading && debounced.trim() && places.length === 0 && (
               <div className="px-4 py-3 text-sm text-muted-foreground">Loading…</div>
             )}

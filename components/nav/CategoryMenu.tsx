@@ -48,11 +48,14 @@ export function CategoryMenu() {
             onMouseLeave={() => setOpenMenu(null)}
           >
             <button
-              className="relative flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:bg-gradient-to-br hover:from-slate-50 hover:to-green-50/50 hover:text-slate-900 hover:shadow-sm group"
+              className="relative flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-300 transition-all duration-300 hover:bg-white/10 hover:text-white hover:shadow-lg hover:shadow-green-600/20 group overflow-hidden"
             >
-              {cat.label}
+              {/* Hover gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-green-600/20 to-emerald-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              <span className="relative">{cat.label}</span>
               <svg
-                className={`h-4 w-4 transition-all duration-300 group-hover:text-green-600 ${isOpen ? 'rotate-180' : ''}`}
+                className={`relative h-4 w-4 transition-all duration-300 ${isOpen ? 'rotate-180 text-green-400' : 'group-hover:text-green-400'}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

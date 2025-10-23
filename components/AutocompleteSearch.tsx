@@ -253,7 +253,7 @@ useEffect(() => {
           aria-label="Search results"
           className="absolute z-50 mt-3 w-full rounded-2xl border-2 border-slate-200/80 bg-white/95 backdrop-blur-2xl shadow-2xl ring-1 ring-green-500/10 overflow-hidden"
         >
-          <div className="max-h-[400px] overflow-y-auto">
+          <div className="max-h-[240px] overflow-y-auto">
             {isLoading && debounced.trim() && places.length === 0 && (
               <div className="px-4 py-3 text-sm text-muted-foreground" role="status">
                 Loading…

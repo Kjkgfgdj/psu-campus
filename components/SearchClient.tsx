@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { PlacesList } from "@/components/PlacesList"
 import { Chip } from "@/components/ui/Chip"
 import type { Place } from "@/lib/types"
-import { Search } from "lucide-react"
+import { Search, X } from "lucide-react"
 
 type Props = {
   places?: Place[]
@@ -161,85 +161,127 @@ export default function SearchClient({ places, isLoading, error }: Props) {
   }, [items, catParam, selectedBuilding, selectedFloor, qParam, toSlug])
 
   return (
-    <div className="py-8">
-      {/* Sticky Search Bar */}
-      <div className="sticky top-16 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm -mx-4 px-4 py-4 mb-8">
-        <div className="container mx-auto max-w-[1120px]">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+      {/* Premium Search Header */}
+      <div className="sticky top-16 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/60 shadow-lg">
+        <div className="container mx-auto max-w-7xl px-6 py-6">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
-            <input
-              value={qParam}
-              onChange={(e) => set('q', e.target.value || undefined)}
-              className="w-full rounded-full border border-slate-200 pl-12 pr-4 text-base shadow-sm transition-all focus:outline-none"
-              style={{
-                height: '52px',
-                outline: qParam ? '2px solid color-mix(in oklab, #16A34A 60%, white)' : undefined
-              }}
-              placeholder="Search places..."
-            />
+            {/* Glow effect */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl blur-lg opacity-20"></div>
+            
+            <div className="relative flex items-center gap-3 bg-white rounded-2xl shadow-xl ring-2 ring-slate-200/50 px-6 py-4">
+              <Search className="h-6 w-6 text-green-600" />
+              <input
+                value={qParam}
+                onChange={(e) => set('q', e.target.value || undefined)}
+                className="flex-1 text-lg font-medium text-slate-900 placeholder-slate-500 focus:outline-none bg-transparent"
+                placeholder="Search places..."
+              />
+              {qParam && (
+                <button
+                  onClick={() => set('q', undefined)}
+                  className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"
+                >
+                  <X className="h-4 w-4 text-slate-400" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto max-w-[1120px] px-4">
-        <div className="space-y-6">
-          {/* Filters Panel */}
-          <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-6">
-            <div className="grid gap-4 md:grid-cols-2">
-              <div>
-                <label className="text-sm font-semibold text-slate-900 mb-2 block">Building</label>
-                <select
-                  value={selectedBuilding === null ? '' : String(selectedBuilding)}
-                  onChange={(e) => {
-                    const v = e.target.value
-                    const n = v === '' ? null : Number(v)
-                    setSelectedBuilding(n)
-                    set('building', v || undefined)
-                    // reset floor when building changes
-                    setSelectedFloor(null)
-                    set('floor', undefined)
-                  }}
-                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-green-600/50 focus:border-green-600 transition-all bg-white"
-                >
-                  <option value="">All buildings</option>
-                  {buildingOptions.map(b => (
-                    <option key={b} value={String(b)}>{`Building ${b}`}</option>
-                  ))}
-                </select>
-              </div>
+      <div className="container mx-auto max-w-7xl px-6 py-12">
+        <div className="space-y-8">
+          {/* Filters Panel - Premium Design */}
+          <div className="relative group">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-green-600/10 to-emerald-600/10 rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+            
+            <div className="relative rounded-3xl border-2 border-slate-200 bg-white shadow-lg p-8">
+              <h2 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <svg className="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                </svg>
+                Filters
+              </h2>
+              
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <label className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                    </svg>
+                    Building
+                  </label>
+                  <select
+                    value={selectedBuilding === null ? '' : String(selectedBuilding)}
+                    onChange={(e) => {
+                      const v = e.target.value
+                      const n = v === '' ? null : Number(v)
+                      setSelectedBuilding(n)
+                      set('building', v || undefined)
+                      setSelectedFloor(null)
+                      set('floor', undefined)
+                    }}
+                    className="w-full rounded-xl border-2 border-slate-200 px-5 py-3.5 text-base font-medium focus:outline-none focus:ring-4 focus:ring-green-500/20 focus:border-green-600 transition-all bg-white hover:border-green-300 shadow-sm"
+                  >
+                    <option value="">All buildings</option>
+                    {buildingOptions.map(b => (
+                      <option key={b} value={String(b)}>{`Building ${b}`}</option>
+                    ))}
+                  </select>
+                </div>
 
-              <div>
-                <label className="text-sm font-semibold text-slate-900 mb-2 block">Floor</label>
-                <select
-                  value={selectedFloor === null ? '' : String(selectedFloor)}
-                  onChange={(e) => {
-                    const v = e.target.value
-                    const n = v === '' ? null : Number(v)
-                    setSelectedFloor(n)
-                    set('floor', v || undefined)
-                  }}
-                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-green-600/50 focus:border-green-600 transition-all bg-white"
-                >
-                  <option value="">All floors</option>
-                  {floorOptions.map(v => {
-                    const label = v === '0' ? 'Floor G' : `Floor ${v}`
-                    return (
-                      <option key={v} value={v}>{label}</option>
-                    )
-                  })}
-                </select>
+                <div>
+                  <label className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+                    </svg>
+                    Floor
+                  </label>
+                  <select
+                    value={selectedFloor === null ? '' : String(selectedFloor)}
+                    onChange={(e) => {
+                      const v = e.target.value
+                      const n = v === '' ? null : Number(v)
+                      setSelectedFloor(n)
+                      set('floor', v || undefined)
+                    }}
+                    className="w-full rounded-xl border-2 border-slate-200 px-5 py-3.5 text-base font-medium focus:outline-none focus:ring-4 focus:ring-green-500/20 focus:border-green-600 transition-all bg-white hover:border-green-300 shadow-sm"
+                  >
+                    <option value="">All floors</option>
+                    {floorOptions.map(v => {
+                      const label = v === '0' ? 'Floor G' : `Floor ${v}`
+                      return (
+                        <option key={v} value={v}>{label}</option>
+                      )
+                    })}
+                  </select>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Category Chips */}
-          <div className="flex flex-wrap gap-2">
+          {/* Category Pills - Modern Design */}
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="text-sm font-bold text-slate-700">Categories:</span>
             <Chip active={!catParam} label="All categories" onClick={() => { set('cat', undefined); set('building', undefined); set('floor', undefined); }} />
             <Chip active={catParam === 'food'} label="Food & drinks" onClick={() => { set('cat', 'food'); set('building', undefined); set('floor', undefined); }} />
             <Chip active={catParam === 'important'} label="Important places" onClick={() => { set('cat', 'important'); set('building', undefined); set('floor', undefined); }} />
             <Chip active={catParam === 'exam'} label="Popular exam places" onClick={() => { set('cat', 'exam'); set('building', undefined); set('floor', undefined); }} />
             <Chip active={catParam === 'public'} label="Public facilities" onClick={() => { set('cat', 'public'); set('building', undefined); set('floor', undefined); }} />
             <Chip active={catParam === 'classroom'} label="Classroom" onClick={() => { set('cat', 'classroom'); set('building', undefined); set('floor', undefined); }} />
+          </div>
+
+          {/* Results Header */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold text-slate-900">
+                {filtered.length} {filtered.length === 1 ? 'Place' : 'Places'} Found
+              </h2>
+              <p className="text-sm text-slate-600 mt-1">
+                {catParam ? `Showing ${CAT_MAP[catParam] || 'all'} locations` : 'Showing all campus locations'}
+              </p>
+            </div>
           </div>
 
           {/* Results */}

@@ -157,15 +157,46 @@ export default function FloorMap({ building, floor }: Props) {
             </div>
             
             <DialogHeader className="relative">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="bg-white/20 backdrop-blur-sm p-2 rounded-xl">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="bg-white/20 backdrop-blur-sm p-2.5 rounded-xl">
                   <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
                   </svg>
                 </div>
-                <span className="text-sm font-bold text-white/80 uppercase tracking-wider">Location Video</span>
+                <span className="text-sm font-bold text-white/90 uppercase tracking-wider">Location Video</span>
               </div>
-              <DialogTitle className="text-white drop-shadow-lg">{selection?.label ?? "Location"}</DialogTitle>
+              
+              {(() => {
+                const label = selection?.label ?? "Location";
+                // Split by common separators and take the first meaningful part
+                const parts = label.split(/[—•·]/);
+                const mainTitle = parts[0]?.trim() || label;
+                const hasSubtitle = parts.length > 1;
+                
+                return (
+                  <div className="space-y-2">
+                    <DialogTitle className="text-white drop-shadow-lg text-3xl">
+                      {mainTitle}
+                    </DialogTitle>
+                    {hasSubtitle && (
+                      <div className="flex flex-wrap gap-2">
+                        {parts.slice(1).map((part, i) => {
+                          const trimmed = part.trim();
+                          if (!trimmed) return null;
+                          return (
+                            <span
+                              key={i}
+                              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm"
+                            >
+                              {trimmed}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
             </DialogHeader>
           </div>
 

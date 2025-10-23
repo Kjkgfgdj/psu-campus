@@ -224,14 +224,17 @@ useEffect(() => {
         <div
           id="autocomplete-listbox"
           role="listbox"
-          className="absolute z-50 mt-4 w-full rounded-2xl border-2 border-slate-200 bg-white shadow-2xl backdrop-blur-xl ring-1 ring-black/5 overflow-hidden"
+          className="absolute z-50 mt-4 w-full rounded-2xl border-2 border-slate-200 bg-white shadow-2xl backdrop-blur-xl ring-1 ring-black/5 overflow-hidden p-2"
         >
-          <div className="max-h-96 overflow-y-auto">
+          <div className="max-h-96 overflow-y-auto rounded-xl">
             {isLoading && debounced.trim() && places.length === 0 && (
               <div className="px-4 py-3 text-sm text-muted-foreground">Loading…</div>
             )}
             {filtered.map((place, index) => {
               const active = index === highlightIndex;
+              const isFirst = index === 0;
+              const isLast = index === filtered.length - 1;
+              
               return (
                 <div
                   key={place.id}
@@ -239,7 +242,9 @@ useEffect(() => {
                   role="option"
                   aria-selected={active}
                   className={cn(
-                    "group cursor-pointer border-b border-slate-100 px-6 py-4 last:border-b-0 transition-all duration-200 relative",
+                    "group cursor-pointer border-b border-slate-100 px-6 py-4 transition-all duration-200 relative",
+                    isFirst && "rounded-t-xl",
+                    isLast && "border-b-0 rounded-b-xl",
                     active ? "bg-gradient-to-r from-green-50 to-emerald-50" : "hover:bg-slate-50",
                   )}
                   onMouseEnter={() => setHighlightIndex(index)}
@@ -248,7 +253,7 @@ useEffect(() => {
                 >
                   {/* Green accent bar for active item */}
                   {active && (
-                    <div className="absolute left-1 top-2 bottom-2 w-1 bg-gradient-to-b from-green-600 to-emerald-600 rounded-full"></div>
+                    <div className="absolute left-2 top-2 bottom-2 w-1 bg-gradient-to-b from-green-600 to-emerald-600 rounded-full"></div>
                   )}
                   
                   <div className="flex items-start justify-between gap-4">
@@ -291,7 +296,7 @@ useEffect(() => {
               <div className="px-4 py-3 text-sm text-muted-foreground">No places found.</div>
             )}
           </div>
-          <div className="border-t border-slate-200 bg-gradient-to-r from-slate-50 to-green-50/30 px-6 py-4 flex items-center justify-between">
+          <div className="border-t border-slate-200 bg-gradient-to-r from-slate-50 to-green-50/30 px-6 py-4 flex items-center justify-between rounded-b-xl">
             <span className="text-sm text-slate-600">
               {filtered.length} {filtered.length === 1 ? 'result' : 'results'} found
             </span>

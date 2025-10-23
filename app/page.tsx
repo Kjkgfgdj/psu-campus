@@ -20,9 +20,9 @@ export default function Home() {
             <div className="max-w-5xl mx-auto text-center space-y-12">
               {/* Title */}
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-                <h1 className="text-6xl md:text-8xl font-bold text-slate-900 tracking-tight leading-[1.1] pb-2">
+                <h1 className="text-6xl md:text-8xl font-bold text-slate-900 tracking-tight leading-[1.15] pb-4">
                   PSU Campus
-                  <span className="block bg-gradient-to-r from-green-600 via-emerald-600 to-green-600 bg-clip-text text-transparent py-1">
+                  <span className="block bg-gradient-to-r from-green-600 via-emerald-600 to-green-600 bg-clip-text text-transparent px-1 py-2" style={{ WebkitBoxDecorationBreak: 'clone' }}>
                     Navigator
                   </span>
                 </h1>

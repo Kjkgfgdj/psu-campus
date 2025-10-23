@@ -53,8 +53,8 @@ export default function Home() {
                   <div className="text-sm text-slate-600 mt-2 font-medium">Locations</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">3D</div>
-                  <div className="text-sm text-slate-600 mt-2 font-medium">Maps</div>
+                  <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">15+</div>
+                  <div className="text-sm text-slate-600 mt-2 font-medium">Floor Maps</div>
                 </div>
               </div>
             </div>

@@ -1,9 +1,7 @@
-import Link from "next/link";
 import AutocompleteSearch from "@/components/AutocompleteSearch";
 import HomeCampusMap from "@/components/HomeCampusMap";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { Chip } from "@/components/ui/Chip";
 
 export const revalidate = 60;
 
@@ -22,25 +20,6 @@ export default function Home() {
           {/* Large Search Bar */}
           <div className="mx-auto max-w-2xl">
             <AutocompleteSearch />
-          </div>
-
-          {/* Category Chips */}
-          <div className="pt-4 flex flex-wrap justify-center gap-2">
-            <Link href="/search">
-              <Chip label="All Places" />
-            </Link>
-            <Link href="/search?cat=food">
-              <Chip label="Food & Drinks" />
-            </Link>
-            <Link href="/search?cat=important">
-              <Chip label="Important Places" />
-            </Link>
-            <Link href="/search?cat=exam">
-              <Chip label="Exam Halls" />
-            </Link>
-            <Link href="/search?cat=public">
-              <Chip label="Public Facilities" />
-            </Link>
           </div>
         </div>
       </Container>

@@ -7,9 +7,9 @@ export const revalidate = 60;
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-green-50/30 via-slate-50 to-emerald-50/20">
       {/* Hero Section with Gradient Background */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-green-50/30 to-slate-50">
+      <div className="relative overflow-hidden bg-gradient-to-br from-slate-50/50 via-green-50/40 to-emerald-50/30">
         {/* Decorative Background Elements */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMxNmEzNGEiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAgNHYyaDJ2LTJoLTJ6bTAtOHYyaDJ2LTJoLTJ6bTQgNHYyaDJ2LTJoLTJ6bS00IDB2Mmgy di0yaC0yem0tNCA0djJoMnYtMmgtMnptOCAwdjJoMnYtMmgtMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-40"></div>
         
@@ -63,9 +63,10 @@ export default function Home() {
         </Container>
       </div>
 
-      {/* Campus Map Section */}
-      <Container>
-        <div className="py-20 space-y-12">
+      {/* Campus Map Section - Full width green tint */}
+      <div className="relative bg-gradient-to-br from-emerald-50/20 via-green-50/30 to-slate-50">
+        <Container>
+          <div className="py-20 space-y-12">
           {/* Section Header */}
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
@@ -94,7 +95,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </Container>
+        </Container>
+      </div>
     </div>
   );
 }

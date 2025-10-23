@@ -224,9 +224,9 @@ useEffect(() => {
         <div
           id="autocomplete-listbox"
           role="listbox"
-          className="absolute z-50 mt-4 w-full rounded-3xl border-2 border-slate-200 bg-white shadow-2xl backdrop-blur-xl ring-1 ring-black/5"
+          className="absolute z-50 mt-4 w-full rounded-2xl border-2 border-slate-200 bg-white shadow-2xl backdrop-blur-xl ring-1 ring-black/5 overflow-hidden"
         >
-          <div className="max-h-96 overflow-y-auto overflow-x-hidden rounded-3xl">
+          <div className="max-h-96 overflow-y-auto">
             {isLoading && debounced.trim() && places.length === 0 && (
               <div className="px-4 py-3 text-sm text-muted-foreground">Loading…</div>
             )}

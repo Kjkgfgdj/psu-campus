@@ -91,24 +91,38 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact - Team */}
           <div>
             <h3 className="text-base font-bold text-white mb-6 flex items-center gap-2">
               <div className="h-1 w-8 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full"></div>
-              Contact
+              Our Team
             </h3>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-3 text-slate-300">
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-start gap-3 text-slate-300 group">
                 <Mail className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
-                <span>info@psu-campus.com</span>
-              </li>
-              <li className="flex items-start gap-3 text-slate-300">
-                <svg className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                </svg>
                 <div>
-                  <div className="font-medium text-white">Prince Sultan University</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Riyadh, Saudi Arabia</div>
+                  <div className="font-semibold text-white text-xs mb-0.5">ABDULAZIZ ALMAKHDHOUB</div>
+                  <a href="mailto:222211578@psu.edu.sa" className="text-slate-400 hover:text-green-400 transition-colors text-xs">
+                    222211578@psu.edu.sa
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-3 text-slate-300 group">
+                <Mail className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-semibold text-white text-xs mb-0.5">ABDULLAH M ALNASSER</div>
+                  <a href="mailto:221110448@psu.edu.sa" className="text-slate-400 hover:text-green-400 transition-colors text-xs">
+                    221110448@psu.edu.sa
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-3 text-slate-300 group">
+                <Mail className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-semibold text-white text-xs mb-0.5">MOHAMMED ABDULRAHMAN ALOMRAN</div>
+                  <a href="mailto:220110785@psu.edu.sa" className="text-slate-400 hover:text-green-400 transition-colors text-xs">
+                    220110785@psu.edu.sa
+                  </a>
                 </div>
               </li>
             </ul>
@@ -129,13 +143,13 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-6">
               <Link 
-                href="/about" 
+                href="/privacy" 
                 className="text-slate-400 hover:text-green-400 transition-all text-sm font-medium group"
               >
                 <span className="group-hover:translate-x-0.5 inline-block transition-transform">Privacy</span>
               </Link>
               <Link 
-                href="/about" 
+                href="/terms" 
                 className="text-slate-400 hover:text-green-400 transition-all text-sm font-medium group"
               >
                 <span className="group-hover:translate-x-0.5 inline-block transition-transform">Terms</span>

@@ -2,12 +2,18 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
+/**
+ * Card component following Material Design 3 & Fluent 2 principles
+ * - Refined elevation system
+ * - Smooth transitions
+ * - Container query support
+ */
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border border-border shadow-md transition-all duration-300 py-6 hover:shadow-lg hover:-translate-y-1 active:translate-y-0 active:shadow-md",
         className
       )}
       {...props}

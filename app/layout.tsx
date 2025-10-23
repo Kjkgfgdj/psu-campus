@@ -52,9 +52,28 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        {/* Core Web Vitals - DNS Prefetch for external resources */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        
+        {/* Preconnect to critical origins */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Viewport settings for proper responsive behavior (CLS optimization) */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        
+        {/* Theme color for browser UI */}
+        <meta name="theme-color" content="#16A34A" />
+        <meta name="theme-color" content="#0F172A" media="(prefers-color-scheme: dark)" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${inter.variable} antialiased min-h-screen bg-gradient-to-br from-slate-50 via-green-50/10 to-slate-50 text-slate-900 flex flex-col`}>
+        {/* WCAG 2.2 AA - Skip to main content link for keyboard navigation */}
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
         <SiteNav />
-        <main className="flex-grow w-full">{children}</main>
+        <main id="main-content" className="flex-grow w-full" role="main">{children}</main>
         <Footer />
       </body>
     </html>

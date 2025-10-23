@@ -45,16 +45,16 @@ export default function Home() {
               {/* Quick Stats */}
               <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto pt-8 animate-in fade-in duration-1000 delay-500">
                 <div className="text-center">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">5</div>
+                  <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">3</div>
                   <div className="text-sm text-slate-600 mt-2 font-medium">Buildings</div>
                 </div>
                 <div className="text-center border-x border-slate-200">
                   <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">100+</div>
-                  <div className="text-sm text-slate-600 mt-2 font-medium">Locations</div>
+                  <div className="text-sm text-slate-600 mt-2 font-medium">Places</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">3D</div>
-                  <div className="text-sm text-slate-600 mt-2 font-medium">Maps</div>
+                  <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">10</div>
+                  <div className="text-sm text-slate-600 mt-2 font-medium">Interactive Maps</div>
                 </div>
               </div>
             </div>

@@ -5,11 +5,11 @@ import type { UrlObject } from "url";
 export type CatSlug = "food" | "important" | "exam" | "public" | "classroom";
 
 export const CAT_STYLES: Record<CatSlug, { label: string; bg: string; text: string; ring: string }> = {
-  food:       { label: "Food & drinks",       bg: "bg-[#F1F5F9]",  text: "text-[#0F172A]",  ring: "ring-slate-200"  },
-  important:  { label: "Important places",    bg: "bg-[#F1F5F9]",  text: "text-[#0F172A]",  ring: "ring-slate-200"  },
-  exam:       { label: "Popular exam places", bg: "bg-[#F1F5F9]",  text: "text-[#0F172A]",  ring: "ring-slate-200"  },
-  public:     { label: "Public facilities",   bg: "bg-[#F1F5F9]",  text: "text-[#0F172A]",  ring: "ring-slate-200"  },
-  classroom:  { label: "Classroom",           bg: "bg-[#F1F5F9]",  text: "text-[#0F172A]",  ring: "ring-slate-200"  },
+  food:       { label: "Food & drinks",       bg: "bg-green-50",  text: "text-green-700",  ring: "ring-green-200"  },
+  important:  { label: "Important places",    bg: "bg-red-50",    text: "text-red-700",    ring: "ring-red-200"    },
+  exam:       { label: "Popular exam places", bg: "bg-amber-50",  text: "text-amber-700",  ring: "ring-amber-200"  },
+  public:     { label: "Public facilities",   bg: "bg-red-50",    text: "text-red-700",    ring: "ring-red-200"    },
+  classroom:  { label: "Classroom",           bg: "bg-gray-50",   text: "text-gray-700",   ring: "ring-gray-200"   },
 };
 
 // Loose mapping from Airtable names to our slugs
@@ -38,9 +38,9 @@ export default function CategoryChip({
 }) {
   const s = CAT_STYLES[slug];
   const base = clsx(
-    "inline-flex items-center rounded-full ring-1 transition hover:opacity-95 focus:outline-none focus:ring-2",
+    "inline-flex items-center rounded-lg ring-1 transition hover:opacity-95 focus:outline-none focus:ring-2",
     s.bg, s.text, s.ring,
-    size === "sm" ? "px-3 py-1 text-sm" : "px-4 py-2",
+    size === "sm" ? "px-2.5 py-1 text-xs font-semibold" : "px-4 py-2",
   );
   const node = <span className={clsx(base, className)}>{label ?? s.label}</span>;
   return href ? <Link href={href} aria-label={label ?? s.label}>{node}</Link> : node;

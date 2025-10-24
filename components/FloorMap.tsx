@@ -149,10 +149,10 @@ export default function FloorMap({ building, floor }: Props) {
         className="absolute inset-0 w-full h-full"
       />
 
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-[1000px] p-0 gap-0 overflow-hidden border-0 bg-white">
+      <Dialog open={open} onOpenChange={setOpen} modal>
+        <DialogContent className="sm:max-w-[1000px] max-h-[90vh] p-0 gap-0 overflow-hidden border-0 bg-white flex flex-col">
           {/* Premium Header with Gradient */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-green-600 via-emerald-600 to-green-600 px-10 py-8">
+          <div className="relative overflow-hidden bg-gradient-to-br from-green-600 via-emerald-600 to-green-600 px-10 py-8 flex-shrink-0">
             {/* Decorative pattern overlay */}
             <div className="absolute inset-0 opacity-20">
               <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,.1)_50%,transparent_75%,transparent_100%)]"></div>
@@ -210,7 +210,7 @@ export default function FloorMap({ building, floor }: Props) {
           </div>
 
           {/* Video Content */}
-          <div className="p-8">
+          <div className="p-8 overflow-y-auto flex-1">
             {msg && (
               <div className="flex items-center gap-3 bg-red-50 border-2 border-red-200 rounded-2xl p-6">
                 <div className="bg-red-100 p-3 rounded-xl">

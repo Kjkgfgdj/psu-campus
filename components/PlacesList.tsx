@@ -8,6 +8,7 @@ import CategoryChip, { toCatSlug } from "@/components/CategoryChip"
 import type { Place } from "@/lib/types"
 import { Button } from "@/components/ui/button"
 import { YouTubeEmbed } from "@/components/YouTubeEmbed"
+import { FormattedText } from "@/components/FormattedText"
 import { Play, X, AlertCircle } from "lucide-react"
 
 type PlacesListProps = {
@@ -89,9 +90,7 @@ function PlaceCard({ place }: { place: Place }) {
 
             <CardContent className="relative space-y-4">
               {place.description && (
-                <p className="text-sm text-slate-600 leading-relaxed clamp-2">
-                  {place.description}
-                </p>
+                <FormattedText text={place.description} compact maxLines={3} />
               )}
 
         {hasVideo && (

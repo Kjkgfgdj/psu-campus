@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LABELS } from "@/lib/labels";
+import { parseLabel, getLabelPreview } from "@/lib/label-parser";
 import {
   Dialog,
   DialogContent,
@@ -80,11 +81,12 @@ export default function FloorMap({ building, floor }: Props) {
       const group = r.closest("g[id^='z-']") as SVGGElement | null;
       const zoneId = group?.id || r.id;
       const label = LABELS[zoneId] ?? zoneId;
+      const labelPreview = getLabelPreview(label);
 
       r.setAttribute("role", "button");
       r.setAttribute("tabindex", "0");
-      r.setAttribute("aria-label", label);
-      r.setAttribute("title", label);
+      r.setAttribute("aria-label", labelPreview);
+      r.setAttribute("title", labelPreview);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (r.style as any).cursor = "pointer";
 
@@ -167,31 +169,38 @@ export default function FloorMap({ building, floor }: Props) {
               </div>
               
               {(() => {
-                const label = selection?.label ?? "Location";
-                // Split by common separators and take the first meaningful part
-                const parts = label.split(/[—•·]/);
-                const mainTitle = parts[0]?.trim() || label;
-                const hasSubtitle = parts.length > 1;
+                const rawLabel = selection?.label ?? "Location";
+                const parsed = parseLabel(rawLabel);
                 
                 return (
-                  <div className="space-y-2">
-                    <DialogTitle className="text-white drop-shadow-lg text-3xl">
-                      {mainTitle}
-                    </DialogTitle>
-                    {hasSubtitle && (
-                      <div className="flex flex-wrap gap-2">
-                        {parts.slice(1).map((part, i) => {
-                          const trimmed = part.trim();
-                          if (!trimmed) return null;
-                          return (
-                            <span
+                  <div className="space-y-3">
+                    <div>
+                      <DialogTitle className="text-white drop-shadow-lg text-3xl leading-tight">
+                        {parsed.header}
+                      </DialogTitle>
+                      {parsed.subtitle && (
+                        <p className="text-white/90 text-lg mt-2 font-medium">
+                          {parsed.subtitle}
+                        </p>
+                      )}
+                    </div>
+                    
+                    {parsed.items.length > 0 && (
+                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 space-y-2">
+                        <h4 className="text-white/80 text-xs font-bold uppercase tracking-wider mb-3">
+                          Available Facilities
+                        </h4>
+                        <ul className="space-y-2">
+                          {parsed.items.map((item, i) => (
+                            <li 
                               key={i}
-                              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm"
+                              className="flex items-start gap-2 text-white/95 text-sm leading-relaxed"
                             >
-                              {trimmed}
-                            </span>
-                          );
-                        })}
+                              <span className="text-white/60 mt-1 flex-shrink-0">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     )}
                   </div>

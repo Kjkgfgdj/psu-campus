@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { getLabelPreview } from "@/lib/label-parser";
 
 const ROUTES: Record<string, string> = {
   "b-101": "/buildings/101",

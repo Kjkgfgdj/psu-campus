@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { FLOOR_LABEL } from "@/lib/floors";
 import { useDebouncedValue } from "@/components/useDebouncedValue";
 import { badgeClasses } from "@/lib/categories";
+import { FormattedText } from "@/components/FormattedText";
 import { cn } from "@/lib/utils";
 
 interface Place {
@@ -307,7 +308,9 @@ useEffect(() => {
                         )}
                       </div>
                       {place.description && (
-                        <div className="mt-2.5 line-clamp-1 text-sm text-slate-600 leading-relaxed">{place.description}</div>
+                        <div className="mt-2.5">
+                          <FormattedText text={place.description} compact maxLines={1} />
+                        </div>
                       )}
                     </div>
                     <div className={cn(

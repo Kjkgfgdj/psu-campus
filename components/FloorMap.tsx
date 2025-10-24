@@ -150,9 +150,9 @@ export default function FloorMap({ building, floor }: Props) {
       />
 
       <Dialog open={open} onOpenChange={setOpen} modal>
-        <DialogContent className="sm:max-w-[1000px] max-h-[90vh] p-0 gap-0 overflow-hidden border-0 bg-white flex flex-col">
+        <DialogContent className="sm:max-w-[1000px] max-h-[90vh] p-0 gap-0 overflow-y-auto border-0 bg-white">
           {/* Premium Header with Gradient */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-green-600 via-emerald-600 to-green-600 px-10 py-8 flex-shrink-0">
+          <div className="relative overflow-hidden bg-gradient-to-br from-green-600 via-emerald-600 to-green-600 px-10 py-8">
             {/* Decorative pattern overlay */}
             <div className="absolute inset-0 opacity-20">
               <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,.1)_50%,transparent_75%,transparent_100%)]"></div>
@@ -186,8 +186,8 @@ export default function FloorMap({ building, floor }: Props) {
                     </div>
                     
                     {parsed.items.length > 0 && (
-                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 space-y-2">
-                        <h4 className="text-white/80 text-xs font-bold uppercase tracking-wider mb-3">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 space-y-2 max-h-[200px] overflow-y-auto">
+                        <h4 className="text-white/80 text-xs font-bold uppercase tracking-wider mb-3 sticky top-0 bg-gradient-to-br from-green-600 via-emerald-600 to-green-600 py-1">
                           Available Facilities
                         </h4>
                         <ul className="space-y-2">
@@ -210,7 +210,7 @@ export default function FloorMap({ building, floor }: Props) {
           </div>
 
           {/* Video Content */}
-          <div className="p-8 overflow-y-auto flex-1">
+          <div className="p-8">
             {msg && (
               <div className="flex items-center gap-3 bg-red-50 border-2 border-red-200 rounded-2xl p-6">
                 <div className="bg-red-100 p-3 rounded-xl">

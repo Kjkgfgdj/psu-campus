@@ -1,25 +1,25 @@
 export const LABELS: Record<string, string> = {
-  "z-101-0-e-130-136": "E131–E136\n• E-131 — Classroom\n• E-132 — Classroom\n• E-136 — Faculty Office",
-  "z-101-0-e-140-142": "E140–E142\n• E-140 — Classroom\n• E-141 — Classroom\n• E-142 — Classroom\n• Manufacturing Processes Laboratory",
-  "z-101-0-e-150-151": "E150–E152\n• E-150 — Classroom\n• E-151 — Classroom\n• E-152 — Classroom",
+  "z-101-0-e-130-136": "E130–E132\n• E-130 — Classroom\n• E-131 — Classroom\n• E-132 — Classroom",
+  "z-101-0-e-140-142": "E140–E145\n• E-140 — Classroom\n• E-141 — Classroom\n• E-142 — Classroom\n• E-145 — Storage",
+  "z-101-0-e-150-151": "E150–E154\n• E-154 — Faculty Office\n• E-150 — Classroom\n• E-151 — Classroom\n• E-152 — Classroom",
   "z-101-0-e-160-162":
     "E160–E162\n• E-160 — Computer Lab\n• E-161 — Computer Lab\n• E-162 — Faculty Offices\n• Manufacturing Processes Laboratory\n• Robotics & Internet-of-Things Lab",
-  "z-101-0-b-104-109": "B-104–B-109\n• B-104 — MBA Classroom\n• B-106 — MBA Classroom\n• B-108 — MBA Classroom\n• B-109 — MBA Classroom",
+  "z-101-0-b-104-109": "B-104–B-109\n• B-104 — MBA Classroom\n• B-106 — MBA Classroom\n• B-108 — MBA Classroom\n• B-109 — MBA Classroom\n• Male Toilet — Besides B-104",
   "z-101-0-e-118":
-    "E-118 cluster\n• Chair of Department of Mathematics & General Sciences\n• Faculty Office ×3",
+    "E-118 Cluster\n• E-118 — Community Services and Continuing Education Center\n• Faculty Office 1 — Next to E-118\n• Faculty Office 2 — Next to E-118\n• Faculty Office 3 — Next to E-118\n• Chair of Department of Mathematics and General Sciences",
   "z-101-0-rm-116-119":
-    "RM 116–119 — Classrooms (Table Tennis Court wing)\n• RM 116 — Classroom\n• RM 117 — Classroom\n• RM 118 — Classroom\n• RM 119 — Classroom\n• Swimming Pool — Besides RM. 116 Table Tennis Court door",
+    "Sports & Recreation\n• RM 116 — Classroom\n• RM 117 — Classroom\n• Faculty Office — Next to RM. 117\n• RM 118 — Classroom\n• RM 119 — Classroom\n• GYM — Multipurpose Sport Hall\n• Swimming Pool — Besides RM. 116 Table Tennis Court door\n• Male Toilet — Besides the door to the GYM",
   "z-101-0-e-fo-3-west": "Faculty Offices — near West Stair\n• Male Toilet\n• Faculty Office\n• Faculty Office\n• Faculty Office",
   "z-101-0-n-rest-4":
     "Restaurants\n• KUDU\n• AL KHAFEEF\n• SMASH DASH\n• KUDU Cafe",
   "z-101-0-a-151-154-cafes":
-    "Cafés & Rooms — north hall\n• KHAYLA\n• SAADEDDIN Cafe\n• A151\n• A154\n• Photocopy / Xerox Center",
+    "Cafés & Library\n• A151 — Central Library (door closed, go to floor 1)\n• A154 — Meeting Room\n• KHAYLA — Facing A154 meeting room\n• SAADEDDIN Cafe — Beside the door of A151\n• Photocopy — Infront of SAADEDDIN Cafe",
   "z-101-0-e-pubfac-145":
-    "Public facilities — by E-145\n• Male Toilet (beside E-145 Copy Center)\n• Male Toilet (opposite Copy Center)\n• Photocopy / Copy Center",
+    "Security & Copy Services\n• E-148 — PSU Security Office\n• E-145 — Copy Center\n• Male Toilet — Beside E-145 Copy Center\n• Male Toilet — Infront of E-145 Copy Center",
   "z-101-0-e-139-157-cafes-east":
-    "Cafés & Rooms — east of Cafeteria\n• E-139\n• E-154\n• E-155\n• E-156\n• E-157\n• MAITRE CHOUX\n• ALSHEGREY",
-  "z-101-0-a-141-imp": "A141 — Main Entrance (Important place)",
-  "z-101-0-a-entr": "Entrance 101",
+    "Cafés & Faculty Offices\n• A149 — Large Auditorium\n• MAITRE CHOUX\n• ALSHEGREY — Book store\n• E-155 — Faculty Office\n• E-156 — Faculty Office\n• E-157 — Faculty Office\n• E-136 — Faculty Office\n• E-137 — Faculty Office\n• E-138 — Faculty Office\n• E-139 — Faculty Office\n• A-160 — Shared Meeting Room (Men+Women)",
+  "z-101-0-a-141-imp": "Main Entrance Area\n• A141 — Prince Sultan Hall\n• Entrance 101 north",
+  "z-101-0-a-entr": "Entrance 101 South",
   "z-101-0-a-entr-imp": "Entrance — Important place",
   "z-101-0-a-ksi-only": "King Sejong Institute — access only",
   "z-101-0-a-pr-media": "Public Relations & Media Center",

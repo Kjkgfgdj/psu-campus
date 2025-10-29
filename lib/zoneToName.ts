@@ -1,6 +1,6 @@
 export const ZONE_TO_NAME: Record<string, Record<string, string>> = {
   "101": {
-    "z-101-0-a-entr": "Entrance 101",
+    "z-101-0-a-entr": "Entrance 101 south",
     "z-101-0-e-130-136": "E-130",
     "z-101-0-e-140-142": "E-140",
     "z-101-0-e-150-151": "E-150",
@@ -15,7 +15,7 @@ export const ZONE_TO_NAME: Record<string, Record<string, string>> = {
     "z-101-0-e-139-157-cafes-east": "ALSHEGREY",
     "z-101-0-a-141-imp": "A141",
     "z-101-0-a-ksi-only": "King Sejong Institute",
-    "z-101-0-a-pr-media": "Entrance 101",
+    "z-101-0-a-pr-media": "Entrance 101 north",
     "z-101-1-e-250-252": "E-222",
     "z-101-1-e-230-234": "E-230",
     "z-101-1-a-lib-i-c": "Central Library",

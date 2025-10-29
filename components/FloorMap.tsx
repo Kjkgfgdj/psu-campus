@@ -161,6 +161,50 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
       r.setAttribute("title", labelPreview);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (r.style as any).cursor = "pointer";
+      
+      // Store original styles in data attributes for reliable restoration
+      if (!r.dataset.originalFill) {
+        r.dataset.originalFill = r.style.fill || r.getAttribute('fill') || 'transparent';
+        r.dataset.originalStroke = r.style.stroke || r.getAttribute('stroke') || 'none';
+        r.dataset.originalStrokeWidth = r.style.strokeWidth || r.getAttribute('stroke-width') || '0';
+        r.dataset.originalRx = r.getAttribute('rx') || '0';
+        r.dataset.originalRy = r.getAttribute('ry') || '0';
+      }
+      
+      // Hover effect - blue highlight (temporary, only while hovering)
+      const onMouseEnter = () => {
+        r.style.fill = 'rgba(59, 130, 246, 0.2)'; // Blue highlight
+        r.style.stroke = '#3b82f6'; // Blue border
+        r.style.strokeWidth = '2';
+        r.setAttribute('rx', '8'); // Rounded corners
+        r.setAttribute('ry', '8');
+        // Pause search highlight animation during hover
+        if (r.dataset.searchHighlight === 'true') {
+          r.style.animation = 'none';
+        }
+      };
+      
+      const onMouseLeave = () => {
+        // Restore search highlight if this zone was from search
+        if (r.dataset.searchHighlight === 'true') {
+          r.style.fill = r.dataset.greenFill || 'rgba(34, 197, 94, 0.3)';
+          r.style.stroke = r.dataset.greenStroke || '#16a34a';
+          r.style.strokeWidth = r.dataset.greenStrokeWidth || '3';
+          r.style.animation = 'pulse 2s ease-in-out infinite';
+          r.setAttribute('rx', '8');
+          r.setAttribute('ry', '8');
+        } else {
+          // Restore original transparent state
+          r.style.fill = r.dataset.originalFill || 'transparent';
+          r.style.stroke = r.dataset.originalStroke || 'none';
+          r.style.strokeWidth = r.dataset.originalStrokeWidth || '0';
+          r.setAttribute('rx', r.dataset.originalRx || '0');
+          r.setAttribute('ry', r.dataset.originalRy || '0');
+        }
+      };
+      
+      r.addEventListener('mouseenter', onMouseEnter);
+      r.addEventListener('mouseleave', onMouseLeave);
 
       const onClick = () => handleActivate(r);
       r.addEventListener("click", onClick);
@@ -172,6 +216,8 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
         r.removeEventListener("click", onClick);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         r.removeEventListener("keydown", onKey as any);
+        r.removeEventListener('mouseenter', onMouseEnter);
+        r.removeEventListener('mouseleave', onMouseLeave);
       };
     });
 

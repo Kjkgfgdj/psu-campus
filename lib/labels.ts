@@ -24,23 +24,23 @@ export const LABELS: Record<string, string> = {
   "z-101-0-a-ksi-only": "King Sejong Institute\n• King Sejong Institute",
   "z-101-0-a-pr-media": "Public Relations\n• Public Relation & Media Center",
   "z-101-1-e-250-252":
-  "E-250–E-252\n• E-250 — Computer Lab\n• E-251 — Electric Circuits & Logic (Classroom)\n• E-252 — Computer Lab",
+  "E-250–E-254\n• E-250 — Computer Lab\n• E-251 — Electric Circuits and Logic Design Lab\n• E-252 — Computer Lab\n• E-254 — Faculty Office",
   "z-101-1-e-240-244":
   "E-240–E-244\n• E-240 — Classroom (Computer LAB)\n• E-241 — Classroom (Computer LAB)\n• E-242 — Classroom (Computer LAB)\n• E-244 — Storage",
   "z-101-1-e-230-234":
-  "E-230–E-232 + A-234\n• E-230 — Computer LAB\n• E-231 — Cybersecurity Lab\n• E-232 — Computer LAB\n• A-234 — Faculty Office",
+  "E-230–E-234\n• E-230 — Computer LAB\n• E-231 — Cybersecurity Lab\n• E-232 — Computer LAB\n• E-234 — Faculty Office",
   "z-101-1-a-lib-i-c":
   "Central Library & Labs I/C — corridor access\n• Central Library\n• Lab I — Community Services & Continuing Education Center\n• Lab C — Community Services & Continuing Education Center",
-  "z-101-1-e-236-257": "E236 corridor — offices & services\n• Confucius Institute at Prince Sultan University\n• E-236 — Faculty Office\n• E-237 — Faculty Office\n• E-238 — Faculty Office\n• A-237 — Faculty Office\n• A-238 — Faculty Office\n• A-239 — Faculty Office\n• A-240 — Faculty Office\n• Prayer area (opposite A-238)\n• Admin Assistant PYP Linguistics & Translation\n• PYP Associate Director\n• Associate Chair, Linguistics & Translation Department\n• Faculty Office next to Associate Chair (L&T)\n• E-254 — Faculty Office\n• E-255 — Faculty Office\n• E-256 — Faculty Office\n• E-257 — Faculty Office\n• PSU Compliance Officer (opposite E-255)",
-  "z-101-1-e-211-fo-ric": "E-211 area — Laboratory + nearby English Faculty Offices & Research & Initiatives Center\n• E-211 — Laboratory\n• English Faculty Offices near E-211 Lab\n• Research & Initiatives Center\n• Center of Excellence in CyberSecurity (CYBEX)",
+  "z-101-1-e-236-257": "E236 Corridor\n• E-236 — Faculty Office\n• E-237 — Faculty Office\n• E-238 — Faculty Office\n• A-237 — Faculty Office\n• A-238 — Faculty Office\n• A-239 — Faculty Office\n• A-240 — Faculty Office\n• Prayer area — Opposite to A-238 Door\n• Admin Assistant PYP Linguistics & Translation\n• PYP Associate Director\n• Associate Chair Linguistics & Translation Department\n• Faculty Office next to Associate Chair Linguistics & Translation Department\n• E-255 — Faculty Office\n• E-256 — Faculty Office\n• E-257 — Faculty Office\n• PSU Compliance Officer — Opposite to E-255 door\n• Confucius Institute at Prince Sultan University",
+  "z-101-1-e-211-fo-ric": "E-211 Area\n• Faculty Offices near E-211 Laboratory — English Faculty\n• E-211 — Laboratory\n• Research & Initiatives Center\n• Center of Excellence in CyberSecurity (CYBEX)",
   "z-101-1-e-216-gs-218-wing":
-  "E-216 & E-218 Wing\n• E-216 — General Studies Department\n• E-218 — English Faculty Offices\n• Male Toilet (beside E-218)\n• Faculty offices next to that toilet",
-  "z-101-1-a-iao": "International Affairs Office wing\n• International Affairs Office\n• Director of International Affairs Office\n• Male Toilet (beside International Affairs Office)",
-  "z-101-1-a-iao-afd": "A-118 — Admin. & Finance Director",
+  "E-216 & E-218 Wing\n• E-216 — General Studies Department\n• E-218 — English Faculty Offices\n• Male Toilet — Besides E-218\n• Faculty Offices — Next to Male Toilet besides E-218",
+  "z-101-1-a-iao": "International Affairs Office\n• International Affairs Office\n• Director of International Affairs Office\n• Male Toilet — Besides International Affairs Office",
+  "z-101-1-a-iao-afd": "Admin & Finance\n• A-114 — Faculty Office\n• A-115 — Faculty Office\n• A-117 — Faculty Office\n• A-118 — Admin. & Finance Director",
   "z-101-1-a-202-206-207":
-  "A-202 — Projects Manager; A-206 — Electrical Department; A-207 — Architectural & Mechanical Department; Structural Department (beside A-207)",
-  "z-101-1-a-245-246": "A-245 & A-246 — Center for Local Governance Office",
-  "z-101-1-a-201-205": "Deputy Vicerector",
+  "Engineering Departments\n• A-202 — Projects Manager\n• A-206 — Electrical Department\n• A-207 — Architectural & Mechanical Department\n• Structural Department — Besides A-207",
+  "z-101-1-a-245-246": "Local Governance Center\n• A-246 — Center for Local Governance Office\n• Local Governance Center — Besides A-246\n• Male Toilet — Besides A-246",
+  "z-101-1-a-201-205": "Deputy Vicerector\n• A-201 — Deputy Vicerector",
   "z-101-2-e-360-361":
   "E-360–E-362 — Classrooms\n• E-360 — Classroom\n• E-361 — Classroom\n •E-364 Faculty Office",
   "z-101-2-e-350-352":

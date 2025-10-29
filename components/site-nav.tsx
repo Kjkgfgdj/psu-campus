@@ -149,7 +149,7 @@ export default function SiteNav() {
                           {categoryPlaces.slice(0, 10).map((place) => (
                             <Link
                               key={place.id || place.slug}
-                              href={`/buildings/${place.building}?floor=${place.floor}&highlight=${place.slug}`}
+                              href={`/buildings/${place.building}?floor=${place.floor}&slug=${place.slug}&autoOpen=true`}
                               onClick={() => {
                                 setMobileMenuOpen(false);
                                 setExpandedCategory(null);

@@ -4,6 +4,8 @@ import { Geist, Geist_Mono, Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import SiteNav from "@/components/site-nav";
 import Footer from "@/components/footer";
+import { PlaceDialogProvider } from "@/components/PlaceDialogContext";
+import PlaceVideoDialog from "@/components/PlaceVideoDialog";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -68,13 +70,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#0F172A" media="(prefers-color-scheme: dark)" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${inter.variable} antialiased min-h-screen bg-gradient-to-br from-slate-50 via-green-50/10 to-slate-50 text-slate-900 flex flex-col`}>
-        {/* WCAG 2.2 AA - Skip to main content link for keyboard navigation */}
-        <a href="#main-content" className="skip-to-content">
-          Skip to main content
-        </a>
-        <SiteNav />
-        <main id="main-content" className="flex-grow w-full" role="main">{children}</main>
-        <Footer />
+        <PlaceDialogProvider>
+          {/* WCAG 2.2 AA - Skip to main content link for keyboard navigation */}
+          <a href="#main-content" className="skip-to-content">
+            Skip to main content
+          </a>
+          <SiteNav />
+          <main id="main-content" className="flex-grow w-full" role="main">{children}</main>
+          <Footer />
+          <PlaceVideoDialog />
+        </PlaceDialogProvider>
       </body>
     </html>
   );

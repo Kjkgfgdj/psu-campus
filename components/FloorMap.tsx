@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LABELS } from "@/lib/labels";
 import { parseLabel, getLabelPreview } from "@/lib/label-parser";
+import { getZoneIdForPlace } from "@/lib/placeToZoneMap";
 import {
   Dialog,
   DialogContent,
@@ -28,26 +29,66 @@ const YouTubeEmbed: YouTubeEmbedComponent =
   embedModule.default ??
   (() => <p className="text-sm text-muted-foreground">Video unavailable.</p>);
 
-type Props = { building: string; floor: string | number };
+type Props = { 
+  building: string; 
+  floor: string | number;
+  autoOpen?: boolean;
+  placeSlug?: string;
+};
 type Selection = { zoneId: string; label: string };
 
-export default function FloorMap({ building, floor }: Props) {
+export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props) {
   const objRef = useRef<HTMLObjectElement | null>(null);
   const cleanupRef = useRef<(() => void) | null>(null);
   const [open, setOpen] = useState(false);
   const [selection, setSelection] = useState<Selection | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
+  const [overlayLoaded, setOverlayLoaded] = useState(false);
   const baseSrcBase = `/maps/${building}/${building}_${floor}-base`;
   const overlayUrl = `/maps/${building}/${building}_${floor}-overlay.svg?v=${building}-${floor}`;
 
   useEffect(() => () => cleanupRef.current?.(), []);
+  
+  // Auto-open dialog when parameters are present
+  useEffect(() => {
+    if (!autoOpen || !placeSlug || !overlayLoaded) return;
+    
+    // Small delay to ensure everything is loaded
+    const timer = setTimeout(() => {
+      // Use the explicit mapping to find the zone
+      const zoneId = getZoneIdForPlace(placeSlug);
+      
+      if (zoneId && LABELS[zoneId]) {
+        const label = LABELS[zoneId];
+        
+        // Trigger the dialog
+        setSelection({ zoneId, label });
+        setVideoUrl(null);
+        setMsg(null);
+        setOpen(true);
+        
+        const qs = new URLSearchParams({ building: String(building), zoneId });
+        fetch(`/api/places/video?${qs.toString()}`)
+          .then((r) => r.json())
+          .then((d) => {
+            if (!d?.videoUrl) setMsg("No video found for this location.");
+            else setVideoUrl(d.videoUrl);
+          })
+          .catch(() => setMsg("Failed to load video."));
+      }
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, [autoOpen, placeSlug, overlayLoaded, building, floor]);
 
   const onOverlayLoad = useCallback(() => {
     cleanupRef.current?.();
 
     const doc = objRef.current?.contentDocument;
     if (!doc) return;
+    
+    setOverlayLoaded(true);
 
     const rects = Array.from(doc.querySelectorAll<SVGRectElement>("rect[id^='hitbox']"));
 

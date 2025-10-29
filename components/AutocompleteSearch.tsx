@@ -128,9 +128,11 @@ useEffect(() => {
   const navigateTo = useCallback(
     (place: Place) => {
       if (!place.building) return;
+      
+      // Navigate to building page with zone parameter to auto-open dialog
       const slugParam = place.slug ? `&slug=${place.slug}` : "";
       const floorParam = place.floor ?? "0";
-      const href = `/buildings/${place.building}?floor=${floorParam}${slugParam}`;
+      const href = `/buildings/${place.building}?floor=${floorParam}${slugParam}&autoOpen=true`;
       setOpen(false);
       startTransition(() => router.push(href));
     },

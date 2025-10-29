@@ -58,35 +58,35 @@ export const LABELS: Record<string, string> = {
   "z-105-0-a-01-02":
   "A-01 — Tharaa Financial Center; A-02 — Physics & Chemistry Lab",
   "z-105-0-a-05-18":
-  "A-05 — Computer Lab; A-06 — Computer Lab; A-08 — Classroom; A-09 — Computer Lab; A-10 — Classroom; A-11 — Computer Lab; A-12 — Classroom; A-13 — Computer Lab; A-14 — Classroom; A-15 — Classroom; A-16 — Computer Lab; A-18 — Industry 4.0 Center",
+  "G-A05–G-A18 Classrooms & Labs\n• G-A05 — Computer Lab\n• G-A06 — Computer Lab\n• G-A08 — Classroom\n• G-A09 — Computer Lab\n• G-A10 — Class Room\n• G-A11 — Computer Lab\n• G-A12 — Class Room\n• G-A13 — Computer Lab\n• G-A14 — Class Room\n• G-A15 — Class Room\n• G-A16 — Computer Lab\n• G-A18 — Industry 4.0 Center\n• Male Toilet — Opposite G-A05 near toast point",
   "z-105-0-b-05-06":
-  "G-B05–G-B06\n• G-B05 — PSU Prosthetic & Orthotic Center\n• G-B06 — Classroom",
+  "G-B05–G-B06\n• G-B05 — PSU Prosthetic & Orthotic Center\n• G-B06 — Class Room\n• Male Toilet — Opposite to G-B06",
   "z-105-0-b-pubfac":
-  "Student Services Wing\n• G-B04 — Head of Students Services and Activities Unit\n• G-B05 — PSU Prosthetic & Orthotic Center\n• G-B08 — Student Services Supervisors\n• G-B09 — Cooperative Education and Alumni Relations Unit\n• G-B10 — Co-operative Education Unit\n• G-B11 — Academic Supervisor\n• G-B12 — Guidance & Counselling Unit\n• G-B13 — International And Minority Student Support Unit\n• G-B14 — Scholarship Program Management\n• G-B15 — Scholarship Program\n• G-B16 — Auditorium VIP Lounge\n• G-B17 — Comm. Room",
-  "z-105-0-b-19-26": "G-B19–G-B26\n• G-B19 — Class Room\n• G-B20 — Class Room\n• G-B21 — Class Room\n• G-B22 — Elec. Room\n• G-B23 — Class Room\n• G-B24 — Class Room\n• G-B25 — Comm. Room\n• G-B26 — Product Development Center",
-  "z-105-0-examhale2": "Exam Hall (2)",
+  "Student Services Wing\n• G-B01 — Security & information\n• G-B02 — Clinic\n• G-B03 — Dean of Student Affairs\n• G-B04 — Head of Students Services and Activities Unit\n• G-B07 — Control Room\n• G-B08 — Student Services Supervisors\n• G-B09 — Cooperative Education and Alumni Relations Unit\n• G-B10 — Co-operative Education Unit\n• G-B11 — Academic Supervisor\n• G-B12 — Guidance & Counselling Unit\n• G-B13 — International And Minority Student Support Unit\n• G-B14 — Scholarship Program Management\n• G-B15 — Scholarship Program\n• G-B16 — Auditorium VIP Lounge\n• G-B17 — Comm. Room\n• G-B18 — Elec Room",
+  "z-105-0-b-19-26": "Classrooms & Auditorium\n• G-B19 — Class Room\n• G-B20 — Class Room\n• G-B21 — Class Room\n• G-B22 — Elec. Room\n• G-B23 — Class Room\n• G-B24 — Class Room\n• G-B25 — Comm. Room\n• G-B26 — Product Development Center\n• G-C01 — Auditorium - Lecture Hall",
+  "z-105-0-examhale2": "Exam Hall (2)\n• Exam Hall (2)",
   "z-105-0-food":
-  "Food & drinks\n• dr. CAFE COFFEE\n• Ristretto Cafe\n• MINI MARKET\n• toast point",
+  "Food & Drinks\n• dr. CAFE COFFEE\n• Pizza WOW\n• KAFEEN\n• Ristretto Cafe\n• Starbucks\n• MINI MARKET\n• toast point\n• G-C04 — Storage\n• Female Toilet — Between G-A18 and MINI MARKET",
   "z-105-0-bathroom":
-  "Central Facilities\n• G-C01 — Auditorium - Lecture Hall\n• G-C03 — Prayer Hall\n• G-C04 — Storage",
+  "Prayer Hall Area\n• G-C03 — Prayer Hall\n• Male Toilet — Beside to Prayer Hall",
   // 105 — First floor
-  "z-105-1-a-04-21": "1-A04–1-A21\n• 1-A04 — Classroom\n• 1-A05 — Classroom\n• 1-A06 — Computer LAB\n• 1-A07 — Bloomberg Finance Lab\n• 1-A08 — Computer LAB\n• 1-A10 — Store\n• 1-A11 — Computer LAB\n• 1-A12 — Classroom\n• 1-A13 — Classroom\n• 1-A14 — Computer LAB\n• 1-A15 — Classroom\n• 1-A16 — Computer LAB\n• 1-A17 — Classroom\n• 1-A18 — Classroom\n• 1-A19 — Computer LAB\n• 1-A20 — Storage\n• 1-A21 — Computer LAB\n• Student Lounge — Between 1-A08 and 1-A11",
-  "z-105-1-a-01-03": "A-01–A-03 — First-floor rooms",
+  "z-105-1-a-04-21": "1-A04–1-A22\n• 1-A04 — Classroom\n• 1-A05 — Classroom\n• 1-A06 — Computer LAB\n• 1-A07 — Bloomberg Finance Lab\n• 1-A08 — Computer LAB\n• 1-A10 — Store\n• 1-A11 — Computer LAB\n• 1-A12 — Classroom\n• 1-A13 — Classroom\n• 1-A14 — Computer LAB\n• 1-A15 — Classroom\n• 1-A16 — Computer LAB\n• 1-A17 — Classroom\n• 1-A18 — Classroom\n• 1-A19 — Computer LAB\n• 1-A20 — Storage\n• 1-A21 — Computer LAB\n• 1-A22 — Elec. Room\n• Student Lounge — Between 1-A08 and 1-A11",
+  "z-105-1-a-01-03": "1-A01–1-A03\n• 1-A01 — Seminar Room\n• 1-A02 — Student Club\n• 1-A03 — Physics and Chemistry LAB",
   "z-105-1-b-04-20": "1-B04–1-B20\n• 1-B04 — Classroom\n• 1-B05 — Computer LAB\n• 1-B06 — Emerging Intelligent Autonomous Systems (EIAS)\n• 1-B07 — Pearson Authorised Test Centre\n• 1-B08 — Security Engineering Lab\n• 1-B09 — Computer LAB\n• 1-B10 — Communication and Networks Lab\n• 1-B11 — Comm. Room\n• 1-B12 — Elec Room\n• 1-B13 — Classroom\n• 1-B14 — Classroom\n• 1-B15 — Classroom\n• 1-B16 — Elec. Room\n• 1-B17 — Classroom\n• 1-B18 — Legal Clinic\n• 1-B20 — Art Room",
-  "z-105-1-b-01-02": "1-B01–1-B02\n• 1-B01 — Physics and Chemistry LAB\n• 1-B02 — Physics and Chemistry LAB",
-  "z-105-1-etc-launge": "ETC Lounge — student/lounge area",
-  "z-105-1-it-support": "IT Support — help desk / services",
-  "z-105-1-bathroom": "Public facilities — Toilets (first floor)",
-  "z-105-2-a-25-31": "A-25–A-31 — Second-floor rooms",
-  "z-105-2-a-35-42": "A-35–A-42 — Second-floor rooms",
-  "z-105-2-examhale3": "Exam Hall (3) — Popular exam place",
-  "z-105-2-b-19-24": "B-19–B-24 — Second-floor rooms / offices",
-  "z-105-2-a-18-21": "A-18–A-21 — Second-floor rooms",
-  "z-105-2-a-15-17": "A-15–A-17 — Second-floor rooms",
-  "z-105-2-a-09-35": "A-09–A-35 — Second-floor corridor (rooms, labs)",
-  "z-105-2-b-04-28": "B-04–B-28 — Second-floor rooms / offices",
-  "z-105-2-a-18-21_2": "A-18–A-21 (wing) — Second-floor rooms",
-  "z-105-2-a-18-21_3": "A-18–A-21 (wing) — Second-floor rooms",
+  "z-105-1-b-01-02": "1-B01–1-B03\n• 1-B01 — Physics and Chemistry LAB\n• 1-B02 — Physics and Chemistry LAB\n• 1-B03 — Store\n• Female Toilet — Opposite to 1-B02 Door",
+  "z-105-1-etc-launge": "ETC Lounge Area\n• 1-C01 — Store\n• IT Lounge",
+  "z-105-1-it-support": "IT Department\n• 1-C03 — Please see the label in class on wednesday\n• 1-C04 — IT Customer support or Help Desk\n• 1-C05 — E-Services Unit\n• 1-C06\n• 1-C07 — Secretary & Waiting Area\n• 1-C08\n• 1-C09 — IT Director\n• 1-C10 — Meeting Room\n• 1-C11 — Data Center\n• 1-C13 — Utility Room\n• Male Toilet — In the IT section",
+  "z-105-1-bathroom": "Public Facilities\n• Male Toilet — Between 1-A21 and 1-B20",
+  "z-105-2-a-25-31": "Faculty Offices\n• 2-A26 — Faculty Office\n• 2-A27 — Faculty Office\n• 2-A28 — Faculty Office\n• 2-A29 — Faculty Office",
+  "z-105-2-a-35-42": "Faculty Offices & Classroom\n• 2-A38 — Faculty Office\n• 2-A39 — Faculty Office\n• 2-A41 — Faculty Office\n• 2-A42 — Faculty Office\n• 2-B29 — Classroom",
+  "z-105-2-examhale3": "Exam Hall & Auditorium\n• Exam Hall (3) — Opposite to the doors of 2-C02\n• 2-C02 — Autiturim 2",
+  "z-105-2-b-19-24": "B-Wing Faculty Offices\n• 2-B20 — Faculty Office\n• 2-B21 — Faculty Office\n• 2-B22 — Faculty Office\n• 2-B23 — Faculty Office",
+  "z-105-2-a-18-21": "Faculty Offices\n• 2-A18 — Faculty Office\n• 2-A19 — Faculty Office\n• 2-B18 — QAC\n• 2-B19 — Faculty Office",
+  "z-105-2-a-18-21_2": "Engineering & Humanities Deans\n• 2-A01 — Dean of College of Engineering\n• 2-A02 — Dean Of College of Humanities and Sciences\n• 2-A05 — Secretary - College of Engineering\n• Male Toilet — Opposite to 2-A01",
+  "z-105-2-a-18-21_3": "Business & QA Deans\n• 2-A03 — Dean Of Quality Assurance & Development\n• 2-A04 — Secretary - Quality Assurance & Development\n• 2-B01 — Dean Of College of Business Administration\n• 2-B02 — Meeting Room\n• 2-B03 — Store\n• Male Toilet — Inside 2-B01",
+  "z-105-2-a-15-17": "Faculty Offices\n• 2-B15 — Faculty Office\n• 2-B16 — Faculty Office",
+  "z-105-2-a-09-35": "Department Chairs & Offices\n• 2-A06 — Dean Of College of Law\n• 2-A07 — Dean of College of Computer & Information Science\n• 2-A08 — Meeting Room\n• 2-A09 — Director of CCIS Research Aide to the Rector\n• 2-A10 — Chair of the Law Department\n• 2-A11 — Chair of Department of Computer Science\n• 2-A12 — Chair of Department of Information Systems\n• 2-A13 — Language LAB\n• 2-A14 — Faculty Office\n• 2-A15 — Chair of Electrical Engineering\n• 2-A16 — Chair of Engineering Management Department\n• 2-A17 — Store\n• 2-A20 — Faculty Office\n• 2-A21 — Faculty Office\n• 2-A22 — Chair of Management Department\n• 2-A23 — Chair of Marketing Department\n• 2-A24 — Faculty Office\n• 2-A25 — Faculty Office\n• 2-A30 — Faculty Office\n• 2-A31 — Faculty Office\n• 2-A32 — Faculty Office\n• 2-A33 — Director of Community Services & Continuing Education Center\n• 2-A34 — Staff of Community Services & Continuing Education Center\n• 2-A35 — Faculty Office\n• 2-A36 — Meeting Room\n• 2-A37 — Elec. Room\n• Male Toilet — Opposite to 2-A37",
+  "z-105-2-b-04-28": "B-Wing Offices & Labs\n• 2-B04 — Science & Technology LAB\n• 2-B05 — Store\n• 2-B06 — Director of the MBA Program\n• 2-B07 — Language LAB\n• 2-B08 — Chair of Accounting Department\n• 2-B09 — Chair Of Finance Department\n• 2-B10 — Renewable Energy Lab\n• 2-B11 — Head Of Department General Sciences & Mathematics\n• 2-B12 — Archive\n• 2-B13 — Comm. Room\n• 2-B14 — Elec. Room\n• 2-B17 — Director CIS MS Programs\n• 2-B24 — Faculty Office\n• 2-B25 — Comm. Room\n• 2-B26 — TLC\n• 2-B27 — Elec. Room\n• 2-B28 — Director of (MEM) Program",
   "z-104-2-north-scr-1-4":
   "Second Floor — North corridor (SCR-1…SCR-4)\n\
   • SCR-1 — Office (name TBD)\n\

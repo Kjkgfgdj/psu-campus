@@ -85,7 +85,8 @@ export function CategoryMenu() {
                         return (
                           <Link
                             key={place.id || place.slug}
-                            href={`/buildings/${place.building}?floor=${place.floor}&highlight=${place.slug}`}
+                            href={`/buildings/${place.building}?floor=${place.floor}&slug=${place.slug}&autoOpen=true`}
+                            onClick={() => setOpenMenu(null)}
                             className={cn(
                               "group relative block px-5 py-4 transition-all duration-200 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50",
                               isFirst && "rounded-t-2xl",

@@ -42,12 +42,7 @@ function PlaceSkeleton() {
 }
 
 function PlaceCard({ place }: { place: Place }) {
-  const [showVideo, setShowVideo] = useState(false)
-
-  const videoUrl = place.videoUrl ?? ""
-  const hasVideo = videoUrl.trim() !== ""
-  
-  const deepLinkUrl = `/buildings/${place.building}?floor=${place.floor}${place.slug ? `&slug=${place.slug}` : ""}`;
+  const deepLinkUrl = `/buildings/${place.building}?floor=${place.floor}${place.slug ? `&slug=${place.slug}` : ""}&autoOpen=true`;
 
   return (
     <div className="group">
@@ -92,46 +87,6 @@ function PlaceCard({ place }: { place: Place }) {
               {place.description && (
                 <FormattedText text={place.description} compact maxLines={3} />
               )}
-
-        {hasVideo && (
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-slate-900">Video</span>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  setShowVideo(!showVideo);
-                }}
-                className="h-8 px-3 text-xs rounded-full"
-              >
-                {showVideo ? (
-                  <>
-                    <X className="h-3 w-3 mr-1" />
-                    Hide video
-                  </>
-                ) : (
-                  <>
-                    <Play className="h-3 w-3 mr-1" />
-                    Show video
-                  </>
-                )}
-              </Button>
-            </div>
-
-            {showVideo && (
-              <div className="mt-3">
-                <YouTubeEmbed
-                  url={videoUrl}
-                  title={`Video for ${place.name}`}
-                  className="rounded-xl overflow-hidden"
-                />
-              </div>
-            )}
-          </div>
-        )}
             </CardContent>
           </Card>
         </Link>

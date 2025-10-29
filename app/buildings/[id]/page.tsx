@@ -90,7 +90,12 @@ export default function BuildingPage() {
               </div>
               
               <div className="p-8 md:p-12">
-                <FloorMap building={id} floor={floorParam} />
+                <FloorMap 
+                  building={id} 
+                  floor={floorParam}
+                  autoOpen={searchParams.get("autoOpen") === "true"}
+                  placeSlug={searchParams.get("slug") || undefined}
+                />
               </div>
             </div>
           </div>

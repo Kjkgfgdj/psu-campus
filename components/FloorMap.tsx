@@ -149,10 +149,10 @@ export default function FloorMap({ building, floor }: Props) {
         className="absolute inset-0 w-full h-full"
       />
 
-      <Dialog open={open} onOpenChange={setOpen} modal>
-        <DialogContent className="sm:max-w-[1000px] max-h-[90vh] p-0 gap-0 overflow-y-auto border-0 bg-white">
-          {/* Premium Header with Gradient */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-green-600 via-emerald-600 to-green-600 px-10 py-8">
+      <Dialog open={open} onOpenChange={setOpen} modal={true}>
+        <DialogContent className="sm:max-w-[1000px] max-h-[90vh] p-0 gap-0 border-0 bg-white flex flex-col overflow-hidden">
+          {/* Premium Header with Gradient - Fixed */}
+          <div className="relative flex-shrink-0 overflow-hidden bg-gradient-to-br from-green-600 via-emerald-600 to-green-600 px-10 py-8">
             {/* Decorative pattern overlay */}
             <div className="absolute inset-0 opacity-20">
               <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,.1)_50%,transparent_75%,transparent_100%)]"></div>
@@ -172,26 +172,38 @@ export default function FloorMap({ building, floor }: Props) {
                 const rawLabel = selection?.label ?? "Location";
                 const parsed = parseLabel(rawLabel);
                 
+                // Parse items for ALL buildings uniformly
+                let displayItems = parsed.items;
+                
+                // If no bullet items found, try other formats
+                if (displayItems.length === 0) {
+                  const text = parsed.subtitle || parsed.header;
+                  
+                  // Check for semicolon-separated items
+                  if (text.includes(';')) {
+                    displayItems = text.split(';').map(item => item.trim()).filter(Boolean);
+                  } 
+                  // Check for plus-separated items
+                  else if (text.includes('+')) {
+                    displayItems = text.split('+').map(item => item.trim()).filter(Boolean);
+                  }
+                  // If there's a subtitle, show it as an item
+                  else if (parsed.subtitle) {
+                    displayItems = [parsed.subtitle];
+                  }
+                }
+                
                 return (
                   <div className="space-y-3">
-                    <div>
-                      <DialogTitle className="text-white drop-shadow-lg text-3xl leading-tight">
-                        {parsed.header}
-                      </DialogTitle>
-                      {parsed.subtitle && (
-                        <p className="text-white/90 text-lg mt-2 font-medium">
-                          {parsed.subtitle}
-                        </p>
-                      )}
-                    </div>
+                    {/* Unified structure for ALL buildings */}
+                    <DialogTitle className="text-white drop-shadow-lg text-3xl leading-tight">
+                      Available Places
+                    </DialogTitle>
                     
-                    {parsed.items.length > 0 && (
-                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 space-y-2 max-h-[200px] overflow-y-auto">
-                        <h4 className="text-white/80 text-xs font-bold uppercase tracking-wider mb-3 sticky top-0 bg-gradient-to-br from-green-600 via-emerald-600 to-green-600 py-1">
-                          Available Facilities
-                        </h4>
+                    {displayItems.length > 0 && (
+                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 space-y-2 max-h-[200px] overflow-y-auto overscroll-contain">
                         <ul className="space-y-2">
-                          {parsed.items.map((item, i) => (
+                          {displayItems.map((item, i) => (
                             <li 
                               key={i}
                               className="flex items-start gap-2 text-white/95 text-sm leading-relaxed"
@@ -209,8 +221,8 @@ export default function FloorMap({ building, floor }: Props) {
             </DialogHeader>
           </div>
 
-          {/* Video Content */}
-          <div className="p-8">
+          {/* Video Content - Scrollable */}
+          <div className="flex-1 overflow-y-auto overscroll-contain p-8">
             {msg && (
               <div className="flex items-center gap-3 bg-red-50 border-2 border-red-200 rounded-2xl p-6">
                 <div className="bg-red-100 p-3 rounded-xl">

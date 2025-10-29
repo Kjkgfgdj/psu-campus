@@ -1,25 +1,25 @@
 export const LABELS: Record<string, string> = {
-  "z-101-0-e-130-136": "E130–E136 — Classrooms + 1 Faculty Office",
-  "z-101-0-e-140-142": "E140–E142 — Manufacturing Processes Laboratory",
-  "z-101-0-e-150-151": "E150–E151",
+  "z-101-0-e-130-136": "E131–E136\n• E-131 — Classroom\n• E-132 — Classroom\n• E-136 — Faculty Office",
+  "z-101-0-e-140-142": "E140–E142\n• E-140 — Classroom\n• E-141 — Classroom\n• E-142 — Classroom\n• Manufacturing Processes Laboratory",
+  "z-101-0-e-150-151": "E150–E152\n• E-150 — Classroom\n• E-151 — Classroom\n• E-152 — Classroom",
   "z-101-0-e-160-162":
-    "E160–E162\n• Manufacturing Processes Laboratory\n• Robotics & Internet-of-Things Lab",
-  "z-101-0-b-104-109": "B-104–B-109 MBA Classrooms",
+    "E160–E162\n• E-160 — Computer Lab\n• E-161 — Computer Lab\n• E-162 — Faculty Offices\n• Manufacturing Processes Laboratory\n• Robotics & Internet-of-Things Lab",
+  "z-101-0-b-104-109": "B-104–B-109\n• B-104 — MBA Classroom\n• B-106 — MBA Classroom\n• B-108 — MBA Classroom\n• B-109 — MBA Classroom",
   "z-101-0-e-118":
     "E-118 cluster\n• Chair of Department of Mathematics & General Sciences\n• Faculty Office ×3",
   "z-101-0-rm-116-119":
-    "RM 116–119 — Classrooms (Table Tennis Court wing)\n• RM 116 — Classroom\n• RM 117 — Classroom\n• RM 118 — Classroom\n• RM 119 — Classroom",
-  "z-101-0-e-fo-3-west": "Faculty Offices ×3 — near West Stair",
+    "RM 116–119 — Classrooms (Table Tennis Court wing)\n• RM 116 — Classroom\n• RM 117 — Classroom\n• RM 118 — Classroom\n• RM 119 — Classroom\n• Swimming Pool — Besides RM. 116 Table Tennis Court door",
+  "z-101-0-e-fo-3-west": "Faculty Offices — near West Stair\n• Male Toilet\n• Faculty Office\n• Faculty Office\n• Faculty Office",
   "z-101-0-n-rest-4":
     "Restaurants\n• KUDU\n• AL KHAFEEF\n• SMASH DASH\n• KUDU Cafe",
   "z-101-0-a-151-154-cafes":
-    "Cafés & Rooms — north hall\n• Café (name 1)\n• Café (name 2)\n• A151\n• A154\n• Photocopy / Xerox Center",
+    "Cafés & Rooms — north hall\n• KHAYLA\n• SAADEDDIN Cafe\n• A151\n• A154\n• Photocopy / Xerox Center",
   "z-101-0-e-pubfac-145":
     "Public facilities — by E-145\n• Male Toilet (beside E-145 Copy Center)\n• Male Toilet (opposite Copy Center)\n• Photocopy / Copy Center",
   "z-101-0-e-139-157-cafes-east":
-    "Cafés & Rooms — east of Cafeteria\n• E-139\n• E-154\n• E-155\n• E-156\n• E-157\n• A149 — Café (name 3)\n• ALSHEGREY",
+    "Cafés & Rooms — east of Cafeteria\n• E-139\n• E-154\n• E-155\n• E-156\n• E-157\n• MAITRE CHOUX\n• ALSHEGREY",
   "z-101-0-a-141-imp": "A141 — Main Entrance (Important place)",
-  "z-101-0-a-entr": "Entrance — Important place",
+  "z-101-0-a-entr": "Entrance 101",
   "z-101-0-a-entr-imp": "Entrance — Important place",
   "z-101-0-a-ksi-only": "King Sejong Institute — access only",
   "z-101-0-a-pr-media": "Public Relations & Media Center",
@@ -31,10 +31,10 @@ export const LABELS: Record<string, string> = {
   "E-230–E-232 + A-234\n• E-230 — Computer LAB\n• E-231 — Cybersecurity Lab\n• E-232 — Computer LAB\n• A-234 — Faculty Office",
   "z-101-1-a-lib-i-c":
   "Central Library & Labs I/C — corridor access\n• Central Library\n• Lab I — Community Services & Continuing Education Center\n• Lab C — Community Services & Continuing Education Center",
-  "z-101-1-e-236-257": "E236 corridor — offices & services\n• Korea center (name TBD)\n• E-236 — Faculty Office\n• E-237 — Faculty Office\n• E-238 — Faculty Office\n• A-237 — Faculty Office\n• A-238 — Faculty Office\n• A-239 — Faculty Office\n• A-240 — Faculty Office\n• Prayer area (opposite A-238)\n• Admin Assistant PYP Linguistics & Translation\n• PYP Associate Director\n• Associate Chair, Linguistics & Translation Department\n• Faculty Office next to Associate Chair (L&T)\n• E-254 — Faculty Office\n• E-255 — Faculty Office\n• E-256 — Faculty Office\n• E-257 — Faculty Office\n• PSU Compliance Officer (opposite E-255)",
-  "z-101-1-e-211-fo-ric": "E-211 area — Laboratory + nearby English Faculty Offices & Research & Initiatives Center\n• E-211 — Laboratory\n• English Faculty Offices near E-211 Lab\n• Research & Initiatives Center",
+  "z-101-1-e-236-257": "E236 corridor — offices & services\n• Confucius Institute at Prince Sultan University\n• E-236 — Faculty Office\n• E-237 — Faculty Office\n• E-238 — Faculty Office\n• A-237 — Faculty Office\n• A-238 — Faculty Office\n• A-239 — Faculty Office\n• A-240 — Faculty Office\n• Prayer area (opposite A-238)\n• Admin Assistant PYP Linguistics & Translation\n• PYP Associate Director\n• Associate Chair, Linguistics & Translation Department\n• Faculty Office next to Associate Chair (L&T)\n• E-254 — Faculty Office\n• E-255 — Faculty Office\n• E-256 — Faculty Office\n• E-257 — Faculty Office\n• PSU Compliance Officer (opposite E-255)",
+  "z-101-1-e-211-fo-ric": "E-211 area — Laboratory + nearby English Faculty Offices & Research & Initiatives Center\n• E-211 — Laboratory\n• English Faculty Offices near E-211 Lab\n• Research & Initiatives Center\n• Center of Excellence in CyberSecurity (CYBEX)",
   "z-101-1-e-216-gs-218-wing":
-  "E-216 — General Studies Department\nE-218 — English Faculty Offices\n• Male Toilet (beside E-218)\n• Faculty offices next to that toilet",
+  "E-216 & E-218 Wing\n• E-216 — General Studies Department\n• E-218 — English Faculty Offices\n• Male Toilet (beside E-218)\n• Faculty offices next to that toilet",
   "z-101-1-a-iao": "International Affairs Office wing\n• International Affairs Office\n• Director of International Affairs Office\n• Male Toilet (beside International Affairs Office)",
   "z-101-1-a-iao-afd": "A-118 — Admin. & Finance Director",
   "z-101-1-a-202-206-207":
@@ -60,20 +60,20 @@ export const LABELS: Record<string, string> = {
   "z-105-0-a-05-18":
   "A-05 — Computer Lab; A-06 — Computer Lab; A-08 — Classroom; A-09 — Computer Lab; A-10 — Classroom; A-11 — Computer Lab; A-12 — Classroom; A-13 — Computer Lab; A-14 — Classroom; A-15 — Classroom; A-16 — Computer Lab; A-18 — Industry 4.0 Center",
   "z-105-0-b-05-06":
-  "B-05 — PSU Prosthetic & Orthotic Center; B-06 — Classroom",
+  "G-B05–G-B06\n• G-B05 — PSU Prosthetic & Orthotic Center\n• G-B06 — Classroom",
   "z-105-0-b-pubfac":
-  "Public Facilities: Security & Information; Clinic; Dean of Student Affairs; Head of Students Services & Activities Unit; Control Room",
-  "z-105-0-b-19-26": "B-19 — B-26",
-  "z-105-0-examhale2": "Exam Hall (2) — Popular exam place",
+  "Student Services Wing\n• G-B04 — Head of Students Services and Activities Unit\n• G-B05 — PSU Prosthetic & Orthotic Center\n• G-B08 — Student Services Supervisors\n• G-B09 — Cooperative Education and Alumni Relations Unit\n• G-B10 — Co-operative Education Unit\n• G-B11 — Academic Supervisor\n• G-B12 — Guidance & Counselling Unit\n• G-B13 — International And Minority Student Support Unit\n• G-B14 — Scholarship Program Management\n• G-B15 — Scholarship Program\n• G-B16 — Auditorium VIP Lounge\n• G-B17 — Comm. Room",
+  "z-105-0-b-19-26": "G-B19–G-B26\n• G-B19 — Class Room\n• G-B20 — Class Room\n• G-B21 — Class Room\n• G-B22 — Elec. Room\n• G-B23 — Class Room\n• G-B24 — Class Room\n• G-B25 — Comm. Room\n• G-B26 — Product Development Center",
+  "z-105-0-examhale2": "Exam Hall (2)",
   "z-105-0-food":
   "Food & drinks\n• dr. CAFE COFFEE\n• Ristretto Cafe\n• MINI MARKET\n• toast point",
   "z-105-0-bathroom":
-  "Public facilities — Toilets\n• Female Toilet — between G-A18 and MINI MARKET\n• Male Toilet — opposite G-A05 (near toast point)",
+  "Central Facilities\n• G-C01 — Auditorium - Lecture Hall\n• G-C03 — Prayer Hall\n• G-C04 — Storage",
   // 105 — First floor
-  "z-105-1-a-04-21": "A-04–A-21 — First-floor rooms (classrooms/labs)",
+  "z-105-1-a-04-21": "1-A04–1-A21\n• 1-A04 — Classroom\n• 1-A05 — Classroom\n• 1-A06 — Computer LAB\n• 1-A07 — Bloomberg Finance Lab\n• 1-A08 — Computer LAB\n• 1-A10 — Store\n• 1-A11 — Computer LAB\n• 1-A12 — Classroom\n• 1-A13 — Classroom\n• 1-A14 — Computer LAB\n• 1-A15 — Classroom\n• 1-A16 — Computer LAB\n• 1-A17 — Classroom\n• 1-A18 — Classroom\n• 1-A19 — Computer LAB\n• 1-A20 — Storage\n• 1-A21 — Computer LAB\n• Student Lounge — Between 1-A08 and 1-A11",
   "z-105-1-a-01-03": "A-01–A-03 — First-floor rooms",
-  "z-105-1-b-04-20": "B-04–B-20 — First-floor rooms / offices",
-  "z-105-1-b-01-02": "B-01–B-02 — First-floor rooms",
+  "z-105-1-b-04-20": "1-B04–1-B20\n• 1-B04 — Classroom\n• 1-B05 — Computer LAB\n• 1-B06 — Emerging Intelligent Autonomous Systems (EIAS)\n• 1-B07 — Pearson Authorised Test Centre\n• 1-B08 — Security Engineering Lab\n• 1-B09 — Computer LAB\n• 1-B10 — Communication and Networks Lab\n• 1-B11 — Comm. Room\n• 1-B12 — Elec Room\n• 1-B13 — Classroom\n• 1-B14 — Classroom\n• 1-B15 — Classroom\n• 1-B16 — Elec. Room\n• 1-B17 — Classroom\n• 1-B18 — Legal Clinic\n• 1-B20 — Art Room",
+  "z-105-1-b-01-02": "1-B01–1-B02\n• 1-B01 — Physics and Chemistry LAB\n• 1-B02 — Physics and Chemistry LAB",
   "z-105-1-etc-launge": "ETC Lounge — student/lounge area",
   "z-105-1-it-support": "IT Support — help desk / services",
   "z-105-1-bathroom": "Public facilities — Toilets (first floor)",
@@ -176,8 +176,8 @@ export const LABELS: Record<string, string> = {
     • Male Toilet — beside Center for Sustainability & Climate\n\
     • University Exhibition Hall\n\
     • VIP Lounge\n\
-    • Cafeteria 101 (name TBD)\n\
-    • Offices (names TBD) — near Cafeteria 101",
+    • Ristretto Cafe\n\
+    • Offices (names TBD) — near Ristretto Cafe",
 
   "z-104-0-west":
     "Ground Floor — West wing\n\

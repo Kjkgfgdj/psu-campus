@@ -1,5 +1,5 @@
 export const LABELS: Record<string, string> = {
-  "z-101-0-e-130-136": "E130–E132\n• E-130 — Classroom\n• E-131 — Classroom\n• E-132 — Classroom",
+  "z-101-0-e-130-136": "E130–E136\n• E-130 — Classroom\n• E-131 — Classroom\n• E-132 — Classroom\n• E-136 — Faculty Office",
   "z-101-0-e-140-142": "E140–E145\n• E-140 — Classroom\n• E-141 — Classroom\n• E-142 — Classroom\n• E-145 — Storage",
   "z-101-0-e-150-151": "E150–E154\n• E-154 — Faculty Office\n• E-150 — Classroom\n• E-151 — Classroom\n• E-152 — Classroom",
   "z-101-0-e-160-162":
@@ -17,12 +17,12 @@ export const LABELS: Record<string, string> = {
   "z-101-0-e-pubfac-145":
     "Security & Copy Services\n• E-148 — PSU Security Office\n• E-145 — Copy Center\n• Male Toilet — Beside E-145 Copy Center\n• Male Toilet — Infront of E-145 Copy Center",
   "z-101-0-e-139-157-cafes-east":
-    "Cafés & Faculty Offices\n• A149 — Large Auditorium\n• MAITRE CHOUX\n• ALSHEGREY — Book store\n• E-155 — Faculty Office\n• E-156 — Faculty Office\n• E-157 — Faculty Office\n• E-136 — Faculty Office\n• E-137 — Faculty Office\n• E-138 — Faculty Office\n• E-139 — Faculty Office\n• A-160 — Shared Meeting Room (Men+Women)",
+    "Cafés & Faculty Offices\n• A149 — Large Auditorium\n• MAITRE CHOUX\n• ALSHEGREY — Book store\n• E-155 — Faculty Office\n• E-156 — Faculty Office\n• E-157 — Faculty Office\n• E-137 — Faculty Office\n• E-138 — Faculty Office\n• E-139 — Faculty Office\n• A-160 — Shared Meeting Room (Men+Women)",
   "z-101-0-a-141-imp": "Main Entrance Area\n• A141 — Prince Sultan Hall\n• Entrance 101 north",
-  "z-101-0-a-entr": "Entrance 101 South",
+  "z-101-0-a-entr": "Entrance\n• Entrance 101 South",
   "z-101-0-a-entr-imp": "Entrance — Important place",
   "z-101-0-a-ksi-only": "King Sejong Institute — access only",
-  "z-101-0-a-pr-media": "Public Relations & Media Center",
+  "z-101-0-a-pr-media": "Public Relations\n• Public Relation & Media Center",
   "z-101-1-e-250-252":
   "E-250–E-252\n• E-250 — Computer Lab\n• E-251 — Electric Circuits & Logic (Classroom)\n• E-252 — Computer Lab",
   "z-101-1-e-240-244":

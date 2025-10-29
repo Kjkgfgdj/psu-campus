@@ -30,7 +30,6 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "e-155": "z-101-0-e-139-157-cafes-east",
   "e-156": "z-101-0-e-139-157-cafes-east",
   "e-157": "z-101-0-e-139-157-cafes-east",
-  "e-136": "z-101-0-e-139-157-cafes-east",
   "e-137": "z-101-0-e-139-157-cafes-east",
   "e-138": "z-101-0-e-139-157-cafes-east",
   "e-139": "z-101-0-e-139-157-cafes-east",
@@ -53,6 +52,7 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "e-130": "z-101-0-e-130-136",
   "e-131": "z-101-0-e-130-136",
   "e-132": "z-101-0-e-130-136",
+  "e-136": "z-101-0-e-130-136",
   "e-140": "z-101-0-e-140-142",
   "e-141": "z-101-0-e-140-142",
   "e-142": "z-101-0-e-140-142",
@@ -65,6 +65,7 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "entrance-101-north": "z-101-0-a-141-imp",
   "king-sejong-institute": "z-101-0-a-ksi-only",
   "entrance-101": "z-101-0-a-entr",
+  "entrance-101-south": "z-101-0-a-entr",
   "public-relation-media-center": "z-101-0-a-pr-media",
 
   // Building 101 - First Floor

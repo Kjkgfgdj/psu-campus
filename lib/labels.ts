@@ -21,7 +21,7 @@ export const LABELS: Record<string, string> = {
   "z-101-0-a-141-imp": "Main Entrance Area\n• A141 — Prince Sultan Hall\n• Entrance 101 north",
   "z-101-0-a-entr": "Entrance\n• Entrance 101 South",
   "z-101-0-a-entr-imp": "Entrance — Important place",
-  "z-101-0-a-ksi-only": "King Sejong Institute — access only",
+  "z-101-0-a-ksi-only": "King Sejong Institute\n• King Sejong Institute",
   "z-101-0-a-pr-media": "Public Relations\n• Public Relation & Media Center",
   "z-101-1-e-250-252":
   "E-250–E-252\n• E-250 — Computer Lab\n• E-251 — Electric Circuits & Logic (Classroom)\n• E-252 — Computer Lab",

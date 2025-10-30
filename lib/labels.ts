@@ -58,7 +58,7 @@ export const LABELS: Record<string, string> = {
   "z-105-0-a-01-02":
   "A-01 — Tharaa Financial Center; A-02 — Physics & Chemistry Lab",
   "z-105-0-a-05-18":
-  "G-A05–G-A18 Classrooms & Labs\n• G-A05 — Computer Lab\n• G-A06 — Computer Lab\n• G-A08 — Classroom\n• G-A09 — Computer Lab\n• G-A10 — Class Room\n• G-A11 — Computer Lab\n• G-A12 — Class Room\n• G-A13 — Computer Lab\n• G-A14 — Class Room\n• G-A15 — Class Room\n• G-A16 — Computer Lab\n• G-A18 — Industry 4.0 Center\n• Male Toilet — Opposite G-A05 near toast point",
+  "G-A05–G-A18 Classrooms & Labs\n• G-A05 — Computer Lab\n• G-A06 — Computer Lab\n• G-A08 — Classroom\n• G-A09 — Computer Lab\n• G-A10 — Class Room\n• G-A11 — Computer Lab\n• G-A12 — Class Room\n• G-A13 — Computer Lab\n• G-A14 — Class Room\n• G-A15 — Class Room\n• G-A16 — Computer Lab\n• G-A18 — Industry 4.0 Center\n• Male Toilet — Opposite G-A05 near toast point\n• Female Toilet — Between G-A18 and MINI MARKET",
   "z-105-0-b-05-06":
   "G-B05–G-B06\n• G-B05 — PSU Prosthetic & Orthotic Center\n• G-B06 — Class Room\n• Male Toilet — Opposite to G-B06",
   "z-105-0-b-pubfac":
@@ -68,7 +68,7 @@ export const LABELS: Record<string, string> = {
   "z-105-0-food":
   "Food & Drinks\n• dr. CAFE COFFEE\n• Pizza WOW\n• KAFEEN\n• Ristretto Cafe\n• Starbucks\n• MINI MARKET\n• toast point\n• G-C04 — Storage",
   "z-105-0-bathroom":
-  "Prayer Hall Area\n• G-C03 — Prayer Hall\n• Male Toilet — Beside to Prayer Hall\n• Female Toilet — Between G-A18 and MINI MARKET",
+  "Prayer Hall Area\n• G-C03 — Prayer Hall\n• Male Toilet — Beside to Prayer Hall",
   // 105 — First floor
   "z-105-1-a-04-21": "1-A04–1-A22\n• 1-A04 — Classroom\n• 1-A05 — Classroom\n• 1-A06 — Computer LAB\n• 1-A07 — Bloomberg Finance Lab\n• 1-A08 — Computer LAB\n• 1-A10 — Store\n• 1-A11 — Computer LAB\n• 1-A12 — Classroom\n• 1-A13 — Classroom\n• 1-A14 — Computer LAB\n• 1-A15 — Classroom\n• 1-A16 — Computer LAB\n• 1-A17 — Classroom\n• 1-A18 — Classroom\n• 1-A19 — Computer LAB\n• 1-A20 — Storage\n• 1-A21 — Computer LAB\n• 1-A22 — Elec. Room\n• Student Lounge — Between 1-A08 and 1-A11",
   "z-105-1-a-01-03": "1-A01–1-A03\n• 1-A01 — Seminar Room\n• 1-A02 — Student Club\n• 1-A03 — Physics and Chemistry LAB",

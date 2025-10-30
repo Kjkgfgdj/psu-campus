@@ -138,10 +138,10 @@ export const LABELS: Record<string, string> = {
   • Director of the President's Office\n\
   • Administrative of the Rector Office\n\
   • Public Relations",
-  "z-104-1-north":
-    "First Floor — North corridor\n\
+    "z-104-1-north":
+    "First Floor — North Corridor\n\
     • FCR-16 — Classroom\n\
-    • Male Toilet — next to FCR-16\n\
+    • Male Toilet — Next to FCR-16\n\
     • FCR-15 — Classroom\n\
     • FCR-14 — Classroom\n\
     • FCR-13 — Classroom\n\
@@ -151,9 +151,9 @@ export const LABELS: Record<string, string> = {
     • FCR-9 — Classroom",
 
   "z-104-1-west":
-    "First Floor — West wing\n\
+    "First Floor — West Wing\n\
     • EAAC Storage Room\n\
-    • INSTITUTIONAL ACCREDITATION ROOM\n\
+    • Institutional Accreditation Room\n\
     • Assistant to The Vice President for Administrative & Financial Affairs",
 
   "z-104-1-east":
@@ -161,15 +161,15 @@ export const LABELS: Record<string, string> = {
     • (No marked rooms on this corridor)",
 
   "z-104-1-south":
-    "First Floor — South corridor\n\
-    • FCR-1 — Housing Department & Procurement Department\n\
-    • Male Toilet — next to FCR-1\n\
+    "First Floor — South Corridor\n\
+    • FCR-1 — Housing Department and Procurement Department\n\
+    • Male Toilet — Next to FCR-1\n\
     • FCR-2 — Student Accounts Department\n\
     • FCR-3 — Public Accounts Department\n\
-    • FCR-4 — Internal Audit & Account Manager\n\
-    • FCR-5 — Medical Insurance & Tickets; Government Relations\n\
+    • FCR-4 — Internal Audit and Account Manager\n\
+    • FCR-5 — Medical Insurance & Tickets and Government Relations\n\
     • FCR-6 — Human Resources Manager\n\
-    • FCR-7 — Maintenance Supervisor & Payroll Department\n\
+    • FCR-7 — Maintenance Supervisor and Payroll Department\n\
     • FCR-8 — Personnel Department",
     "z-104-0-north":
     "Ground Floor — North Wing\n\

@@ -42,19 +42,19 @@ export const LABELS: Record<string, string> = {
   "z-101-1-a-245-246": "Local Governance Center\n• A-246 — Center for Local Governance Office\n• Local Governance Center — Besides A-246\n• Male Toilet — Besides A-246",
   "z-101-1-a-201-205": "Deputy Vicerector\n• A-201 — Deputy Vicerector",
   "z-101-2-e-360-361":
-  "E-360–E-362 — Classrooms\n• E-360 — Classroom\n• E-361 — Classroom\n •E-364 Faculty Office",
+  "E-360–E-362\n• E-360 — Classroom\n• E-361 — Classroom\n• E-362 — Classroom",
   "z-101-2-e-350-352":
-  "E-350–E-352 — Classrooms\n• E-350 — Classroom\n• E-351 — Classroom\n• E-352 — Classroom",
+  "E-350–E-354\n• E-350 — Classroom\n• E-351 — Classroom\n• E-352 — Classroom\n• E-354 — Faculty Office",
   "z-101-2-e-340-342":
-  "E-340–E-342 — Classrooms\n• E-340 — Classroom\n• E-341 — Classroom\n• E-342 — Classroom",
+  "E-340–E-342\n• E-340 — Classroom\n• E-341 — Classroom\n• E-342 — Classroom",
   "z-101-2-e-330-332":
-  "E-330–E-332 + A-334 — Classrooms & Faculty Office\n• E-330 — Classroom\n• E-331 — Classroom\n• E-332 — Classroom\n• A-334 — Faculty Office",
+  "E-330–E-334\n• E-330 — Classroom\n• E-331 — Classroom\n• E-332 — Classroom\n• A-334 — Faculty Office",
   "z-101-2-e-305-311":
-  "E-305–E-311 — Labs & facilities\n• E-305 — Physics & Chemistry Lab\n• E-307 — Service Lab\n• E-309 — Physics & Chemistry Lab\n• E-311 — Energy, Water and Environment Lab\n• Male Toilet — public facilities",
+  "E-305–E-311 Labs\n• E-305 — Physics & Chemistry Lab\n• E-307 — Service Lab\n• E-309 — Physics & Chemistry Lab\n• E-311 — Energy, Water and Environment Lab\n• Male Toilet — Besides E-309\n• Faculty Offices — Opposite to E-307\n• Faculty Offices — Opposite to E-309",
   "z-101-2-e-323-325":
-  "E-323–E-325 — Faculty Offices\n• Male toilet (beside E-323)\n• Faculty offices beside E-323",
+  "E-323–E-325\n• E-323 — Faculty Office\n• E-324 — Faculty Office\n• E-325 — Faculty Office\n• Male Toilet — Besides E-323\n• Faculty Offices — Besides E-323",
   "z-101-2-e-336-357":
-  "North corridor — Faculty Offices\n• E-336–E-349 — Faculty Offices\n• E-354–E-357 — Faculty Offices\n• A-341–A-344 — Faculty Offices\n",
+  "North Corridor — Faculty Offices\n• E-336 — Faculty Office\n• E-337 — Faculty Office\n• E-338 — Faculty Office\n• A-341 — Faculty Office\n• A-342 — Faculty Office\n• A-343 — Faculty Office\n• A-344 — Faculty Office\n• E-345 — Faculty Office\n• E-346 — Faculty Office\n• E-347 — Faculty Office\n• E-348 — Faculty Office\n• E-349 — Faculty Office\n• E-355 — Faculty Office\n• E-356 — Faculty Office\n• E-357 — Faculty Office\n• E-358 — Faculty Office\n• E-359 — Faculty Office",
   "z-105-0-a-01-02":
   "A-01 — Tharaa Financial Center; A-02 — Physics & Chemistry Lab",
   "z-105-0-a-05-18":

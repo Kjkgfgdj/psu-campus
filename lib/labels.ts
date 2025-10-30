@@ -117,24 +117,26 @@ export const LABELS: Record<string, string> = {
   • Office of Vice President for Academic Affairs\n\
   • Male Toilet — Inside Office of Vice President for Academic Affairs",
   "z-104-3-north":
-  "Third Floor — North wing\n\
+  "Third Floor — North Wing\n\
   • Vice Rector for Academic Affairs & Research\n\
   • Vice Rector for Administrate & Financial Affairs\n\
-  • Services beside the door of Vice Rector for Administrate & Financial Affairs\n\
-  • Male Toilet beside the door of Vice Rector for Administrate & Financial Affairs",
+  • Services — Beside the door of Vice Rector for Administrate & Financial Affairs\n\
+  • Male Toilet — Beside the door of Vice Rector for Administrate & Financial Affairs",
 
 "z-104-3-west":
-  "Third Floor — West wing\n\
-  • Board Meeting Room",
+  "Third Floor — West Wing\n\
+  • Board Meeting Room\n\
+  • Male Toilet — Beside the door of Board Meeting Room",
 
 "z-104-3-east":
-  "Third Floor — East wing\n\
-  • Chairman of the Board of Trustees of the University",
+  "Third Floor — East Wing\n\
+  • Chairman of the Board of Trustees of the University\n\
+  • Office of the Chairman of the Board of Trustees of the University",
 
 "z-104-3-south":
-  "Third Floor — South wing\n\
-  • Services besides president's office\n\
-  • Male Toilet besides president's office\n\
+  "Third Floor — South Wing\n\
+  • Services — Besides President's office\n\
+  • Male Toilet — Besides President's office\n\
   • President's Office\n\
   • Director of the President's Office\n\
   • Administrative of the Rector Office\n\

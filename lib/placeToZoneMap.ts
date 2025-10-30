@@ -244,11 +244,20 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "pray-area": "z-104-2-east-vert",
 
   // Building 104 - Third Floor
-  "presidents-office": "z-104-3-south",
   "vice-rector-for-academic-affairs-research": "z-104-3-north",
   "vice-rector-for-administrate-financial-affairs": "z-104-3-north",
+  "services-beside-the-door-of-vice-rector-for-administrate-financial-affairs": "z-104-3-north",
+  "male-toilet-beside-the-door-of-vice-rector-for-administrate-financial-affairs": "z-104-3-north",
   "board-meeting-room": "z-104-3-west",
+  "male-toilet-beside-the-door-of-board-meeting-room": "z-104-3-west",
   "chairman-of-the-board-of-trustees-of-the-university": "z-104-3-east",
+  "office-of-chairman-of-the-board-of-trustees-of-the-university": "z-104-3-east",
+  "services-besides-presidents-office": "z-104-3-south",
+  "male-toilet-besides-presidents-office": "z-104-3-south",
+  "presidents-office": "z-104-3-south",
+  "director-of-the-presidents-office": "z-104-3-south",
+  "administrative-of-the-rector-office": "z-104-3-south",
+  "public-relations": "z-104-3-south",
 
   // Building 105 - Ground Floor
   "g-a01": "z-105-0-a-01-02",

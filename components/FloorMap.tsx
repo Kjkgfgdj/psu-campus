@@ -46,6 +46,7 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
   const [msg, setMsg] = useState<string | null>(null);
   const [overlayLoaded, setOverlayLoaded] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+  const hasAutoOpenedRef = useRef(false);
   const baseSrcBase = `/maps/${building}/${building}_${floor}-base`;
   const overlayUrl = `/maps/${building}/${building}_${floor}-overlay.svg?v=${refreshKey}`;
   
@@ -57,9 +58,9 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
 
   useEffect(() => () => cleanupRef.current?.(), []);
   
-  // Auto-open dialog when parameters are present
+  // Auto-open dialog when parameters are present (only once per search)
   useEffect(() => {
-    if (!autoOpen || !placeSlug || !overlayLoaded) return;
+    if (!autoOpen || !placeSlug || !overlayLoaded || hasAutoOpenedRef.current) return;
     
     // Small delay to ensure everything is loaded
     const timer = setTimeout(() => {
@@ -83,6 +84,17 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
             else setVideoUrl(d.videoUrl);
           })
           .catch(() => setMsg("Failed to load video."));
+        
+        // Mark that we've auto-opened
+        hasAutoOpenedRef.current = true;
+        
+        // Clean up URL after opening
+        if (typeof window !== 'undefined') {
+          const url = new URL(window.location.href);
+          url.searchParams.delete('autoOpen');
+          url.searchParams.delete('slug');
+          window.history.replaceState({}, '', url.toString());
+        }
       }
     }, 300);
     

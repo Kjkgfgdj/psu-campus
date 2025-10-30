@@ -6,6 +6,7 @@ import { PlacesList } from "@/components/PlacesList"
 import { Chip } from "@/components/ui/Chip"
 import type { Place } from "@/lib/types"
 import { Search, X } from "lucide-react"
+import { useDebouncedValue } from "@/components/useDebouncedValue"
 
 type Props = {
   places?: Place[]
@@ -74,18 +75,35 @@ export default function SearchClient({ places, isLoading, error }: Props) {
   const { get, set } = useQuerySync()
 
   // URL-driven values
-  const qParam = (get('q') ?? '').trim()
+  const urlQParam = (get('q') ?? '').trim()
   const catParam = (get('cat') ?? '').toLowerCase()
   const buildingParam = get('building') ?? ''
   const floorParam = get('floor') ?? ''
 
   const activeCategoryLabel = CAT_MAP[catParam] ?? ''
+  
+  // Local state for instant typing
+  const [searchQuery, setSearchQuery] = useState(urlQParam)
+  
+  // Debounce the search query to prevent lag while typing
+  const debouncedQuery = useDebouncedValue(searchQuery, 400)
+  
   const [selectedBuilding, setSelectedBuilding] = useState<number | null>(
     buildingParam ? (Number.isFinite(Number(buildingParam)) ? Number(buildingParam) : null) : null,
   )
   const [selectedFloor, setSelectedFloor] = useState<number | null>(
     floorParam !== '' ? (Number.isFinite(Number(floorParam)) ? Number(floorParam) : null) : null,
   )
+
+  // Sync debounced query to URL
+  useEffect(() => {
+    set('q', debouncedQuery || undefined)
+  }, [debouncedQuery, set])
+
+  // Sync URL changes back to local state (e.g., browser back/forward)
+  useEffect(() => {
+    setSearchQuery(urlQParam)
+  }, [urlQParam])
 
   // Keep local controlled state in sync with URL when it changes externally
   useEffect(() => {
@@ -151,14 +169,14 @@ export default function SearchClient({ places, isLoading, error }: Props) {
       next = next.filter(p => Number(p.floor) === selectedFloor)
     }
 
-    // 4) Name-only q
-    if (qParam) {
-      const q = qParam.toLowerCase()
+    // 4) Name-only q (use debounced query for smooth filtering)
+    if (debouncedQuery) {
+      const q = debouncedQuery.toLowerCase()
       next = next.filter(p => (p.name ?? '').toLowerCase().includes(q))
     }
 
     return next
-  }, [items, catParam, selectedBuilding, selectedFloor, qParam, toSlug])
+  }, [items, catParam, selectedBuilding, selectedFloor, debouncedQuery, toSlug])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
@@ -172,14 +190,14 @@ export default function SearchClient({ places, isLoading, error }: Props) {
             <div className="relative flex items-center gap-3 bg-white rounded-2xl shadow-xl ring-2 ring-slate-200/50 px-6 py-4">
               <Search className="h-6 w-6 text-green-600" />
               <input
-                value={qParam}
-                onChange={(e) => set('q', e.target.value || undefined)}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="flex-1 text-lg font-medium text-slate-900 placeholder-slate-500 focus:outline-none bg-transparent"
                 placeholder="Search places..."
               />
-              {qParam && (
+              {searchQuery && (
                 <button
-                  onClick={() => set('q', undefined)}
+                  onClick={() => setSearchQuery('')}
                   className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"
                 >
                   <X className="h-4 w-4 text-slate-400" />

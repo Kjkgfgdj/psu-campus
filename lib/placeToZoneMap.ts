@@ -25,6 +25,8 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "photocopy": "z-101-0-a-151-154-cafes",
   "e-148": "z-101-0-e-pubfac-145",
   "e-145": "z-101-0-e-pubfac-145",
+  "male-toilet-beside-e-145-copy-center-door": "z-101-0-e-pubfac-145",
+  "male-toilet-infront-of-e-145-copy-center-door": "z-101-0-e-pubfac-145",
   "male-toilet-opposite-and-right-to-to-e-130": "z-101-0-e-fo-3-west",
   "faculty-office-1-opposite-and-right-to-to-e-130": "z-101-0-e-fo-3-west",
   "faculty-office-2-opposite-and-right-to-to-e-130": "z-101-0-e-fo-3-west",
@@ -276,6 +278,7 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "g-a16": "z-105-0-a-05-18",
   "g-a18": "z-105-0-a-05-18",
   "male-toilet-105-0-a05": "z-105-0-a-05-18", // Male Toilet opposite G-A05 near toast point
+  "female-toilet": "z-105-0-a-05-18", // Female Toilet between G-A18 and MINI MARKET
   "g-b01": "z-105-0-b-pubfac",
   "g-b02": "z-105-0-b-pubfac",
   "g-b03": "z-105-0-b-pubfac",

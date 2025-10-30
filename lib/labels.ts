@@ -58,7 +58,7 @@ export const LABELS: Record<string, string> = {
   "z-105-0-a-01-02":
   "A-01 — Tharaa Financial Center; A-02 — Physics & Chemistry Lab",
   "z-105-0-a-05-18":
-  "G-A05–G-A18 Classrooms & Labs\n• G-A05 — Computer Lab\n• G-A06 — Computer Lab\n• G-A08 — Classroom\n• G-A09 — Computer Lab\n• G-A10 — Class Room\n• G-A11 — Computer Lab\n• G-A12 — Class Room\n• G-A13 — Computer Lab\n• G-A14 — Class Room\n• G-A15 — Class Room\n• G-A16 — Computer Lab\n• G-A18 — Industry 4.0 Center\n• Male Toilet — Opposite G-A05 near toast point",
+  "G-A05–G-A18 Classrooms & Labs\n• G-A05 — Computer Lab\n• G-A06 — Computer Lab\n• G-A08 — Classroom\n• G-A09 — Computer Lab\n• G-A10 — Class Room\n• G-A11 — Computer Lab\n• G-A12 — Class Room\n• G-A13 — Computer Lab\n• G-A14 — Class Room\n• G-A15 — Class Room\n• G-A16 — Computer Lab\n• G-A18 — Industry 4.0 Center\n• Male Toilet — Opposite G-A05 near toast point\n• Female Toilet — Between G-A18 and MINI MARKET",
   "z-105-0-b-05-06":
   "G-B05–G-B06\n• G-B05 — PSU Prosthetic & Orthotic Center\n• G-B06 — Class Room\n• Male Toilet — Opposite to G-B06",
   "z-105-0-b-pubfac":

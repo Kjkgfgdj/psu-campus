@@ -176,7 +176,6 @@ export const LABELS: Record<string, string> = {
     • FCR-8 — Personnel Department",
     "z-104-0-north":
     "Ground Floor — North Wing\n\
-    • University Exhibition Hall\n\
     • VIP Lounge\n\
     • Cafeteria 101 ground floor name to be added\n\
     • Ristretto Cafe\n\
@@ -184,7 +183,8 @@ export const LABELS: Record<string, string> = {
 
   "z-104-0-west":
     "Ground Floor — West Wing\n\
-    • Center for Sustainability and Climate",
+    • Center for Sustainability and Climate\n\
+    • University Exhibition Hall",
 
   "z-104-0-east":
     "Ground Floor — East Entrance\n\

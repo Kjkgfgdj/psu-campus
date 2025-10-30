@@ -112,6 +112,14 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
             rect.style.stroke = '#16a34a'; // Green border
             rect.style.strokeWidth = '3';
             rect.style.animation = 'pulse 2s ease-in-out infinite';
+            rect.setAttribute('rx', '8'); // Rounded corners
+            rect.setAttribute('ry', '8');
+            // Mark this as a search-highlighted zone
+            rect.dataset.searchHighlight = 'true';
+            // Store green values for restoration after hover
+            rect.dataset.greenFill = 'rgba(34, 197, 94, 0.3)';
+            rect.dataset.greenStroke = '#16a34a';
+            rect.dataset.greenStrokeWidth = '3';
           });
           
           // Add pulse animation if not already in document

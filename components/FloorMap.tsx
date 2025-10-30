@@ -47,6 +47,7 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
   const [overlayLoaded, setOverlayLoaded] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const hasAutoOpenedRef = useRef(false);
+  const lastAutoOpenSlugRef = useRef<string | null>(null);
   const baseSrcBase = `/maps/${building}/${building}_${floor}-base`;
   const overlayUrl = `/maps/${building}/${building}_${floor}-overlay.svg?v=${refreshKey}`;
   
@@ -54,7 +55,13 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
   useEffect(() => {
     setRefreshKey(Date.now());
     setOverlayLoaded(false);
-  }, [building, floor]);
+    
+    // Reset auto-open flag if navigating to a new floor with different autoOpen slug
+    if (placeSlug && placeSlug !== lastAutoOpenSlugRef.current) {
+      hasAutoOpenedRef.current = false;
+      lastAutoOpenSlugRef.current = placeSlug;
+    }
+  }, [building, floor, placeSlug]);
 
   useEffect(() => () => cleanupRef.current?.(), []);
   

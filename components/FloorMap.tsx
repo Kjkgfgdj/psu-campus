@@ -107,6 +107,65 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
     
     return () => clearTimeout(timer);
   }, [autoOpen, placeSlug, overlayLoaded, building, floor]);
+  
+  // Apply green highlighting when overlay is loaded and we have a search result
+  useEffect(() => {
+    if (!autoOpen || !placeSlug || !overlayLoaded) return;
+    
+    const doc = objRef.current?.contentDocument;
+    if (!doc) return;
+    
+    // Clear all previous search highlights first
+    const allRects = doc.querySelectorAll<SVGRectElement>("rect[id^='hitbox']");
+    allRects.forEach((rect) => {
+      if (rect.dataset.searchHighlight === 'true') {
+        rect.style.fill = rect.dataset.originalFill || 'transparent';
+        rect.style.stroke = rect.dataset.originalStroke || 'none';
+        rect.style.strokeWidth = rect.dataset.originalStrokeWidth || '0';
+        rect.style.animation = '';
+        rect.setAttribute('rx', rect.dataset.originalRx || '0');
+        rect.setAttribute('ry', rect.dataset.originalRy || '0');
+        delete rect.dataset.searchHighlight;
+        delete rect.dataset.greenFill;
+        delete rect.dataset.greenStroke;
+        delete rect.dataset.greenStrokeWidth;
+      }
+    });
+    
+    // Apply green highlighting to new zone
+    const zoneId = getZoneIdForPlace(placeSlug);
+    if (zoneId) {
+      const zoneGroup = doc.querySelector(`g[id="${zoneId}"]`);
+      if (zoneGroup) {
+        const rects = zoneGroup.querySelectorAll('rect');
+        rects.forEach((rect) => {
+          rect.style.fill = 'rgba(34, 197, 94, 0.3)';
+          rect.style.stroke = '#16a34a';
+          rect.style.strokeWidth = '3';
+          rect.style.animation = 'pulse 2s ease-in-out infinite';
+          rect.setAttribute('rx', '8');
+          rect.setAttribute('ry', '8');
+          rect.dataset.searchHighlight = 'true';
+          rect.dataset.greenFill = 'rgba(34, 197, 94, 0.3)';
+          rect.dataset.greenStroke = '#16a34a';
+          rect.dataset.greenStrokeWidth = '3';
+        });
+        
+        // Add pulse animation if not already in document
+        if (!doc.querySelector('#pulse-animation')) {
+          const style = doc.createElementNS('http://www.w3.org/2000/svg', 'style');
+          style.id = 'pulse-animation';
+          style.textContent = `
+            @keyframes pulse {
+              0%, 100% { opacity: 0.6; }
+              50% { opacity: 1; }
+            }
+          `;
+          doc.querySelector('svg')?.appendChild(style);
+        }
+      }
+    }
+  }, [autoOpen, placeSlug, overlayLoaded]);
 
   const onOverlayLoad = useCallback(() => {
     cleanupRef.current?.();
@@ -117,45 +176,6 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
     setOverlayLoaded(true);
 
     const rects = Array.from(doc.querySelectorAll<SVGRectElement>("rect[id^='hitbox']"));
-    
-    // Highlight zone if it was auto-opened from search
-    if (autoOpen && placeSlug) {
-      const zoneId = getZoneIdForPlace(placeSlug);
-      if (zoneId) {
-        const zoneGroup = doc.querySelector(`g[id="${zoneId}"]`);
-        if (zoneGroup) {
-          // Add highlight styling to the zone
-          const rects = zoneGroup.querySelectorAll('rect');
-          rects.forEach((rect) => {
-            rect.style.fill = 'rgba(34, 197, 94, 0.3)'; // Green highlight
-            rect.style.stroke = '#16a34a'; // Green border
-            rect.style.strokeWidth = '3';
-            rect.style.animation = 'pulse 2s ease-in-out infinite';
-            rect.setAttribute('rx', '8'); // Rounded corners
-            rect.setAttribute('ry', '8');
-            // Mark this as a search-highlighted zone
-            rect.dataset.searchHighlight = 'true';
-            // Store green values for restoration after hover
-            rect.dataset.greenFill = 'rgba(34, 197, 94, 0.3)';
-            rect.dataset.greenStroke = '#16a34a';
-            rect.dataset.greenStrokeWidth = '3';
-          });
-          
-          // Add pulse animation if not already in document
-          if (!doc.querySelector('#pulse-animation')) {
-            const style = doc.createElementNS('http://www.w3.org/2000/svg', 'style');
-            style.id = 'pulse-animation';
-            style.textContent = `
-              @keyframes pulse {
-                0%, 100% { opacity: 0.6; }
-                50% { opacity: 1; }
-              }
-            `;
-            doc.querySelector('svg')?.appendChild(style);
-          }
-        }
-      }
-    }
 
     const handleActivate = (el: SVGRectElement) => {
       const group = el.closest("g[id^='z-']") as SVGGElement | null;

@@ -177,7 +177,6 @@ export const LABELS: Record<string, string> = {
     "z-104-0-north":
     "Ground Floor — North Wing\n\
     • VIP Lounge\n\
-    • Cafeteria 101 ground floor name to be added\n\
     • Ristretto Cafe\n\
     • Male Toilet — Beside Ristretto Cafe",
 

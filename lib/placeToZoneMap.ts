@@ -167,9 +167,11 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "e-351": "z-101-2-e-350-352",
   "e-352": "z-101-2-e-350-352",
   "e-354": "z-101-2-e-350-352",
+  "faculty-offices-opposite-to-e-350-and-e-351-and-e-350": "z-101-2-e-350-352",
   "e-360": "z-101-2-e-360-361",
   "e-361": "z-101-2-e-360-361",
   "e-362": "z-101-2-e-360-361",
+  "faculty-offices-opposite-to-e-360-e-361-e-362": "z-101-2-e-360-361",
 
   // Building 104 - Ground Floor
   "dean-of-deanship-of-admissions-and-registration": "z-104-0-south",

@@ -42,9 +42,9 @@ export const LABELS: Record<string, string> = {
   "z-101-1-a-245-246": "Local Governance Center\n• A-246 — Center for Local Governance Office\n• Local Governance Center — Besides A-246\n• Male Toilet — Besides A-246",
   "z-101-1-a-201-205": "Deputy Vicerector\n• A-201 — Deputy Vicerector",
   "z-101-2-e-360-361":
-  "E-360–E-362\n• E-360 — Classroom\n• E-361 — Classroom\n• E-362 — Classroom",
+  "E-360–E-362\n• E-360 — Classroom\n• E-361 — Classroom\n• E-362 — Classroom\n• Faculty Offices — Opposite to E-360 E-361 E-362",
   "z-101-2-e-350-352":
-  "E-350–E-354\n• E-350 — Classroom\n• E-351 — Classroom\n• E-352 — Classroom\n• E-354 — Faculty Office",
+  "E-350–E-354\n• E-350 — Classroom\n• E-351 — Classroom\n• E-352 — Classroom\n• E-354 — Faculty Office\n• Faculty Offices — Opposite to E-350 and E-351 and E-350",
   "z-101-2-e-340-342":
   "E-340–E-342\n• E-340 — Classroom\n• E-341 — Classroom\n• E-342 — Classroom",
   "z-101-2-e-330-332":

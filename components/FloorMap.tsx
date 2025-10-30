@@ -48,6 +48,7 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
   const [refreshKey, setRefreshKey] = useState(0);
   const hasAutoOpenedRef = useRef(false);
   const lastAutoOpenSlugRef = useRef<string | null>(null);
+  const [highlightedZoneId, setHighlightedZoneId] = useState<string | null>(null);
   const baseSrcBase = `/maps/${building}/${building}_${floor}-base`;
   const overlayUrl = `/maps/${building}/${building}_${floor}-overlay.svg?v=${refreshKey}`;
   
@@ -108,9 +109,19 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
     return () => clearTimeout(timer);
   }, [autoOpen, placeSlug, overlayLoaded, building, floor]);
   
-  // Apply green highlighting when overlay is loaded and we have a search result
+  // Store the zone to highlight when we have a search result
   useEffect(() => {
-    if (!autoOpen || !placeSlug || !overlayLoaded) return;
+    if (autoOpen && placeSlug) {
+      const zoneId = getZoneIdForPlace(placeSlug);
+      if (zoneId) {
+        setHighlightedZoneId(zoneId);
+      }
+    }
+  }, [autoOpen, placeSlug]);
+  
+  // Apply green highlighting when overlay is loaded and we have a zone to highlight
+  useEffect(() => {
+    if (!highlightedZoneId || !overlayLoaded) return;
     
     const doc = objRef.current?.contentDocument;
     if (!doc) return;
@@ -132,40 +143,37 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
       }
     });
     
-    // Apply green highlighting to new zone
-    const zoneId = getZoneIdForPlace(placeSlug);
-    if (zoneId) {
-      const zoneGroup = doc.querySelector(`g[id="${zoneId}"]`);
-      if (zoneGroup) {
-        const rects = zoneGroup.querySelectorAll('rect');
-        rects.forEach((rect) => {
-          rect.style.fill = 'rgba(34, 197, 94, 0.3)';
-          rect.style.stroke = '#16a34a';
-          rect.style.strokeWidth = '3';
-          rect.style.animation = 'pulse 2s ease-in-out infinite';
-          rect.setAttribute('rx', '8');
-          rect.setAttribute('ry', '8');
-          rect.dataset.searchHighlight = 'true';
-          rect.dataset.greenFill = 'rgba(34, 197, 94, 0.3)';
-          rect.dataset.greenStroke = '#16a34a';
-          rect.dataset.greenStrokeWidth = '3';
-        });
-        
-        // Add pulse animation if not already in document
-        if (!doc.querySelector('#pulse-animation')) {
-          const style = doc.createElementNS('http://www.w3.org/2000/svg', 'style');
-          style.id = 'pulse-animation';
-          style.textContent = `
-            @keyframes pulse {
-              0%, 100% { opacity: 0.6; }
-              50% { opacity: 1; }
-            }
-          `;
-          doc.querySelector('svg')?.appendChild(style);
-        }
+    // Apply green highlighting to the zone
+    const zoneGroup = doc.querySelector(`g[id="${highlightedZoneId}"]`);
+    if (zoneGroup) {
+      const rects = zoneGroup.querySelectorAll('rect');
+      rects.forEach((rect) => {
+        rect.style.fill = 'rgba(34, 197, 94, 0.3)';
+        rect.style.stroke = '#16a34a';
+        rect.style.strokeWidth = '3';
+        rect.style.animation = 'pulse 2s ease-in-out infinite';
+        rect.setAttribute('rx', '8');
+        rect.setAttribute('ry', '8');
+        rect.dataset.searchHighlight = 'true';
+        rect.dataset.greenFill = 'rgba(34, 197, 94, 0.3)';
+        rect.dataset.greenStroke = '#16a34a';
+        rect.dataset.greenStrokeWidth = '3';
+      });
+      
+      // Add pulse animation if not already in document
+      if (!doc.querySelector('#pulse-animation')) {
+        const style = doc.createElementNS('http://www.w3.org/2000/svg', 'style');
+        style.id = 'pulse-animation';
+        style.textContent = `
+          @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+          }
+        `;
+        doc.querySelector('svg')?.appendChild(style);
       }
     }
-  }, [autoOpen, placeSlug, overlayLoaded]);
+  }, [highlightedZoneId, overlayLoaded]);
 
   const onOverlayLoad = useCallback(() => {
     cleanupRef.current?.();

@@ -1,4 +1,8 @@
-<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+<style>
+  /* Make all arrows non-interactive so clicks go to hitboxes only */
+  path { pointer-events: none; }
+</style>
 <g id="101_1">
 <g id="zones">
 <g id="z-101-1-e-250-252">

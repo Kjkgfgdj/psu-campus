@@ -278,7 +278,6 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "g-a16": "z-105-0-a-05-18",
   "g-a18": "z-105-0-a-05-18",
   "male-toilet-105-0-a05": "z-105-0-a-05-18", // Male Toilet opposite G-A05 near toast point
-  "female-toilet": "z-105-0-a-05-18", // Female Toilet between G-A18 and MINI MARKET
   "g-b01": "z-105-0-b-pubfac",
   "g-b02": "z-105-0-b-pubfac",
   "g-b03": "z-105-0-b-pubfac",
@@ -308,6 +307,7 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "g-c01": "z-105-0-b-19-26",
   "g-c03": "z-105-0-bathroom",
   "male-toilet-beside-to-prayer-hall": "z-105-0-bathroom",
+  "female-toilet": "z-105-0-bathroom",
   "dr-cafe-coffee": "z-105-0-food",
   "pizza-wow": "z-105-0-food",
   "kafeen": "z-105-0-food",

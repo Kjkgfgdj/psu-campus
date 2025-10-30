@@ -46,7 +46,7 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
   const [msg, setMsg] = useState<string | null>(null);
   const [overlayLoaded, setOverlayLoaded] = useState(false);
   const baseSrcBase = `/maps/${building}/${building}_${floor}-base`;
-  const overlayUrl = `/maps/${building}/${building}_${floor}-overlay.svg?v=${building}-${floor}`;
+  const overlayUrl = `/maps/${building}/${building}_${floor}-overlay.svg?v=${Date.now()}`;
 
   useEffect(() => () => cleanupRef.current?.(), []);
   

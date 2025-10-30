@@ -66,7 +66,7 @@ export const LABELS: Record<string, string> = {
   "z-105-0-b-19-26": "Classrooms & Auditorium\n• G-B19 — Class Room\n• G-B20 — Class Room\n• G-B21 — Class Room\n• G-B22 — Elec. Room\n• G-B23 — Class Room\n• G-B24 — Class Room\n• G-B25 — Comm. Room\n• G-B26 — Product Development Center\n• G-C01 — Auditorium - Lecture Hall",
   "z-105-0-examhale2": "Exam Hall (2)\n• Exam Hall (2)",
   "z-105-0-food":
-  "Food & Drinks\n• dr. CAFE COFFEE\n• Pizza WOW\n• KAFEEN\n• Ristretto Cafe\n• Starbucks\n• MINI MARKET\n• toast point\n• G-C04 — Storage\n• Female Toilet — Between G-A18 and MINI MARKET",
+  "Food & Drinks\n• dr. CAFE COFFEE\n• Pizza WOW\n• KAFEEN\n• Ristretto Cafe\n• Starbucks\n• MINI MARKET\n• toast point\n• G-C04 — Storage",
   "z-105-0-bathroom":
   "Prayer Hall Area\n• G-C03 — Prayer Hall\n• Male Toilet — Beside to Prayer Hall",
   // 105 — First floor

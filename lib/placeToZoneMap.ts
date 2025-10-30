@@ -317,7 +317,6 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "toast-point": "z-105-0-food",
   "g-c04": "z-105-0-food",
   "exam-hall-2": "z-105-0-examhale2",
-  "female-toilet": "z-105-0-food",
   "male-toilet-opposite-to-g-b06": "z-105-0-b-05-06",
 
   // Building 105 - First Floor

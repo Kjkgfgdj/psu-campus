@@ -88,19 +88,19 @@ export const LABELS: Record<string, string> = {
   "z-105-2-a-09-35": "Department Chairs & Offices\n• 2-A06 — Dean Of College of Law\n• 2-A07 — Dean of College of Computer & Information Science\n• 2-A08 — Meeting Room\n• 2-A09 — Director of CCIS Research Aide to the Rector\n• 2-A10 — Chair of the Law Department\n• 2-A11 — Chair of Department of Computer Science\n• 2-A12 — Chair of Department of Information Systems\n• 2-A13 — Language LAB\n• 2-A14 — Faculty Office\n• 2-A15 — Chair of Electrical Engineering\n• 2-A16 — Chair of Engineering Management Department\n• 2-A17 — Store\n• 2-A20 — Faculty Office\n• 2-A21 — Faculty Office\n• 2-A22 — Chair of Management Department\n• 2-A23 — Chair of Marketing Department\n• 2-A24 — Faculty Office\n• 2-A25 — Faculty Office\n• 2-A30 — Faculty Office\n• 2-A31 — Faculty Office\n• 2-A32 — Faculty Office\n• 2-A33 — Director of Community Services & Continuing Education Center\n• 2-A34 — Staff of Community Services & Continuing Education Center\n• 2-A35 — Faculty Office\n• 2-A36 — Meeting Room\n• 2-A37 — Elec. Room\n• Male Toilet — Opposite to 2-A37",
   "z-105-2-b-04-28": "B-Wing Offices & Labs\n• 2-B04 — Science & Technology LAB\n• 2-B05 — Store\n• 2-B06 — Director of the MBA Program\n• 2-B07 — Language LAB\n• 2-B08 — Chair of Accounting Department\n• 2-B09 — Chair Of Finance Department\n• 2-B10 — Renewable Energy Lab\n• 2-B11 — Head Of Department General Sciences & Mathematics\n• 2-B12 — Archive\n• 2-B13 — Comm. Room\n• 2-B14 — Elec. Room\n• 2-B17 — Director CIS MS Programs\n• 2-B24 — Faculty Office\n• 2-B25 — Comm. Room\n• 2-B26 — TLC\n• 2-B27 — Elec. Room\n• 2-B28 — Director of (MEM) Program",
   "z-104-2-north-scr-1-4":
-  "Second Floor — North corridor (SCR-1…SCR-4)\n\
-  • SCR-1 — Office (name TBD)\n\
+  "Second Floor — North Corridor (SCR-1 to SCR-4)\n\
+  • SCR-1 — Assistant to the Vice President for Academic Affairs\n\
   • SCR-2A — Classroom\n\
   • SCR-2B — Classroom\n\
   • SCR-3A — Classroom\n\
   • SCR-3B — Classroom\n\
-  • SCR-4 — Office for women (name TBD)\n\
-  • Male Toilet — next to SCR-4",
+  • SCR-4 — Office for women\n\
+  • Male Toilet — Next to SCR-4",
 
 "z-104-2-south-scr-5-8":
-  "Second Floor — South corridor (SCR-5…SCR-8)\n\
+  "Second Floor — South Corridor (SCR-5 to SCR-8)\n\
   • SCR-5 — Classroom\n\
-  • Male Toilet — next to SCR-5\n\
+  • Male Toilet — Next to SCR-5\n\
   • SCR-6A — Classroom\n\
   • SCR-6B — Classroom\n\
   • SCR-7A — Classroom\n\
@@ -108,13 +108,14 @@ export const LABELS: Record<string, string> = {
   • SCR-8 — Classroom",
 
 "z-104-2-east-vert":
-  "East vertical corridor — links North & South halls\n\
-  • Mosque (east side)\n\
-  • Prayer Area (near central cross-axis)\n\
-  • Nearby: Public Relations Unit; Office of VP for Academic Affairs",
+  "Second Floor — East Vertical Corridor\n\
+  • Pray Area — Opposite to door of both SCR-1 and SCR-8",
 
 "z-104-2-west-vert":
-  "West vertical corridor — links North & South halls",
+  "Second Floor — West Vertical Corridor\n\
+  • Public Relations Unit\n\
+  • Office of Vice President for Academic Affairs\n\
+  • Male Toilet — Inside Office of Vice President for Academic Affairs",
   "z-104-3-north":
   "Third Floor — North wing\n\
   • Vice Rector for Academic Affairs & Research\n\

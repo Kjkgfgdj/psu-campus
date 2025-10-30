@@ -172,31 +172,29 @@ export const LABELS: Record<string, string> = {
     • FCR-7 — Maintenance Supervisor & Payroll Department\n\
     • FCR-8 — Personnel Department",
     "z-104-0-north":
-    "Ground Floor — North wing\n\
-    • Male Toilet — beside Center for Sustainability & Climate\n\
-    • University Exhibition Hall\n\
+    "Ground Floor — North Wing\n\
     • VIP Lounge\n\
+    • Cafeteria 101 ground floor name to be added\n\
     • Ristretto Cafe\n\
-    • Offices (names TBD) — near Ristretto Cafe",
+    • Male Toilet — Beside Ristretto Cafe",
 
   "z-104-0-west":
-    "Ground Floor — West wing\n\
-    • Center for Sustainability & Climate\n\
-    • University Exhibition Hall",
+    "Ground Floor — West Wing\n\
+    • Center for Sustainability and Climate",
 
   "z-104-0-east":
-    "Ground Floor — East entrance\n\
-    • Entrance to Building 105",
+    "Ground Floor — East Entrance\n\
+    • Entrance 105",
 
   "z-104-0-south":
-    "Ground Floor — South corridor (Deanship of Admissions & Registration)\n\
-    • Dean of Deanship of Admissions & Registration\n\
-    • Statistical Unit — Deanship of A&R\n\
-    • Vice Dean's Office — Deanship of A&R\n\
-    • Student Registration — Deanship of A&R\n\
-    • Admission & Registration — Deanship of A&R\n\
-    • Student Admission — Deanship of A&R\n\
-    • Male Toilet — beside Center for Sustainability & Climate",
+    "Ground Floor — South Corridor\n\
+    • Dean of Deanship of Admissions and Registration\n\
+    • Statistical Unit\n\
+    • Vice Dean's Office\n\
+    • Student Registration\n\
+    • Admission & Registration\n\
+    • Student Admission\n\
+    • Male Toilet — Besides Center for Sustainability and Climate",
 
 
 

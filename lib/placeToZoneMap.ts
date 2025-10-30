@@ -186,17 +186,19 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "faculty-offices-opposite-to-e-360-e-361-e-362": "z-101-2-e-360-361",
 
   // Building 104 - Ground Floor
-  "dean-of-deanship-of-admissions-and-registration": "z-104-0-south",
+  "vip-lounge": "z-104-0-north",
+  "cafeteria-101-ground-floor-name-to-be-added": "z-104-0-north",
+  "ristretto-cafe-104": "z-104-0-north",
+  "male-toilet-beside-besides-ristretto-cafe": "z-104-0-north",
+  "center-for-sustainability-and-climate": "z-104-0-west",
   "enterace-105": "z-104-0-east",
+  "dean-of-deanship-of-admissions-and-registration": "z-104-0-south",
   "statistical-unit": "z-104-0-south",
   "vice-deans-office": "z-104-0-south",
   "student-registration": "z-104-0-south",
   "admission-registration": "z-104-0-south",
   "student-admission": "z-104-0-south",
-  "center-for-sustainability-and-climate": "z-104-0-west",
-  "university-exhibition-hall": "z-104-0-north",
-  "vip-lounge": "z-104-0-north",
-  "cafeteria-101-ground-floor-name-to-be-added": "z-104-0-north",
+  "male-toilet-besides-center-for-sustainability-and-climate": "z-104-0-south",
 
   // Building 104 - First Floor
   "fcr-1-housing-department-and-procurement-department": "z-104-1-south",
@@ -288,7 +290,7 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "dr-cafe-coffee": "z-105-0-food",
   "pizza-wow": "z-105-0-food",
   "kafeen": "z-105-0-food",
-  "ristretto-cafe": "z-105-0-food",
+  "ristretto-cafe-105": "z-105-0-food",
   "starbucks": "z-105-0-food",
   "mini-market": "z-105-0-food",
   "toast-point": "z-105-0-food",

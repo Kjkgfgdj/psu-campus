@@ -45,8 +45,15 @@ export default function FloorMap({ building, floor, autoOpen, placeSlug }: Props
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
   const [overlayLoaded, setOverlayLoaded] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
   const baseSrcBase = `/maps/${building}/${building}_${floor}-base`;
-  const overlayUrl = `/maps/${building}/${building}_${floor}-overlay.svg?v=${Date.now()}`;
+  const overlayUrl = `/maps/${building}/${building}_${floor}-overlay.svg?v=${refreshKey}`;
+  
+  // Force overlay reload when building or floor changes
+  useEffect(() => {
+    setRefreshKey(Date.now());
+    setOverlayLoaded(false);
+  }, [building, floor]);
 
   useEffect(() => () => cleanupRef.current?.(), []);
   

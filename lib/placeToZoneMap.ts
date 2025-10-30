@@ -12,7 +12,8 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "rm-119": "z-101-0-rm-116-119",
   "gym": "z-101-0-rm-116-119",
   "swimming-pool": "z-101-0-rm-116-119",
-  "male-toilet-101-0-gym": "z-101-0-rm-116-119", // Male Toilet near gym
+  "male-toilet-101-0-gym": "z-101-0-rm-116-119",
+  "male-toilet-besides-the-door-to-the-gym": "z-101-0-rm-116-119",
   "kudu": "z-101-0-n-rest-4",
   "al-khafeef": "z-101-0-n-rest-4",
   "smash-dash": "z-101-0-n-rest-4",
@@ -24,6 +25,10 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "photocopy": "z-101-0-a-151-154-cafes",
   "e-148": "z-101-0-e-pubfac-145",
   "e-145": "z-101-0-e-pubfac-145",
+  "male-toilet-opposite-and-right-to-to-e-130": "z-101-0-e-fo-3-west",
+  "faculty-office-1-opposite-and-right-to-to-e-130": "z-101-0-e-fo-3-west",
+  "faculty-office-2-opposite-and-right-to-to-e-130": "z-101-0-e-fo-3-west",
+  "faculty-office-3-opposite-and-right-to-to-e-130": "z-101-0-e-fo-3-west",
   "a149": "z-101-0-e-139-157-cafes-east",
   "maitre-choux": "z-101-0-e-139-157-cafes-east",
   "alshegrey": "z-101-0-e-139-157-cafes-east",
@@ -70,6 +75,11 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
 
   // Building 101 - First Floor
   "e-222": "z-101-1-e-250-252",
+  "e-223": "z-101-1-e-250-252",
+  "e-224": "z-101-1-e-250-252",
+  "e-225": "z-101-1-e-250-252",
+  "e-226": "z-101-1-e-250-252",
+  "e-227": "z-101-1-e-250-252",
   "e-250": "z-101-1-e-250-252",
   "e-251": "z-101-1-e-250-252",
   "e-252": "z-101-1-e-250-252",
@@ -163,6 +173,7 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "e-340": "z-101-2-e-340-342",
   "e-341": "z-101-2-e-340-342",
   "e-342": "z-101-2-e-340-342",
+  "e-344": "z-101-2-e-340-342",
   "e-350": "z-101-2-e-350-352",
   "e-351": "z-101-2-e-350-352",
   "e-352": "z-101-2-e-350-352",
@@ -171,6 +182,7 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "e-360": "z-101-2-e-360-361",
   "e-361": "z-101-2-e-360-361",
   "e-362": "z-101-2-e-360-361",
+  "e-364": "z-101-2-e-360-361",
   "faculty-offices-opposite-to-e-360-e-361-e-362": "z-101-2-e-360-361",
 
   // Building 104 - Ground Floor

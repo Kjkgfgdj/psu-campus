@@ -9,7 +9,7 @@ export const LABELS: Record<string, string> = {
     "E-118 Cluster\n• E-118 — Community Services and Continuing Education Center\n• Faculty Office 1 — Next to E-118\n• Faculty Office 2 — Next to E-118\n• Faculty Office 3 — Next to E-118\n• Chair of Department of Mathematics and General Sciences",
   "z-101-0-rm-116-119":
     "Sports & Recreation\n• RM 116 — Classroom\n• RM 117 — Classroom\n• Faculty Office — Next to RM. 117\n• RM 118 — Classroom\n• RM 119 — Classroom\n• GYM — Multipurpose Sport Hall\n• Swimming Pool — Besides RM. 116 Table Tennis Court door\n• Male Toilet — Besides the door to the GYM",
-  "z-101-0-e-fo-3-west": "Faculty Offices — near West Stair\n• Male Toilet\n• Faculty Office\n• Faculty Office\n• Faculty Office",
+  "z-101-0-e-fo-3-west": "Faculty Offices — Near West Stair\n• Male Toilet — Opposite and right to E-130\n• Faculty Office 1 — Opposite and right to E-130\n• Faculty Office 2 — Opposite and right to E-130\n• Faculty Office 3 — Opposite and right to E-130",
   "z-101-0-n-rest-4":
     "Restaurants\n• KUDU\n• AL KHAFEEF\n• SMASH DASH\n• KUDU Cafe",
   "z-101-0-a-151-154-cafes":
@@ -24,7 +24,7 @@ export const LABELS: Record<string, string> = {
   "z-101-0-a-ksi-only": "King Sejong Institute\n• King Sejong Institute",
   "z-101-0-a-pr-media": "Public Relations\n• Public Relation & Media Center",
   "z-101-1-e-250-252":
-  "E-250–E-254\n• E-250 — Computer Lab\n• E-251 — Electric Circuits and Logic Design Lab\n• E-252 — Computer Lab\n• E-254 — Faculty Office",
+  "E-222–E-254\n• E-222 — Faculty Office\n• E-223 — Faculty Office\n• E-224 — Faculty Office\n• E-225 — Faculty Office\n• E-226 — Admin Office\n• E-227 — Admin Office\n• E-250 — Computer Lab\n• E-251 — Electric Circuits and Logic Design Lab\n• E-252 — Computer Lab\n• E-254 — Faculty Office",
   "z-101-1-e-240-244":
   "E-240–E-244\n• E-240 — Classroom (Computer LAB)\n• E-241 — Classroom (Computer LAB)\n• E-242 — Classroom (Computer LAB)\n• E-244 — Storage",
   "z-101-1-e-230-234":
@@ -42,11 +42,11 @@ export const LABELS: Record<string, string> = {
   "z-101-1-a-245-246": "Local Governance Center\n• A-246 — Center for Local Governance Office\n• Local Governance Center — Besides A-246\n• Male Toilet — Besides A-246",
   "z-101-1-a-201-205": "Deputy Vicerector\n• A-201 — Deputy Vicerector",
   "z-101-2-e-360-361":
-  "E-360–E-362\n• E-360 — Classroom\n• E-361 — Classroom\n• E-362 — Classroom\n• Faculty Offices — Opposite to E-360 E-361 E-362",
+  "E-360–E-364\n• E-360 — Classroom\n• E-361 — Classroom\n• E-362 — Classroom\n• E-364 — Faculty Office\n• Faculty Offices — Opposite to E-360 E-361 E-362",
   "z-101-2-e-350-352":
   "E-350–E-354\n• E-350 — Classroom\n• E-351 — Classroom\n• E-352 — Classroom\n• E-354 — Faculty Office\n• Faculty Offices — Opposite to E-350 and E-351 and E-350",
   "z-101-2-e-340-342":
-  "E-340–E-342\n• E-340 — Classroom\n• E-341 — Classroom\n• E-342 — Classroom",
+  "E-340–E-344\n• E-340 — Classroom\n• E-341 — Classroom\n• E-342 — Classroom\n• E-344 — Storage",
   "z-101-2-e-330-332":
   "E-330–E-334\n• E-330 — Classroom\n• E-331 — Classroom\n• E-332 — Classroom\n• A-334 — Faculty Office",
   "z-101-2-e-305-311":

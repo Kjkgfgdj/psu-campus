@@ -186,6 +186,7 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "faculty-offices-opposite-to-e-360-e-361-e-362": "z-101-2-e-360-361",
 
   // Building 104 - Ground Floor
+  "university-exhibition-hall": "z-104-0-north",
   "vip-lounge": "z-104-0-north",
   "cafeteria-101-ground-floor-name-to-be-added": "z-104-0-north",
   "ristretto-cafe-104": "z-104-0-north",
@@ -242,6 +243,7 @@ export const PLACE_TO_ZONE_MAP: Record<string, string> = {
   "scr-7b": "z-104-2-south-scr-5-8",
   "scr-8": "z-104-2-south-scr-5-8",
   "pray-area": "z-104-2-east-vert",
+  "pray-area-opposite-to-door-of-both-scr-1-and-scr-8": "z-104-2-east-vert",
 
   // Building 104 - Third Floor
   "vice-rector-for-academic-affairs-research": "z-104-3-north",

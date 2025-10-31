@@ -8,6 +8,10 @@ export type Place = {
   floor: number | string
   category: string
   slug: string
+  description?: string
+  code?: string
+  videoUrl?: string
+  categorySlug?: string
 }
 
 // Cache with timestamp for auto-refresh

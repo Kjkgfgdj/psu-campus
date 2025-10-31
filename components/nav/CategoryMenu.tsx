@@ -101,7 +101,7 @@ export function CategoryMenu() {
                             <div className="flex items-center justify-between gap-3">
                               <div className="flex-1 min-w-0">
                                 <div className="font-semibold text-slate-900 group-hover:text-green-700 transition-colors mb-2">
-                                  {place.name}
+                                  {cat.key === 'important' ? (place.description || place.name) : place.name}
                                 </div>
                                 <div className="flex flex-wrap gap-1.5">
                                   <span className="inline-flex items-center rounded-lg bg-green-50 px-2.5 py-1 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20">

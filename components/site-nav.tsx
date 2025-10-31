@@ -159,7 +159,7 @@ export default function SiteNav() {
                               <div className="flex items-start justify-between gap-2">
                                 <div className="flex-1 min-w-0">
                                   <div className="text-sm font-medium text-white group-hover:text-green-400 transition-colors mb-1.5 truncate">
-                                    {place.name}
+                                    {cat.key === 'important' ? (place.description || place.name) : place.name}
                                   </div>
                                   <div className="flex flex-wrap gap-1.5">
                                     <span className="inline-flex items-center rounded-md bg-green-500/20 px-2 py-0.5 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/30">

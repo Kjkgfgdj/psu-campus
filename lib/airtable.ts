@@ -1,5 +1,6 @@
 import "server-only";
 import { cache } from "react";
+import { normalizeYouTubeUrl } from "./youtube";
 
 const API_KEY = process.env.AIRTABLE_API_KEY ?? process.env.AIRTABLE_TOKEN ?? "";
 const BASE_ID = process.env.AIRTABLE_BASE_ID ?? "";
@@ -94,6 +95,13 @@ function mapPlace(record: AirtableRecord): Place {
       ? (fields.x as string)
       : "";
   const slug = slugSource ? norm(slugSource) : norm(fields.name as string);
+  
+  // Normalize video URL (converts YouTube Shorts to standard format)
+  const rawVideoUrl = (fields.videoUrl as string) ?? undefined;
+  const videoUrl = rawVideoUrl && rawVideoUrl.trim() 
+    ? normalizeYouTubeUrl(rawVideoUrl.trim())
+    : undefined;
+  
   return {
     id: record.id,
     name: String(fields.name ?? ""),
@@ -101,7 +109,7 @@ function mapPlace(record: AirtableRecord): Place {
     floor: Number(fields.floor ?? 0),
     category: String(fields.category ?? ""),
     description: (fields.description as string) ?? undefined,
-    videoUrl: (fields.videoUrl as string) ?? undefined,
+    videoUrl: videoUrl,
     x: Number(fields.x ?? 0) || undefined,
     y: Number(fields.y ?? 0) || undefined,
     slug: slug || undefined,

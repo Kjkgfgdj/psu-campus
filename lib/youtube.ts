@@ -1,4 +1,30 @@
 /**
+ * Normalizes YouTube URLs to standard watch format
+ * Converts:
+ * - youtube.com/shorts/VIDEO_ID → youtube.com/watch?v=VIDEO_ID
+ * - youtu.be/VIDEO_ID → youtube.com/watch?v=VIDEO_ID
+ * Removes query parameters like ?feature=share
+ */
+export function normalizeYouTubeUrl(url: string): string {
+  if (!url || typeof url !== 'string') {
+    return url
+  }
+
+  const cleanUrl = url.trim()
+  
+  // Extract video ID from any YouTube format
+  const videoId = extractYouTubeId(cleanUrl)
+  
+  // If we found a video ID, return standard watch URL
+  if (videoId) {
+    return `https://www.youtube.com/watch?v=${videoId}`
+  }
+  
+  // If not a YouTube URL or no ID found, return original
+  return cleanUrl
+}
+
+/**
  * Extracts YouTube video ID from various YouTube URL formats
  * Supports:
  * - https://www.youtube.com/watch?v=VIDEO_ID
